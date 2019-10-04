@@ -1,0 +1,55 @@
+<md-toolbar class="md-hue-2 fixed top-0 z-40">
+  <div class="md-toolbar-tools">
+
+    <h2 md-truncate>Aktivist</h2>
+
+    <div class="flex-auto h-full">
+
+    </div>
+
+    <div class="visible md:invisible">
+      <md-button class="md-icon-button" aria-label="Favorite" ng-click="$ctrl.toggleLeft()">
+        <md-icon class="favorite-icon">
+          <i class="material-icons">search</i>
+        </md-icon>
+      </md-button>
+    </div>
+
+    <div class="visible md:invisible">
+      <md-button class="md-icon-button" aria-label="Favorite" ng-click="$ctrl.toggleLeft()">
+        <md-icon md-svg-icon="icon_menu.svg" class="favorite-icon"></md-icon>
+      </md-button>
+    </div>
+
+    <ul class="flex justify-end" show-gt-md = "">
+        <li>Giriş yap</li>
+        <li>Kayıt ol</li>
+    </ul>
+
+  </div>
+</md-toolbar>
+
+<section layout="row" flex="50">
+
+  <md-sidenav class="md-sidenav-left fixed top-0" md-component-id="left" md-disable-backdrop="" md-whiteframe="4">
+
+    <md-toolbar class="md-theme-indigo">
+      <h1 class="md-toolbar-tools">Disabled Backdrop</h1>
+    </md-toolbar>
+
+    <md-content layout-margin="">
+      <md-list-item ng-click="navigateTo('data usage', $event)">
+        <md-icon md-svg-icon="signin.svg"></md-icon>
+        <p>Giriş yap</p>
+      </md-list-item>
+      <md-list-item ng-click="navigateTo('data usage', $event)">
+        <md-icon md-svg-icon="arrow-up.svg"></md-icon>
+        <p>Kayıt ol</p>
+      </md-list-item>
+
+
+    </md-content>
+
+  </md-sidenav>
+
+</section>

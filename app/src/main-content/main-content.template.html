@@ -1,0 +1,35 @@
+<div class="block">
+    <span class="text-3xl">Kategori 1: </span>
+    <div class="flex flex-row flex-wrap justify-center md:justify-between"
+        ng-class="{'justify-between': $ctrl.isLandscape(), 'px-8': $ctrl.isLandscape()}">
+        <div class="h-auto w-full md:w-6/12 lg:w-4/12 p-2" flex-landscape = "40" ng-repeat = "act in $ctrl.acts">
+            <md-card>
+                <img ng-src="metallica.jpg" class="md-card-image" alt="Washed Out">
+
+
+                <md-card-title>
+                        <md-card-title-text>
+                          <span class="md-headline">Metallica</span>
+                          <span class="md-subhead">666/666/666</span>
+                        </md-card-title-text>
+                      </md-card-title>
+
+                <md-card-actions layout="row" layout-align = "end center">
+                        <md-button>Detay</md-button>
+
+                    <md-card-icon-actions>
+                        <md-button class="md-icon-button" aria-label="Favorite">
+                            <i class="material-icons">favorite</i>
+                        </md-button>
+                        <md-button class="md-icon-button" aria-label="Settings">
+                            <i class="material-icons">share</i>
+                        </md-button>
+
+                    </md-card-icon-actions>
+                </md-card-actions>
+            </md-card>
+
+        </div>
+    </div>
+
+</div>
