@@ -4,11 +4,14 @@
 
     <h2>Aktivist</h2>
 
-    <div class="flex-grow h-full mb-2">
+    <div class="flex-grow h-full mb-2 md:px-40">
       <div>
         <md-input-container md-no-float class="md-block" ng-if="!$ctrl.isSmaller('768px')">
-          <input ng-model="user.address" type="text" placeholder="Address" aria-label="Address">
-          <md-icon class="favorite-icon">
+          <input ng-model="user.address" type="text" placeholder="Etkinlik ara" aria-label="Address">
+          <md-button class = "md-icon-button">
+            
+          </md-button>
+          <md-icon class="favorite-icon" ng-click>
             <i class="material-icons">search</i>
           </md-icon>
         </md-input-container>
