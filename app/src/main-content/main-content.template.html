@@ -1,35 +1,94 @@
 <div class="block">
     <span class="text-3xl">Kategori 1: </span>
-    <div class="flex flex-row flex-wrap justify-center md:justify-between"
-        ng-class="{'justify-between': $ctrl.isLandscape(), 'px-8': $ctrl.isLandscape()}">
-        <div class="h-auto w-full md:w-6/12 lg:w-4/12 p-2" flex-landscape = "40" ng-repeat = "act in $ctrl.acts">
-            <md-card>
-                <img ng-src="metallica.jpg" class="md-card-image" alt="Washed Out">
-
-
-                <md-card-title>
-                        <md-card-title-text>
-                          <span class="md-headline">Metallica</span>
-                          <span class="md-subhead">666/666/666</span>
-                        </md-card-title-text>
-                      </md-card-title>
-
-                <md-card-actions layout="row" layout-align = "end center">
-                        <md-button>Detay</md-button>
-
-                    <md-card-icon-actions>
-                        <md-button class="md-icon-button" aria-label="Favorite">
-                            <i class="material-icons">favorite</i>
-                        </md-button>
-                        <md-button class="md-icon-button" aria-label="Settings">
-                            <i class="material-icons">share</i>
-                        </md-button>
-
-                    </md-card-icon-actions>
-                </md-card-actions>
-            </md-card>
-
-        </div>
+    <div class = "flex flex-row"> 
+            <div class = "bg-gray-800 md:w-3/12">
+                <div class="h-auto w-full p-2 sticky" flex-landscape = "40" style = "top: 4rem">
+                    <md-card class="md-padding">
+                        <md-content >
+                            <md-input-container class="md-block">
+                                <label>Etkinlik Ara</label>
+                                <input ng-model="search_input">
+                            </md-input-container>
+                        </md-content>
+                        <md-content>
+                            <div>
+                                <h4>Başlangıç</h4>
+                                <md-datepicker ng-model="ctrl.myDate" md-placeholder="Tarih seçin"></md-datepicker>
+                            </div>
+                
+                            <div>
+                                <h4>Bitiş</h4>
+                                <md-datepicker ng-model="ctrl.myDate2" md-placeholder="Tarih seçin"></md-datepicker>
+                            </div>
+                        </md-content>
+                        <md-autocomplete
+                            md-input-minlength="2"
+                            md-input-maxlength="18"
+                            ng-disabled="ctrl.isDisabled"
+                            md-no-cache="ctrl.noCache"
+                            md-selected-item="ctrl.selectedItem"
+                            md-search-text-change="ctrl.searchTextChange(ctrl.searchText)"
+                            md-search-text="ctrl.searchText"
+                            md-selected-item-change="ctrl.selectedItemChange(item)"
+                            md-items="item in ctrl.querySearch(ctrl.searchText)"
+                            md-item-text="item.display"
+                            md-floating-label="Konum Seç">
+                            <md-item-template>
+                                <span md-highlight-text="ctrl.searchText">{{item.display}}</span>
+                            </md-item-template>
+                        </md-autocomplete>
+                
+                        <md-input-container>
+                            <label>Şehir Seç</label>
+                            <md-select ng-model="ctrl.cityState">
+                                <md-select-header class="city_header">
+                                        <!--implement search func for cities-->
+                                        <input  ng-model="searchTerm"  
+                                                type="search"
+                                                placeholder="Şehir ara..."
+                                                class="city_header-searchbox md-text">
+                                </md-select-header>
+                                <md-option><em>Tüm Şehirler</em></md-option>
+                                <md-option ng-repeat="city in ctrl.cities" ng-value="city.abbrev" ng-disabled="$index === 1">
+                                {{city.abbrev}}
+                                </md-option>
+                            </md-select>
+                        </md-input-container>
+                    </md-card>
+                </div>
+            </div>
+            <div class="flex flex-row flex-wrap justify-center md:justify-between md:w-9/12"
+                ng-class="{'justify-between': $ctrl.isLandscape(), 'px-8': $ctrl.isLandscape()}">
+                <div class="h-auto w-full md:w-6/12 lg:w-4/12 p-2" flex-landscape = "40" ng-repeat = "act in $ctrl.acts">
+                    <md-card>
+                        <img ng-src="metallica.jpg" class="md-card-image" alt="Washed Out">
+        
+        
+                        <md-card-title>
+                                <md-card-title-text>
+                                  <span class="md-headline">Metallica</span>
+                                  <span class="md-subhead">666/666/666</span>
+                                </md-card-title-text>
+                              </md-card-title>
+        
+                        <md-card-actions layout="row" layout-align = "end center">
+                                <md-button>Detay</md-button>
+        
+                            <md-card-icon-actions>
+                                <md-button class="md-icon-button" aria-label="Favorite">
+                                    <i class="material-icons">favorite</i>
+                                </md-button>
+                                <md-button class="md-icon-button" aria-label="Settings">
+                                    <i class="material-icons">share</i>
+                                </md-button>
+        
+                            </md-card-icon-actions>
+                        </md-card-actions>
+                    </md-card>
+        
+                </div>
+            </div>
     </div>
+    
 
 </div>
