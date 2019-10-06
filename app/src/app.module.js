@@ -1,5 +1,6 @@
 import "../../node_modules/tailwindcss/dist/tailwind.min.css"
 import angular from 'angular'
+import angularRoute from "angular-route"
 import greetModule from './greet/greet.module';
 import navbarModule from "./navbar/navbar.module";
 import maincontentmodule from "./main-content/main-content.module";
@@ -9,4 +10,17 @@ import ngaria from "angular-aria";
 import "../../node_modules/angular-material/angular-material.css"
 
 
-angular.module('aktivist', [greetModule, navbarModule, maincontentmodule, detailsmodule, ngaria, filtersegmentmodule])
+angular.module('aktivist', [greetModule, navbarModule, maincontentmodule, detailsmodule, ngaria, filtersegmentmodule, angularRoute]).
+    config(
+        ["$routeProvider", function config($routeProvider) {
+            $routeProvider.
+                when("/", {
+                    template: "<greet></greet><main-content></main-content>"
+                }).
+            when("/etkinlikler", {
+                template: "<act-details></act-details>"
+            }).otherwise({
+                redirectTo: "/"
+            })
+        }]
+    );
