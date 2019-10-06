@@ -17,6 +17,10 @@ class MainContentController {
         return this.mdMedia("landscape");
     };
 
+    isSmaller(brkpoint){
+        return this.mdMedia("max-width: " + brkpoint);
+    }
+
 }
 
 MainContentController.$inject = ["$mdMedia"];
