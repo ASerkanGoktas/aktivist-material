@@ -1,12 +1,12 @@
 <meta meta charset=utf-8>
-<md-toolbar class="md-hue-2 fixed top-0 h-16 z-40" style = "height: 3.5rem">
-  <div class="md-toolbar-tools">
+<md-toolbar md-scroll-shrink class="md-hue-2 fixed top-0 h-16 z-40" style = "height: 3.5rem">
+  <div class="md-toolbar-tools" style = "margin: auto">
 
-    <h2>Aktivist</h2>
+    <h2 class = "my-auto">Aktivist</h2>
 
-    <div class="flex-grow h-full mb-2 md:px-40">
+    <div class="flex-grow h-full md:px-40">
       <div>
-        <md-input-container md-no-float class="md-block" ng-if="!$ctrl.isSmaller('768px')">
+        <md-input-container  md-no-float class="md-block" ng-if="!$ctrl.isSmaller('768px')">
           <input ng-model="user.address" type="text" placeholder="Etkinlik ara" aria-label="Address">
           <md-button class = "md-icon-button">
             
@@ -51,29 +51,31 @@
 
 
 <md-toolbar class="md-hue-2 fixed top-0 z-40" ng-if="$ctrl.isSearchOpen" style = "height: 3.5rem">
-  
-  <div class="flex flex-row h-full items-center">
-    <div class = "w-2/12">
-        <md-button class = "md-icon-button inset-auto" ng-click = "$ctrl.toggleSearch()">
-            <i class = "material-icons">arrow_back</i>
-        </md-button>
-    </div>
-    
-    
-    <div class="w-8/12 self-start h-full">
-      <md-input-container md-no-float class="md-block">
-        <input ng-model="user.address" type="text" placeholder="Etkinlik ara..." aria-label="Address">
-      </md-input-container>
-    </div>
-    
-    <div class = "w-2/12">
-        <md-button class = "md-icon-button">
-            <i class = "material-icons">search</i>
-        </md-button>
-    </div>
-    
-    
+  <div class = "md-toolbar-tools">
+      <div class="flex flex-row h-full items-center">
+          <div class = "w-2/12">
+              <md-button class = "md-icon-button inset-auto" ng-click = "$ctrl.toggleSearch()">
+                  <i class = "material-icons">arrow_back</i>
+              </md-button>
+          </div>
+          
+          
+          <div class="w-8/12 self-start h-full">
+            <md-input-container md-no-float class="md-block">
+              <input ng-model="user.address" type="text" placeholder="Etkinlik ara..." aria-label="Address">
+            </md-input-container>
+          </div>
+          
+          <div class = "w-2/12">
+              <md-button class = "md-icon-button">
+                  <i class = "material-icons">search</i>
+              </md-button>
+          </div>
+          
+          
+        </div>
   </div>
+  
 </md-toolbar>
 
 <section layout="row" flex="50">
