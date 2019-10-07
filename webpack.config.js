@@ -8,7 +8,6 @@ module.exports = {
 
     mode : "development",
     entry : appPath + "src/app.module.js",
-    devtool: "source-map",
     output : {
         path : path.resolve(__dirname, appPath + "dist"),
         filename : bundleName
