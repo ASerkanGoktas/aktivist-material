@@ -4,12 +4,18 @@
         <div class="bg-gray-800 lg:w-3/12" ng-class="{'hidden': $ctrl.isSmaller('1000px')}">
             <div class="h-auto w-full p-2 sticky" flex-landscape="40" style="top: 4rem">
                 <md-card class="md-padding">
-                    <md-content>
-                        <md-input-container class="md-block">
-                            <label>Etkinlik Ara</label>
-                            <input ng-model="search_input">
-                        </md-input-container>
-                    </md-content>
+                    <md-contact-chips
+                    ng-model="ctrl.kategori"
+                    ng-change="ctrl.onkategoriChange(ctrl.contacts)"
+                    md-kategoriler="ctrl.querySearch($query)"
+                    md-kategori-name="name"
+                    md-kategori-image="image"
+                    md-require-match="true"
+                    md-separator-keys="ctrl.keys"
+                    placeholder="Kategori ekle"
+                    secondary-placeholder="Kategori ekle"
+                    input-aria-label="Kategori seçme yeri">
+                    </md-contact-chips>
                     <md-content>
                         <div>
                             <h4>Başlangıç</h4>
