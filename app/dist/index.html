@@ -10,9 +10,44 @@
 </head>
 
 <body>
-    <navbar></navbar>
-    <div ng-view autoscroll="true"></div>
-    <script src="bundle.js"></script>
+        <script src="bundle.js"></script>
+        <!--
+    <main layout = "column" flex class = "h-screen">
+            <md-toolbar class = "md-hue-2" md-theme = "site-toolbar">
+                    <div class = "md-toolbar-tools docs-toolbar-tools">
+                        <md-menu ng-click = "$mdMenu.open($event)">
+                                <md-button>
+                                        naber
+                                    </md-button>
+                        <md-menu-content>
+                            <md-menu-item>
+                                    <md-button>
+                                        naaber knk
+                                        </md-button>
+                            </md-menu-item>
+                            
+                        </md-menu-content>
+                    </md-menu>
+                    </div>
+                </md-toolbar>
+            
+                <md-content md-scroll-y class = "overflow-y-auto overflow-x-hidden">
+                      
+                    </md-content>
+
+
+    </main>
+    
+    
+-->
+
+
+    <main layout = "column" flex class = "h-screen">
+        <navbar></navbar>
+        <md-content md-scroll-y>
+            <div ng-view></div>
+        </md-content>
+    </main>
 </body>
 
 </html>
