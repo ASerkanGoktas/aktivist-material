@@ -1,47 +1,49 @@
 <main layout="column" flex class="w-full h-full min-h-full">
-        <navbar></navbar>
-        
-        <div layout="row" flex>
-                <div class="w-3/12 bg-gray-300 hidden overflow-y-scroll" ng-class="{'hidden': !$ctrl.sidenav.isSidenav()}">
-                        <filter-segment></filter-segment>
-                        <div class="w-full p-1">
-                                <div class="flex flex-row flex-wrap scrolling-touch justify-between">
-                                    <div class="text-center mr-4 p-1">
-                                        <md-button class="md-fab"
-                                            style="height: 5rem; width: 5rem; background-image : url('konser1920.jpg'); background-repeat: no-repeat; background-position: center center; background-size : cover;">
-                                        </md-button>
-                                        <p class="text-sm">Kaçmaz!</p>
-                                    </div>
-                                    <div class="text-center mr-4 p-1">
-                                        <md-button class="md-fab"
-                                            style="height: 5rem; width: 5rem; background-image : url('fab_tiyatro.png'); background-repeat: no-repeat; background-position: center center; background-size : cover;">
-                                        </md-button>
-                                        <p class="text-sm">Tiyatro</p>
-                                    </div>
-                                    <div class="text-center mr-4 p-1">
-                                        <md-button class="md-fab"
-                                            style="height: 5rem; width: 5rem; background-image : url('fab_cinema.png'); background-repeat: no-repeat; background-position: center center; background-size : cover;">
-                                        </md-button>
-                                        <p class="text-sm">Sinema</p>
-                                    </div>
-                                    <div class="text-center mr-4 p-1">
-                                        <md-button class="md-fab"
-                                            style="height: 5rem; width: 5rem; background-image : url('fab_muze.jpg'); background-repeat: no-repeat; background-position: center center; background-size : cover;">
-                                        </md-button>
-                                        <p class="text-sm">Müzeler</p>
-                                    </div>
-                                    <div class="text-center mr-4 p-1">
-                                        <md-button class="md-fab"
-                                            style="height: 5rem; width: 5rem; background-image : url('fab_mutfak.jpg'); background-repeat: no-repeat; background-position: center center; background-size : cover;">
-                                        </md-button>
-                                        <p class="text-sm">Mutfak eğitimi</p>
-                                    </div>
-                                </div>
-                            </div>
-                </div>
-                <md-content class = "w-full" md-scroll-y>
-                        <div ng-view></div>
-                </md-content>
+    <navbar></navbar>
 
+    <div layout="row" flex>
+        <div class="w-3/12 bg-gray-300 hidden overflow-y-scroll" ng-class="{'hidden': !$ctrl.sidenav.isSidenav()}">
+            <filter-segment></filter-segment>
+            <div class="w-full p-1">
+                <div class="flex flex-col flex-wrap scrolling-touch justify-between">
+                    <div class="w-full text-center self-center mr-4 p-1">
+                        <md-button class="md-button flex flex-row justify-around"
+                            style="display: flex !important; width: 80% !important; margin: auto !important">
+                            <md-icon md-svg-icon="jazz-saxophone.svg" style="margin: 0px !important"></md-icon>
+                            <p class="self-center">Konserler</p>
+                        </md-button>
+
+                    </div>
+                    <div class="w-full text-center self-center mr-4 p-1">
+                        <md-button class="md-button flex flex-row justify-around"
+                            style="display: flex !important; width: 80% !important; margin: auto !important">
+                            <md-icon md-svg-icon="theater-masks.svg" style="margin: 0px !important"></md-icon>
+                            <p class="self-center">Tiyatrolar</p>
+                        </md-button>
+
+                    </div>
+                    <div class="w-full text-center self-center mr-4 p-1">
+                        <md-button class="md-button flex flex-row justify-around"
+                            style="display: flex !important; width: 80% !important; margin: auto !important">
+                            <md-icon md-svg-icon="film-roll.svg" style="margin: 0px !important"></md-icon>
+                            <p class="self-center">Filmler</p>
+                        </md-button>
+
+                    </div>
+                    <div class="w-full text-center self-center mr-4 p-1">
+                        <md-button class="md-button flex flex-row justify-around"
+                            style="display: flex !important; width: 80% !important; margin: auto !important">
+                            <md-icon md-svg-icon="bank.svg" style="margin: 0px !important"></md-icon>
+                            <p class="self-center">Müzeler</p>
+                        </md-button>
+
+                    </div>
+                </div>
+            </div>
         </div>
+        <md-content class="w-full" md-scroll-y>
+            <div ng-view></div>
+        </md-content>
+
+    </div>
 </main>
