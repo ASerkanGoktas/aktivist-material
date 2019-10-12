@@ -1,0 +1,16 @@
+<main layout="column" flex class="w-full h-full min-h-full">
+        <navbar></navbar>
+        
+        <div layout="row" flex>
+                <div class="w-3/12 bg-gray-300 hidden" ng-class="{'hidden': !$ctrl.sidenav.isSidenav()}">
+                        <filter-segment></filter-segment>
+                </div>
+                <md-content class = "w-full" md-scroll-y>
+                        <greet></greet>
+                        <div class="">
+                                <homepage></homepage>
+                        </div>
+                </md-content>
+
+        </div>
+</main>

@@ -1,9 +1,12 @@
 import tpl from "./navbar.template.html"
 
 class NavbarController {
-    constructor($mdSidenav, $mdMedia) {
+    constructor($mdSidenav, $mdMedia, SidenavService) {
         
         this.media = $mdMedia;
+        this.sidenav = SidenavService;
+
+        console.log(SidenavService);
 
         this.buildToggler = componentId => {
             
@@ -15,6 +18,7 @@ class NavbarController {
         this.toggleLeft = this.buildToggler("left");
 
         this.isSearchOpen = false;
+        this.isSideNav = false;
 
         
     }
@@ -28,9 +32,13 @@ class NavbarController {
 
         return this.isSearchOpen;
     }
+
+    toggleSide(){
+        this.sidenav.toggleSidenav();
+    }
 }
 
-NavbarController.$inject = ["$mdSidenav", "$mdMedia"]
+NavbarController.$inject = ["$mdSidenav", "$mdMedia", "SidenavService"]
 
 
 export default {

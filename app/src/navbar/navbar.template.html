@@ -1,8 +1,13 @@
 <meta meta charset=utf-8>
 <md-toolbar md-scroll-shrink class="md-hue-2 top-0 h-16 z-40" style = "height: 3.5rem">
   <div class="md-toolbar-tools" style = "margin: auto">
-
-    <a href = "#!/"><h2 class = "my-auto">Aktivist</h2></a>
+    <div class = "flex flew-row">
+        <md-button class = "md-icon-button mr-5" ng-click = "$ctrl.toggleSide()">
+            <md-icon md-svg-icon="icon_menu.svg" class="favorite-icon"></md-icon>
+        </md-button>
+        <a href = "#!/" class = "self-center"><h2 class = "my-auto">Aktivist</h2></a>
+    </div>
+    
 
     <div class="flex-grow h-full md:px-40">
       <div>
