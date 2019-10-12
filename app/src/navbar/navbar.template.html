@@ -1,20 +1,28 @@
 <meta meta charset=utf-8>
-<md-toolbar md-scroll-shrink class="md-hue-2 top-0 h-16 z-40" style = "height: 3.5rem">
-  <div class="md-toolbar-tools" style = "margin: auto">
-    <div class = "flex flew-row">
-        <md-button class = "md-icon-button mr-5" ng-click = "$ctrl.toggleSide()">
-            <md-icon md-svg-icon="icon_menu.svg" class="favorite-icon"></md-icon>
+<md-toolbar md-scroll-shrink class="md-hue-2 top-0 h-16 z-40" style="height: 3.5rem">
+  <div class="md-toolbar-tools" style="margin: auto">
+    <!--hamburger ve site ismi-->
+    <div class="flex flew-row">
+      <div ng-class="{'hidden': $ctrl.isSmaller('768px')}">
+        <md-button class="md-icon-button mr-5" ng-click="$ctrl.toggleSide()">
+          <md-icon md-svg-icon="icon_menu.svg" class="favorite-icon"></md-icon>
         </md-button>
-        <a href = "#!/" class = "self-center"><h2 class = "my-auto">Aktivist</h2></a>
-    </div>
-    
+      </div>
+      <div class="self-center">
+        <a href="#!/">
+          <h2 class="my-auto">Aktivist</h2>
+        </a>
+      </div>
 
+    </div>
+
+    <!--arama çubuğu-->
     <div class="flex-grow h-full md:px-40">
       <div>
-        <md-input-container  md-no-float class="md-block" ng-if="!$ctrl.isSmaller('768px')">
+        <md-input-container md-no-float class="md-block" ng-if="!$ctrl.isSmaller('768px')">
           <input ng-model="user.address" type="text" placeholder="Etkinlik ara" aria-label="Address">
-          <md-button class = "md-icon-button">
-            
+          <md-button class="md-icon-button">
+
           </md-button>
           <md-icon class="favorite-icon" ng-click>
             <i class="material-icons">search</i>
@@ -23,6 +31,7 @@
       </div>
     </div>
 
+    <!-- arama icon -->
     <div ng-class="{'hidden': !$ctrl.isSmaller('768px')}">
       <md-button class="md-icon-button" aria-label="Favorite" ng-click="$ctrl.toggleSearch()">
         <md-icon class="favorite-icon">
@@ -31,45 +40,47 @@
       </md-button>
     </div>
 
+    <!--sidenav for mobile-->
     <div ng-class="{'hidden': !$ctrl.isSmaller('768px')}">
       <md-button class="md-icon-button" aria-label="Favorite" ng-click="$ctrl.toggleLeft()">
         <md-icon md-svg-icon="icon_menu.svg" class="favorite-icon"></md-icon>
       </md-button>
     </div>
 
+    <!--giriş yap kaydol kısmı-->
     <ul class="inline-flex justify-end" ng-class="{'hidden': $ctrl.isSmaller('768px')}">
       <li class="mr-3">
-          <md-menu md-offset="-20 2" md-position-mode="target-right bottom">
-              <!-- Trigger element is a md-button with an icon -->
-              <md-button ng-click="$mdMenu.open($event)">
-                  GİRİŞ YAP
-                </md-button>
-              <md-menu-content>
-                <md-menu-item>
-                    <div>
-                      <md-input-container>
-                        <label>Kullanıcı adı</label>
-                        <input>
-                      </md-input-container>
-                    </div>
-              </md-menu-item>
-              <md-menu-item class = "mt-4">
-                <div>
-                    <md-input-container>
-                        <label>Şifre</label>
-                        <input type="password">
-                    </md-input-container>
-                </div>
-                  
-              </md-menu-item>
-              <md-menu-item class = "mt-4">
-                <md-button class = "md-button text-center">
-                  Giriş
-                </md-button>
-              </md-menu-item>
-              </md-menu-content>
-             </md-menu>
-        
+        <md-menu md-offset="-20 2" md-position-mode="target-right bottom">
+          <!-- Trigger element is a md-button with an icon -->
+          <md-button ng-click="$mdMenu.open($event)">
+            GİRİŞ YAP
+          </md-button>
+          <md-menu-content>
+            <md-menu-item>
+              <div>
+                <md-input-container>
+                  <label>Kullanıcı adı</label>
+                  <input>
+                </md-input-container>
+              </div>
+            </md-menu-item>
+            <md-menu-item class="mt-4">
+              <div>
+                <md-input-container>
+                  <label>Şifre</label>
+                  <input type="password">
+                </md-input-container>
+              </div>
+
+            </md-menu-item>
+            <md-menu-item class="mt-4">
+              <md-button class="md-button text-center">
+                Giriş
+              </md-button>
+            </md-menu-item>
+          </md-menu-content>
+        </md-menu>
+
       </li>
 
       <li class="mr-3">
@@ -83,36 +94,35 @@
 </md-toolbar>
 
 
-<md-toolbar class="md-hue-2 fixed top-0 z-40" ng-if="$ctrl.isSearchOpen" style = "height: 3.5rem">
-  <div class = "md-toolbar-tools">
-      <div class="flex flex-row h-full items-center">
-          <div class = "w-2/12">
-              <md-button class = "md-icon-button inset-auto" ng-click = "$ctrl.toggleSearch()">
-                  <i class = "material-icons">arrow_back</i>
-              </md-button>
-          </div>
-          
-          
-          <div class="w-8/12 self-start h-full">
-            <md-input-container md-no-float class="md-block">
-              <input ng-model="user.address" type="text" placeholder="Etkinlik ara..." aria-label="Address">
-            </md-input-container>
-          </div>
-          
-          <div class = "w-2/12">
-              <md-button class = "md-icon-button">
-                  <i class = "material-icons">search</i>
-              </md-button>
-          </div>
-          
-          
-        </div>
+<md-toolbar class="md-hue-2 fixed top-0 z-40" ng-if="$ctrl.isSearchOpen" style="height: 3.5rem">
+  <div class="md-toolbar-tools">
+    <div class="flex flex-row h-full items-center">
+      <div class="w-2/12">
+        <md-button class="md-icon-button inset-auto" ng-click="$ctrl.toggleSearch()">
+          <i class="material-icons">arrow_back</i>
+        </md-button>
+      </div>
+
+
+      <div class="w-8/12 self-start h-full">
+        <md-input-container md-no-float class="md-block">
+          <input ng-model="user.address" type="text" placeholder="Etkinlik ara..." aria-label="Address">
+        </md-input-container>
+      </div>
+
+      <div class="w-2/12">
+        <md-button class="md-icon-button">
+          <i class="material-icons">search</i>
+        </md-button>
+      </div>
+
+
+    </div>
   </div>
-  
+
 </md-toolbar>
 
-<section layout="row" flex="50">
-
+<!--sidenav mobile-->
   <md-sidenav class="md-sidenav-left fixed top-0" md-component-id="left" md-disable-backdrop="" md-whiteframe="4">
 
     <md-toolbar class="md-theme-indigo">
@@ -128,10 +138,11 @@
         <md-icon md-svg-icon="arrow-up.svg"></md-icon>
         <p>Kayıt ol</p>
       </md-list-item>
+      <md-list-item>
+        <filter-segment></filter-segment>
+      </md-list-item>
 
 
     </md-content>
 
   </md-sidenav>
-
-</section>
