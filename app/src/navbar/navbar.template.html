@@ -18,17 +18,25 @@
 
     <!--arama çubuğu-->
     <div class="flex-grow h-full md:px-40">
-      <div>
-        <md-input-container md-no-float class="md-block" ng-if="!$ctrl.isSmaller('768px')">
-          <input ng-model="user.address" type="text" placeholder="Etkinlik ara" aria-label="Address">
-          <md-button class="md-icon-button">
-
-          </md-button>
-          <md-icon class="favorite-icon" ng-click>
-            <i class="material-icons">search</i>
-          </md-icon>
-        </md-input-container>
-      </div>
+      
+        <div class = "h-full flex flex-row">
+          <div class = "flex-grow">
+              <md-input-container class = "w-full">
+                  <input ng-model="" ng-if="!$ctrl.isSmaller('768px')" />
+                </md-input-container>
+          </div>
+            
+            <div class = "self-center">
+                <a href = "#!/arama">
+                  <md-button class = "md-icon-button">
+                      <i class="material-icons">search</i>
+                  </md-button>
+                </a>
+              </div>
+          </div>
+          
+        
+      
     </div>
 
     <!-- arama icon -->
@@ -123,61 +131,61 @@
 </md-toolbar>
 
 <!--sidenav mobile-->
-  <md-sidenav class="md-sidenav-left fixed top-0" md-component-id="left" md-disable-backdrop="" md-whiteframe="4">
+<md-sidenav class="md-sidenav-left fixed top-0" md-component-id="left" md-disable-backdrop="" md-whiteframe="4">
 
-    <md-toolbar class="md-theme-indigo">
-      <h1 class="md-toolbar-tools">Disabled Backdrop</h1>
-    </md-toolbar>
+  <md-toolbar class="md-theme-indigo">
+    <h1 class="md-toolbar-tools">Disabled Backdrop</h1>
+  </md-toolbar>
 
-    <md-content layout-margin="">
-      <md-list-item ng-click="navigateTo('data usage', $event)">
-        <md-icon md-svg-icon="signin.svg"></md-icon>
-        <p>Giriş yap</p>
-      </md-list-item>
-      <md-list-item ng-click="navigateTo('data usage', $event)">
-        <md-icon md-svg-icon="arrow-up.svg"></md-icon>
-        <p>Kayıt ol</p>
-      </md-list-item>
-      
-        <filter-segment></filter-segment>
-        <div class="w-full p-1">
-            <div class="flex flex-col flex-wrap scrolling-touch justify-between">
-                <div class="w-full text-center self-center mr-4 p-1">
-                    <md-button class="md-button flex flex-row justify-around"
-                        style="display: flex !important; width: 80% !important; margin: auto !important">
-                        <md-icon md-svg-icon="jazz-saxophone.svg" style="margin: 0px !important"></md-icon>
-                        <p class="self-center">Konserler</p>
-                    </md-button>
+  <md-content layout-margin="">
+    <md-list-item ng-click="navigateTo('data usage', $event)">
+      <md-icon md-svg-icon="signin.svg"></md-icon>
+      <p>Giriş yap</p>
+    </md-list-item>
+    <md-list-item ng-click="navigateTo('data usage', $event)">
+      <md-icon md-svg-icon="arrow-up.svg"></md-icon>
+      <p>Kayıt ol</p>
+    </md-list-item>
 
-                </div>
-                <div class="w-full text-center self-center mr-4 p-1">
-                    <md-button class="md-button flex flex-row justify-around"
-                        style="display: flex !important; width: 80% !important; margin: auto !important">
-                        <md-icon md-svg-icon="theater-masks.svg" style="margin: 0px !important"></md-icon>
-                        <p class="self-center">Tiyatrolar</p>
-                    </md-button>
+    <filter-segment></filter-segment>
+    <div class="w-full p-1">
+      <div class="flex flex-col flex-wrap scrolling-touch justify-between">
+        <div class="w-full text-center self-center mr-4 p-1">
+          <md-button class="md-button flex flex-row justify-around"
+            style="display: flex !important; width: 80% !important; margin: auto !important">
+            <md-icon md-svg-icon="jazz-saxophone.svg" style="margin: 0px !important"></md-icon>
+            <p class="self-center">Konserler</p>
+          </md-button>
 
-                </div>
-                <div class="w-full text-center self-center mr-4 p-1">
-                    <md-button class="md-button flex flex-row justify-around"
-                        style="display: flex !important; width: 80% !important; margin: auto !important">
-                        <md-icon md-svg-icon="film-roll.svg" style="margin: 0px !important"></md-icon>
-                        <p class="self-center">Filmler</p>
-                    </md-button>
-
-                </div>
-                <div class="w-full text-center self-center mr-4 p-1">
-                    <md-button class="md-button flex flex-row justify-around"
-                        style="display: flex !important; width: 80% !important; margin: auto !important">
-                        <md-icon md-svg-icon="bank.svg" style="margin: 0px !important"></md-icon>
-                        <p class="self-center">Müzeler</p>
-                    </md-button>
-
-                </div>
-            </div>
         </div>
+        <div class="w-full text-center self-center mr-4 p-1">
+          <md-button class="md-button flex flex-row justify-around"
+            style="display: flex !important; width: 80% !important; margin: auto !important">
+            <md-icon md-svg-icon="theater-masks.svg" style="margin: 0px !important"></md-icon>
+            <p class="self-center">Tiyatrolar</p>
+          </md-button>
+
+        </div>
+        <div class="w-full text-center self-center mr-4 p-1">
+          <md-button class="md-button flex flex-row justify-around"
+            style="display: flex !important; width: 80% !important; margin: auto !important">
+            <md-icon md-svg-icon="film-roll.svg" style="margin: 0px !important"></md-icon>
+            <p class="self-center">Filmler</p>
+          </md-button>
+
+        </div>
+        <div class="w-full text-center self-center mr-4 p-1">
+          <md-button class="md-button flex flex-row justify-around"
+            style="display: flex !important; width: 80% !important; margin: auto !important">
+            <md-icon md-svg-icon="bank.svg" style="margin: 0px !important"></md-icon>
+            <p class="self-center">Müzeler</p>
+          </md-button>
+
+        </div>
+      </div>
+    </div>
 
 
-    </md-content>
+  </md-content>
 
-  </md-sidenav>
+</md-sidenav>

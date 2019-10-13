@@ -21,6 +21,9 @@ angular.module('aktivist', [greetModule, navbarModule, maincontentmodule, detail
                 when("/", {
                     template: "<greet></greet><homepage></homepage>"
                 }).
+                when("/arama", {
+                    template: "<main-content></main-content>"
+                }).
                 when("/etkinlikler", {
                     template: "<act-details></act-details>"
                 }).otherwise({
