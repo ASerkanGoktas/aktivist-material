@@ -17,22 +17,7 @@
                 <md-datepicker ng-model="ctrl.myDate2" md-placeholder="Tarih seçin"></md-datepicker>
             </div>
         </md-content>
-        <md-autocomplete
-            md-input-minlength="2"
-            md-input-maxlength="18"
-            ng-disabled="ctrl.isDisabled"
-            md-no-cache="ctrl.noCache"
-            md-selected-item="ctrl.selectedItem"
-            md-search-text-change="ctrl.searchTextChange(ctrl.searchText)"
-            md-search-text="ctrl.searchText"
-            md-selected-item-change="ctrl.selectedItemChange(item)"
-            md-items="item in ctrl.querySearch(ctrl.searchText)"
-            md-item-text="item.display"
-            md-floating-label="Konum Seç">
-            <md-item-template>
-                <span md-highlight-text="ctrl.searchText">{{item.display}}</span>
-            </md-item-template>
-        </md-autocomplete>
+
 
         <md-input-container>
             <label>Şehir Seç</label>
