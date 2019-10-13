@@ -4,7 +4,7 @@
     <!--hamburger ve site ismi-->
     <div class="flex flew-row">
       <div class = "mr-4" ng-class="{'hidden': $ctrl.isSmaller('768px')}">
-        <md-button class="md-icon-button" ng-click="$ctrl.toggleSide()">
+        <md-button class="md-icon-button" ng-click="$ctrl.toggleLeft()">
           <md-icon md-svg-icon="icon_menu.svg" class="favorite-icon"></md-icon>
         </md-button>
       </div>
@@ -131,7 +131,7 @@
 </md-toolbar>
 
 <!--sidenav mobile-->
-<md-sidenav class="md-sidenav-left fixed top-0" md-component-id="left" md-disable-backdrop="" md-whiteframe="4">
+<md-sidenav class="md-sidenav-left fixed top-0" md-component-id="left"  md-whiteframe="4">
 
   <md-toolbar class="md-theme-indigo">
     <h1 class="md-toolbar-tools">Disabled Backdrop</h1>
@@ -147,7 +147,7 @@
       <p>Kayıt ol</p>
     </md-list-item>
 
-    <filter-segment></filter-segment>
+    
     <div class="w-full p-1">
       <div class="flex flex-col flex-wrap scrolling-touch justify-between">
         <div class="w-full text-center self-center mr-4 p-1">

@@ -2,47 +2,40 @@
     <navbar></navbar>
 
     <div layout="row" flex>
-        <div class="w-3/12 bg-gray-300 hidden overflow-y-scroll" ng-class="{'hidden': !$ctrl.sidenav.isSidenav()}">
-            <filter-segment></filter-segment>
-            <div class="w-full p-1">
-                <div class="flex flex-col flex-wrap scrolling-touch justify-between">
-                    <div class="w-full text-center self-center mr-4 p-1">
-                        <md-button class="md-button flex flex-row justify-around"
-                            style="display: flex !important; width: 80% !important; margin: auto !important">
-                            <md-icon md-svg-icon="jazz-saxophone.svg" style="margin: 0px !important"></md-icon>
-                            <p class="self-center">Konserler</p>
-                        </md-button>
-
-                    </div>
-                    <div class="w-full text-center self-center mr-4 p-1">
-                        <md-button class="md-button flex flex-row justify-around"
-                            style="display: flex !important; width: 80% !important; margin: auto !important">
-                            <md-icon md-svg-icon="theater-masks.svg" style="margin: 0px !important"></md-icon>
-                            <p class="self-center">Tiyatrolar</p>
-                        </md-button>
-
-                    </div>
-                    <div class="w-full text-center self-center mr-4 p-1">
-                        <md-button class="md-button flex flex-row justify-around"
-                            style="display: flex !important; width: 80% !important; margin: auto !important">
-                            <md-icon md-svg-icon="film-roll.svg" style="margin: 0px !important"></md-icon>
-                            <p class="self-center">Filmler</p>
-                        </md-button>
-
-                    </div>
-                    <div class="w-full text-center self-center mr-4 p-1">
-                        <md-button class="md-button flex flex-row justify-around"
-                            style="display: flex !important; width: 80% !important; margin: auto !important">
-                            <md-icon md-svg-icon="bank.svg" style="margin: 0px !important"></md-icon>
-                            <p class="self-center">Müzeler</p>
-                        </md-button>
-
-                    </div>
+        <div class="w-20 bg-gray-200" ng-class="{'hidden': $ctrl.isSmaller('1000px')}">
+            <div class="w-full h-full flex justify-start flex-col">
+                <div class="flex flex-col flex-initial items-center">
+                    <md-button class="md-button">
+                        <md-icon md-svg-icon="jazz-saxophone.svg"></md-icon>
+                        <p class="text-xs font-normal normal-case">Konserler</p>
+                    </md-button>
+                    
+                </div>
+                <div class="flex flex-col flex-initial items-center">
+                    <md-button class="md-button">
+                        <md-icon md-svg-icon="theater-masks.svg"></md-icon>
+                        <p class="text-xs font-normal normal-case">Tiyatrolar</p>
+                    </md-button>
+                    
+                </div>
+                <div class="flex flex-col flex-initial items-center">
+                    <md-button class="md-button">
+                        <md-icon md-svg-icon="film-roll.svg"></md-icon>
+                        <p class="text-xs font-normal normal-case">Sinemalar</p>
+                    </md-button>
+                    
+                </div>
+                <div class="flex flex-col flex-initial items-center">
+                    <md-button class="md-button">
+                        <md-icon md-svg-icon="bank.svg"></md-icon>
+                        <p class="text-xs font-normal normal-case">Kültür</p>
+                    </md-button>
+                    
                 </div>
             </div>
         </div>
         <md-content class="w-full" md-scroll-y>
-            <div ng-view autoscroll = "false"></div>
+            <div ng-view autoscroll="false"></div>
         </md-content>
 
     </div>
