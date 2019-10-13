@@ -1,10 +1,13 @@
 <div class="h-auto w-full p-2">
     <md-card class="md-padding">
         <md-content >
-            <md-input-container class="md-block">
-                <label>Etkinlik Ara</label>
-                <input ng-model="search_input">
-            </md-input-container>
+            <md-contact-chips ng-model="$ctrl.contacts" 
+            md-contacts="$ctrl.querySearch($query)" 
+            md-contact-name="name" 
+            md-contact-image="image"
+            md-require-match="true"
+            placeholder="Kategori Seç">
+            </md-contact-chips>
         </md-content>
         <md-content>
             <div>
