@@ -17,12 +17,12 @@
     </div>
 
     <!--arama çubuğu-->
-    <div class="flex-grow h-full md:px-40">
+    <div class="flex-grow h-full px-8 lg:px-40" ng-if="!$ctrl.isSmaller('768px')" >
       
         <div class = "h-full flex flex-row">
           <div class = "flex-grow">
               <md-input-container class = "w-full">
-                  <input ng-model="$ctrl.hello" ng-if="!$ctrl.isSmaller('768px')" />
+                  <input ng-model="$ctrl.hello"/>
                 </md-input-container>
           </div>
             
