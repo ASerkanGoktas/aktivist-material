@@ -1,9 +1,9 @@
-<div class="block">
-    
-    <div class="flex flex-row">
-        <div class="flex flex-row flex-wrap justify-center md:justify-between"
+<div class="block" layout="row" layout-sm = "column" layout-xs="column"> <!--show and hide maybe used later-->
+        <div flex = "25" flex-sm = "33" flex-xs = "100"><filter-segment></filter-segment></div> <!--fixed position in css-->
+        <div flex = "75" flex-sm = "66" flex-xs = "100">
+        <div class="flex flex-wrap justify-center md:justify-between" 
             ng-class="{'justify-between': $ctrl.isLandscape(), 'px-8': $ctrl.isLandscape()}">
-            <div class="h-auto w-full md:w-6/12 lg:w-4/12 p-2" flex-landscape="40" ng-repeat="act in $ctrl.acts">
+            <div class="h-auto w-full md:w-6/12 lg:w-4/12 p-2" ng-repeat="act in $ctrl.acts">
                 <a href="#!/etkinlikler">
                     <md-card>
                         <img ng-src="metallica.jpg" class="md-card-image" alt="Washed Out">
@@ -35,7 +35,7 @@
 
             </div>
         </div>
-    </div>
+        </div>
 
 
 </div>

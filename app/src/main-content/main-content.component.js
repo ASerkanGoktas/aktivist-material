@@ -7,7 +7,7 @@ class MainContentController {
       
         this.mdMedia = $mdMedia;
         this.acts = []
-        for(let i = 0; i<9; i++){
+        for(let i = 0; i<12; i++){
             this.acts.push(i);
         }
         
