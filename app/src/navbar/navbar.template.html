@@ -3,7 +3,7 @@
   <div class="md-toolbar-tools" style="margin: auto">
     <!--hamburger ve site ismi-->
     <div class="flex flew-row">
-      <div class = "mr-4" ng-class="{'hidden': $ctrl.isSmaller('768px')}">
+      <div class="mr-4" ng-class="{'hidden': $ctrl.isSmaller('768px')}">
         <md-button class="md-icon-button" ng-click="$ctrl.toggleLeft()">
           <md-icon md-svg-icon="icon_menu.svg" class="favorite-icon"></md-icon>
         </md-button>
@@ -17,26 +17,26 @@
     </div>
 
     <!--arama çubuğu-->
-    <div class="flex-grow h-full px-8 lg:px-40" ng-if="!$ctrl.isSmaller('768px')" >
-      
-        <div class = "h-full flex flex-row">
-          <div class = "flex-grow">
-              <md-input-container class = "w-full">
-                  <input ng-model="$ctrl.hello"/>
-                </md-input-container>
-          </div>
-            
-            <div class = "self-center">
-                <a href = "#!/arama">
-                  <md-button class = "md-icon-button">
-                      <i class="material-icons">search</i>
-                  </md-button>
-                </a>
-              </div>
-          </div>
-          
-        
-      
+    <div class="flex-grow h-full px-8 lg:px-40" ng-if="!$ctrl.isSmaller('768px')">
+
+      <div class="h-full flex flex-row">
+        <div class="flex-grow">
+          <md-input-container class="w-full">
+            <input ng-model="$ctrl.hello" />
+          </md-input-container>
+        </div>
+
+        <div class="self-center">
+          <a href="#!/arama">
+            <md-button class="md-icon-button">
+              <i class="material-icons">search</i>
+            </md-button>
+          </a>
+        </div>
+      </div>
+
+
+
     </div>
 
     <!-- arama icon -->
@@ -130,58 +130,108 @@
 
 </md-toolbar>
 
-<!--sidenav mobile-->
-<md-sidenav class="md-sidenav-left fixed top-0" md-component-id="left"  md-whiteframe="4">
+<!--sidenav-->
+<md-sidenav class="md-sidenav-left fixed top-0" md-component-id="left" md-whiteframe="4">
 
   <md-toolbar class="md-theme-indigo">
     <h1 class="md-toolbar-tools">Disabled Backdrop</h1>
   </md-toolbar>
 
   <md-content layout-margin="">
-    <md-list-item ng-click="navigateTo('data usage', $event)">
-      <md-icon md-svg-icon="signin.svg"></md-icon>
-      <p>Giriş yap</p>
-    </md-list-item>
-    <md-list-item ng-click="navigateTo('data usage', $event)">
-      <md-icon md-svg-icon="arrow-up.svg"></md-icon>
-      <p>Kayıt ol</p>
-    </md-list-item>
 
-    
-    <div class="w-full p-1">
+
+
+    <div class="w-full">
       <div class="flex flex-col flex-wrap scrolling-touch justify-between">
         <div class="w-full text-center self-center mr-4 p-1">
-          <md-button class="md-button flex flex-row justify-around"
-            style="display: flex !important; width: 80% !important; margin: auto !important">
-            <md-icon md-svg-icon="jazz-saxophone.svg" style="margin: 0px !important"></md-icon>
-            <p class="self-center">Konserler</p>
+          <md-button class="md-button flex flex-row"
+            style="display: flex !important; width: 100% !important; margin: auto !important">
+            <md-icon md-svg-icon="jazz-saxophone.svg" style="margin: 0px !important;"></md-icon>
+            <p class="self-center ml-8">Konserler</p>
           </md-button>
 
         </div>
+        <div class="h-px bg-gray-500 mb-1"></div>
+
         <div class="w-full text-center self-center mr-4 p-1">
-          <md-button class="md-button flex flex-row justify-around"
-            style="display: flex !important; width: 80% !important; margin: auto !important">
+            <md-button class="md-button flex flex-row"
+              style="display: flex !important; width: 80% !important; margin: auto !important">
+              <md-icon md-svg-icon="jazz-saxophone.svg" style="margin: 0px !important;"></md-icon>
+              <p class="self-center ml-8">Alt başlık</p>
+            </md-button>
+  
+          </div>
+          <div class="w-full text-center self-center mr-4 p-1">
+            <md-button class="md-button flex flex-row"
+              style="display: flex !important; width: 80% !important; margin: auto !important">
+              <md-icon md-svg-icon="jazz-saxophone.svg" style="margin: 0px !important;"></md-icon>
+              <p class="self-center ml-8">Alt başlık</p>
+            </md-button>
+  
+          </div>
+          <div class="w-full text-center self-center mr-4 p-1">
+            <md-button class="md-button flex flex-row"
+              style="display: flex !important; width: 80% !important; margin: auto !important">
+              <md-icon md-svg-icon="jazz-saxophone.svg" style="margin: 0px !important;"></md-icon>
+              <p class="self-center ml-8">Alt başlık</p>
+            </md-button>
+  
+          </div>
+
+          
+        <div class="w-full text-center self-center mr-4 p-1">
+          <md-button class="md-button flex flex-row"
+            style="display: flex !important; width: 100% !important; margin: auto !important">
             <md-icon md-svg-icon="theater-masks.svg" style="margin: 0px !important"></md-icon>
-            <p class="self-center">Tiyatrolar</p>
+            <p class="self-center ml-8">Tiyatrolar</p>
+          </md-button>
+
+        </div>
+        <div class="h-px bg-gray-500 mb-1"></div>
+
+        <div class="w-full text-center self-center mr-4 p-1">
+          <md-button class="md-button flex flex-row"
+            style="display: flex !important; width: 80% !important; margin: auto !important">
+            <md-icon md-svg-icon="jazz-saxophone.svg" style="margin: 0px !important;"></md-icon>
+            <p class="self-center ml-8">Alt başlık</p>
           </md-button>
 
         </div>
         <div class="w-full text-center self-center mr-4 p-1">
-          <md-button class="md-button flex flex-row justify-around"
+          <md-button class="md-button flex flex-row"
             style="display: flex !important; width: 80% !important; margin: auto !important">
+            <md-icon md-svg-icon="jazz-saxophone.svg" style="margin: 0px !important;"></md-icon>
+            <p class="self-center ml-8">Alt başlık</p>
+          </md-button>
+
+        </div>
+        <div class="w-full text-center self-center mr-4 p-1">
+          <md-button class="md-button flex flex-row"
+            style="display: flex !important; width: 80% !important; margin: auto !important">
+            <md-icon md-svg-icon="jazz-saxophone.svg" style="margin: 0px !important;"></md-icon>
+            <p class="self-center ml-8">Alt başlık</p>
+          </md-button>
+
+        </div>
+
+        <div class="w-full text-center self-center mr-4 p-1">
+          <md-button class="md-button flex flex-row"
+            style="display: flex !important; width: 100% !important; margin: auto !important">
             <md-icon md-svg-icon="film-roll.svg" style="margin: 0px !important"></md-icon>
-            <p class="self-center">Filmler</p>
+            <p class="self-center ml-8">Filmler</p>
           </md-button>
 
         </div>
+        <div class="h-px bg-gray-500 mb-1"></div>
         <div class="w-full text-center self-center mr-4 p-1">
-          <md-button class="md-button flex flex-row justify-around"
-            style="display: flex !important; width: 80% !important; margin: auto !important">
+          <md-button class="md-button flex flex-row"
+            style="display: flex !important; width: 100% !important; margin: auto !important">
             <md-icon md-svg-icon="bank.svg" style="margin: 0px !important"></md-icon>
-            <p class="self-center">Müzeler</p>
+            <p class="self-center ml-8">Müzeler</p>
           </md-button>
 
         </div>
+        <div class="h-px bg-gray-500 mb-1"></div>
       </div>
     </div>
 
