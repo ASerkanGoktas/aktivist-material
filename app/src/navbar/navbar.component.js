@@ -1,8 +1,9 @@
 import tpl from "./navbar.template.html"
 
 class NavbarController {
-    constructor($mdSidenav, $mdMedia, SidenavService) {
-        
+    constructor($mdSidenav, $mdMedia, SidenavService, IconService) {
+
+        this.icon = IconService;
         this.media = $mdMedia;
         this.sidenav = SidenavService;
 
@@ -38,7 +39,7 @@ class NavbarController {
     }
 }
 
-NavbarController.$inject = ["$mdSidenav", "$mdMedia", "SidenavService"]
+NavbarController.$inject = ["$mdSidenav", "$mdMedia", "SidenavService", "IconService"];
 
 
 export default {

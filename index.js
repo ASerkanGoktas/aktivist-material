@@ -5,7 +5,7 @@ var app = express();
 var http = require('http');
 var server = http.Server(app);
 
-app.use(express.static(__dirname + "/app/dist"));
+app.use(express.static(__dirname + "/dist"));
 
 server.listen(PORT, () => {
     console.log("hey")

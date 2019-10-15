@@ -5,7 +5,7 @@
     <div class="flex flew-row">
       <div class="mr-4" ng-class="{'hidden': $ctrl.isSmaller('768px')}">
         <md-button class="md-icon-button" ng-click="$ctrl.toggleLeft()">
-          <md-icon md-svg-icon="icon_menu.svg" class="favorite-icon"></md-icon>
+          <md-icon md-svg-icon="{{$ctrl.icon.hamburger}}" class="favorite-icon"></md-icon>
         </md-button>
       </div>
       <div class="self-center">
@@ -51,7 +51,7 @@
     <!--sidenav for mobile-->
     <div ng-class="{'hidden': !$ctrl.isSmaller('768px')}">
       <md-button class="md-icon-button" aria-label="Favorite" ng-click="$ctrl.toggleLeft()">
-        <md-icon md-svg-icon="icon_menu.svg" class="favorite-icon"></md-icon>
+        <md-icon md-svg-icon="{{$ctrl.icon.hamburger}}" class="favorite-icon"></md-icon>
       </md-button>
     </div>
 
@@ -146,7 +146,7 @@
         <div class="w-full text-center self-center mr-4 p-1">
           <md-button class="md-button flex flex-row"
             style="display: flex !important; width: 100% !important; margin: auto !important">
-            <md-icon md-svg-icon="jazz-saxophone.svg" style="margin: 0px !important;"></md-icon>
+            <md-icon md-svg-icon="{{$ctrl.icon.concert}}" style="margin: 0px !important;"></md-icon>
             <p class="self-center ml-8">Konserler</p>
           </md-button>
 
@@ -156,7 +156,7 @@
         <div class="w-full text-center self-center mr-4 p-1">
             <md-button class="md-button flex flex-row"
               style="display: flex !important; width: 80% !important; margin: auto !important">
-              <md-icon md-svg-icon="jazz-saxophone.svg" style="margin: 0px !important;"></md-icon>
+              <md-icon md-svg-icon="{{$ctrl.icon.concert}}" style="margin: 0px !important;"></md-icon>
               <p class="self-center ml-8">Alt başlık</p>
             </md-button>
   
@@ -164,7 +164,7 @@
           <div class="w-full text-center self-center mr-4 p-1">
             <md-button class="md-button flex flex-row"
               style="display: flex !important; width: 80% !important; margin: auto !important">
-              <md-icon md-svg-icon="jazz-saxophone.svg" style="margin: 0px !important;"></md-icon>
+              <md-icon md-svg-icon="{{$ctrl.icon.concert}}" style="margin: 0px !important;"></md-icon>
               <p class="self-center ml-8">Alt başlık</p>
             </md-button>
   
@@ -172,7 +172,7 @@
           <div class="w-full text-center self-center mr-4 p-1">
             <md-button class="md-button flex flex-row"
               style="display: flex !important; width: 80% !important; margin: auto !important">
-              <md-icon md-svg-icon="jazz-saxophone.svg" style="margin: 0px !important;"></md-icon>
+              <md-icon md-svg-icon="{{$ctrl.icon.concert}}" style="margin: 0px !important;"></md-icon>
               <p class="self-center ml-8">Alt başlık</p>
             </md-button>
   
@@ -182,7 +182,7 @@
         <div class="w-full text-center self-center mr-4 p-1">
           <md-button class="md-button flex flex-row"
             style="display: flex !important; width: 100% !important; margin: auto !important">
-            <md-icon md-svg-icon="theater-masks.svg" style="margin: 0px !important"></md-icon>
+            <md-icon md-svg-icon="{{$ctrl.icon.theater}}" style="margin: 0px !important"></md-icon>
             <p class="self-center ml-8">Tiyatrolar</p>
           </md-button>
 
@@ -192,7 +192,7 @@
         <div class="w-full text-center self-center mr-4 p-1">
           <md-button class="md-button flex flex-row"
             style="display: flex !important; width: 80% !important; margin: auto !important">
-            <md-icon md-svg-icon="jazz-saxophone.svg" style="margin: 0px !important;"></md-icon>
+            <md-icon md-svg-icon="{{$ctrl.icon.concert}}" style="margin: 0px !important;"></md-icon>
             <p class="self-center ml-8">Alt başlık</p>
           </md-button>
 
@@ -200,7 +200,7 @@
         <div class="w-full text-center self-center mr-4 p-1">
           <md-button class="md-button flex flex-row"
             style="display: flex !important; width: 80% !important; margin: auto !important">
-            <md-icon md-svg-icon="jazz-saxophone.svg" style="margin: 0px !important;"></md-icon>
+            <md-icon md-svg-icon="{{$ctrl.icon.concert}}" style="margin: 0px !important;"></md-icon>
             <p class="self-center ml-8">Alt başlık</p>
           </md-button>
 
@@ -208,7 +208,7 @@
         <div class="w-full text-center self-center mr-4 p-1">
           <md-button class="md-button flex flex-row"
             style="display: flex !important; width: 80% !important; margin: auto !important">
-            <md-icon md-svg-icon="jazz-saxophone.svg" style="margin: 0px !important;"></md-icon>
+            <md-icon md-svg-icon="{{$ctrl.icon.concert}}" style="margin: 0px !important;"></md-icon>
             <p class="self-center ml-8">Alt başlık</p>
           </md-button>
 
@@ -217,7 +217,7 @@
         <div class="w-full text-center self-center mr-4 p-1">
           <md-button class="md-button flex flex-row"
             style="display: flex !important; width: 100% !important; margin: auto !important">
-            <md-icon md-svg-icon="film-roll.svg" style="margin: 0px !important"></md-icon>
+            <md-icon md-svg-icon="{{$ctrl.icon.movie}}" style="margin: 0px !important"></md-icon>
             <p class="self-center ml-8">Filmler</p>
           </md-button>
 
@@ -226,7 +226,7 @@
         <div class="w-full text-center self-center mr-4 p-1">
           <md-button class="md-button flex flex-row"
             style="display: flex !important; width: 100% !important; margin: auto !important">
-            <md-icon md-svg-icon="bank.svg" style="margin: 0px !important"></md-icon>
+            <md-icon md-svg-icon="{{$ctrl.icon.museum}}" style="margin: 0px !important"></md-icon>
             <p class="self-center ml-8">Müzeler</p>
           </md-button>
 

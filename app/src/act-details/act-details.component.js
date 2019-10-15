@@ -1,8 +1,12 @@
 import tpl from "./act-details.template.html"
-
+import metallica from "../assets/images/metallica.jpg"
 
 class ActDetailsController{
-    constructor(){}
+    constructor(){
+        this.act = {
+            url: metallica
+        }
+    }
 
 }
 

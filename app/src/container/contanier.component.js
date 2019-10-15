@@ -2,7 +2,8 @@ import tpl from "./container.template.html"
 
 
 class ContainerController{
-    constructor(SidenavService, $mdMedia){
+    constructor(SidenavService, IconService, $mdMedia){
+        this.icon = IconService;
         this.mdMedia = $mdMedia;
         this.sidenav = SidenavService;
     }
@@ -12,7 +13,7 @@ class ContainerController{
     }
 }
 
-ContainerController.$inject = ["SidenavService", "$mdMedia"];
+ContainerController.$inject = ["SidenavService", "IconService","$mdMedia"];
 export default {
     template: tpl,
     controller: ContainerController

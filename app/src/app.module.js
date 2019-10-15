@@ -11,6 +11,7 @@ import SidenavService from "./services/sidenav.service";
 import containermodule from "./container/container.module";
 import ngaria from "angular-aria";
 import "../../node_modules/angular-material/angular-material.css"
+import IconService from "./services/icon.service";
 
 
 angular.module('aktivist', [greetModule, navbarModule, maincontentmodule, detailsmodule, ngaria, filtersegmentmodule, angularRoute,
@@ -35,4 +36,6 @@ angular.module('aktivist', [greetModule, navbarModule, maincontentmodule, detail
         console.log(a);
     
         return a;
+    }]).factory("IconService", [() => {
+        return new IconService();
     }]);
