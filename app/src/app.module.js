@@ -1,4 +1,4 @@
-import "../../node_modules/tailwindcss/dist/tailwind.min.css"
+import "./tailwind.css"
 import angular from 'angular'
 import angularRoute from "angular-route"
 import greetModule from './greet/greet.module';

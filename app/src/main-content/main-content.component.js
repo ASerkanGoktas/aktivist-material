@@ -21,6 +21,19 @@ class MainContentController {
         return this.mdMedia("max-width: " + brkpoint);
     }
 
+    isPhoneLandscape(){
+
+        let probablemaxphonewidth = "750px";
+
+        let land = this.mdMedia("landscape");
+        let phone = this.mdMedia("max-width:" + probablemaxphonewidth);
+
+        return land == phone;
+    }
+
+    getLayout(){
+        
+    }
 }
 
 MainContentController.$inject = ["$mdMedia"];

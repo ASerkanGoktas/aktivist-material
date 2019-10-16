@@ -1,41 +1,37 @@
-<div class="block" layout="row" layout-sm = "column" layout-xs="column"> <!--show and hide maybe used later-->
-        <div flex = "25" flex-sm = "33" flex-xs = "100"><filter-segment></filter-segment></div> <!--fixed position in css-->
-        <div flex = "75" flex-sm = "66" flex-xs = "100">
-        <div class="flex flex-wrap justify-center md:justify-between" 
-            ng-class="{'justify-between': $ctrl.isLandscape(), 'px-8': $ctrl.isLandscape()}">
-            <div class="h-auto w-full md:w-6/12 lg:w-4/12 p-2" ng-repeat="act in $ctrl.acts">
-                <a href="#!/etkinlikler">
+<div>
+    <div layout="row" layout-sm="column" layout-xs="column" class="md:px-24 w-full">
+        <div flex="30" flex-lg="20" flex-xl="20" flex-sm="100" flex-xs="100" class="min-h-screen">
+            <filter-segment></filter-segment>
+        </div>
+        <div flex="70" flex-lg="80" flex-xl="80" flex-sm="100" flex-xs="100" class="min-h-screen xl:pr-20g h-auto">
+            <div class="sm:container sm:mx-auto flex flex-wrap">
+                <div class="w-4/5 sm:4/5 mx-auto sm:w-1/2 sm:mx-0 lg:w-1/3 xxl:w-1/4" ng-repeat="act in [1, 2, 3, 4, 5, 6, 7]">
                     <md-card>
-                        <img ng-src="assets/metallica.jpg" class="md-card-image" alt="Washed Out">
+                        <div class="h-32 bg-gray-800"
+                            style="background-image : url('assets/metallica.jpg'); background-repeat: no-repeat; background-position: center center; background-size : cover;">
+                        </div>
+                        <div class="flex flex-col p-2">
 
 
-                        <md-card-title>
-                            <md-card-title-text>
-                                <span class="md-headline">Metallica</span>
-                                <span class="md-subhead">666/666/666</span>
-                            </md-card-title-text>
-                        </md-card-title>
+                            <span class="font-bold text-sm overflow-hidden"
+                                style="white-space: normal; -webkit-line-clamp: 3; max-height: 2.5rem; text-overflow: ellipsis;">Metallica
+                                çooooooooooooooook uzuuuuuuuun çoooook çok uzuuun mu uzun kardeşim biraz kısa be biraz
+                                kıs ama
+                                yani offfffff</span>
+                            <span class="text-xs mt-1">666/666/666</span>
 
-                        <md-card-actions layout="row" layout-align="end center">
-                            <md-button>Detay</md-button>
+                        </div>
+                        <div class="flex flex-row justify-between float-right">
+                            <md-button class="md-button">DETAY</md-button>
+                            <md-button class="md-icon-button h-1 w-1 self-center">
+                                <i class="material-icons">share</i>
+                            </md-button>
 
-                            <md-card-icon-actions>
-                                <md-button class="md-icon-button" aria-label="Favorite">
-                                    <i class="material-icons">favorite</i>
-                                </md-button>
-                                <md-button class="md-icon-button" aria-label="Settings">
-                                    <i class="material-icons">share</i>
-                                </md-button>
-
-                            </md-card-icon-actions>
-                        </md-card-actions>
+                        </div>
                     </md-card>
-                </a>
-
-
+                </div>
             </div>
-        </div>
-        </div>
 
-
+        </div>
+    </div>
 </div>
