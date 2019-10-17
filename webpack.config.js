@@ -4,6 +4,7 @@ const srcPath = "./app/"
 const outPath = "./";
 const HtmlwebpackPlugin = require('html-webpack-plugin');
 const {CleanWebpackPlugin} = require('clean-webpack-plugin');
+const CopyPlugin = require('copy-webpack-plugin');
 
 
 module.exports = {
@@ -59,7 +60,10 @@ module.exports = {
             filename: "./index.html"
 
         }),
-        new CleanWebpackPlugin()
+        new CleanWebpackPlugin(),
+        new CopyPlugin([
+            { from: './app/src/manifest.json', to: './manifest.json' },
+          ])
     ]
 
 
