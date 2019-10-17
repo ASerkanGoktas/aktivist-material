@@ -34,8 +34,14 @@ angular.module('aktivist', [greetModule, navbarModule, maincontentmodule, detail
     ).factory("SidenavService", [() => {
         let a = new SidenavService;
         console.log(a);
-    
+
         return a;
     }]).factory("IconService", [() => {
         return new IconService();
-    }]);
+    }]).config(function($mdThemingProvider) {
+        $mdThemingProvider.theme('default')
+          .primaryPalette('blue')
+          .accentPalette('orange');
+          
+         
+      });
