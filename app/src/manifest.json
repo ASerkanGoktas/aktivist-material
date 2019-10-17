@@ -2,5 +2,5 @@
     "short_name": "Aktivist",
     "name": "Aktivist",
     "display": "standalone",
-    "start_url": "/#!"
+    "start_url": "http://aktivist2.herokuapp.com/#!"
   }
