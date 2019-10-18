@@ -4,7 +4,7 @@
     <!--hamburger ve site ismi-->
     <div class="flex flew-row">
       <div class="mr-4" ng-class="{'hidden': $ctrl.isSmaller('768px')}">
-        <md-button class="md-icon-button" ng-click="$ctrl.toggleLeft()">
+        <md-button class="md-icon-button" ng-click="$ctrl.toggleLeft()" ngsf-toggle-fullscreen>
           <md-icon md-svg-icon="{{$ctrl.icon.hamburger}}" class="favorite-icon"></md-icon>
         </md-button>
       </div>
