@@ -12,13 +12,11 @@ import containermodule from "./container/container.module";
 import ngaria from "angular-aria";
 import "../../node_modules/angular-material/angular-material.css"
 import IconService from "./services/icon.service";
-import "../../node_modules/screenfull/dist/screenfull"
-import "../../node_modules/angular-screenfull/dist/angular-screenfull";
 
 
 
 angular.module('aktivist', [greetModule, navbarModule, maincontentmodule, detailsmodule, ngaria, filtersegmentmodule, angularRoute,
-    homepagemodule, containermodule, 'angularScreenfull']).
+    homepagemodule, containermodule]).
     config(
         ["$routeProvider", function config($routeProvider) {
             $routeProvider.
