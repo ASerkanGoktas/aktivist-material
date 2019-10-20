@@ -43,7 +43,7 @@ class NavbarController {
 
     resize(){
 
-        var doc = this.doc;
+        var doc = window.doc;
         var docEl = doc.documentElement;
 
         var requestFullScreen = docEl.requestFullscreen || docEl.mozRequestFullScreen || docEl.webkitRequestFullScreen || docEl.msRequestFullscreen;
