@@ -2,17 +2,22 @@ import tpl from "./filter-segment.template.html"
 
 
 class FilterSegmentController{
-    constructor($mdMedia) {
+    constructor($mdMedia,$q) {
+        this.myDate = new Date();
+        this.startContacts = [];
         this.allContacts = loadAllContacts();
+        this.querySearch = querySearch();
         this.contacts = this.allContacts;       
         this.mdMedia = $mdMedia;
-        this.querySearch = querySearch();
         this.acts = []
         for(let i = 0; i<9; i++){
             this.acts.push(i);
         }        
     }
 
+    querySearch (criteria) {
+        return criteria ? this.allContacts.filter(createFilterFor(criteria)) : [];
+      }
 
     isLandscape(){
         return this.mdMedia("landscape");
@@ -21,11 +26,18 @@ class FilterSegmentController{
     isSmaller(brkpoint){
         return this.mdMedia("max-width: " + brkpoint);
     }
+
+    createFilterFor(query) {
+        var lowercaseQuery = query.toLowerCase();
+  
+        return function filterFn(contact) {
+          return (contact._lowername.indexOf(lowercaseQuery) !== -1);
+        };
+  
+      }
+  
 }
 
-function querySearch (criteria) {
-    return criteria ? this.allContacts.filter(createFilterFor(criteria)) : []; // XDDDDDDDDDDDDDDDD SEARCH FUNCTION IN 2K194AD9GFDAGFAK;HJLASGDJ
-}
 
 
 function loadAllContacts(){    
