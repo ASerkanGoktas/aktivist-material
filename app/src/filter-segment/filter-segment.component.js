@@ -6,7 +6,6 @@ class FilterSegmentController{
         this.myDate = new Date();
         this.startContacts = [];
         this.allContacts = loadAllContacts();
-        this.querySearch = querySearch();
         this.contacts = this.allContacts;       
         this.mdMedia = $mdMedia;
         this.acts = []
