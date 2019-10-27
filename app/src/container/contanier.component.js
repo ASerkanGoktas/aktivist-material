@@ -10,7 +10,7 @@ class ContainerController {
         this.sidenav = SidenavService;
         this.isNav = true;
 
-        this.doc.find("md-content")[1].onscroll = e => {
+        this.doc.find("md-content")[0].onscroll = e => {
             let currentPos = e.target.scrollTop;
             console.log(this.isNav);
 
