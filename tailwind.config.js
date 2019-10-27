@@ -404,6 +404,7 @@ module.exports = {
       '11': '11',
       '12': '12',
     },
+    
     padding: theme => theme('spacing'),
     placeholderColor: theme => theme('colors'),
     stroke: {

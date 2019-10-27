@@ -679,7 +679,7 @@ video {
   white-space: nowrap;
   border-width: 0;
 }
-
+.md-errors-spacer { display: none; }
 .focus\:not-sr-only:focus {
   position: static;
   width: auto;
