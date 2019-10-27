@@ -1,5 +1,5 @@
 <meta meta charset=utf-8>
-<md-toolbar md-scroll-shrink class="landscape:hidden md-hue-2 top-0 h-16 z-40" style="height: 3.5rem">
+<md-toolbar md-scroll-shrink class="md-hue-2 top-0 h-16 z-40" style="height: 3.5rem">
   <div class="md-toolbar-tools" style="max-height: 3.5rem; height: 3.5rem; margin: auto">
     <!--hamburger ve site ismi-->
     <div class="flex flew-row">
@@ -111,27 +111,30 @@
 <md-toolbar class="md-hue-2 fixed top-0 z-40" ng-if="$ctrl.isSearchOpen">
   <div class="md-toolbar-tools" style="max-height: 3.5rem; height: 3.5rem">
     <div class="flex flex-row h-full items-center">
-      <div class="w-2/12">
+      <div class="w-2/12 ">
         <md-button class="md-icon-button inset-auto" ng-click="$ctrl.toggleSearch()">
           <i class="material-icons">arrow_back</i>
         </md-button>
       </div>
 
 
-      <div class="w-8/12 self-start h-full">
-        <md-input-container md-no-float class="md-block m-2">
-          <input ng-model="user.address" type="text" placeholder="Etkinlik ara..." aria-label="Address">
-        </md-input-container>
-      </div>
+      <div class="w-10/12 self-start h-full p-2 px-1">
+        <md-content overflow="hidden" class="h-full flex flex-row items-center">
+            <div class="w-10/12 p-0">
+              <md-input-container md-no-float class="md-block m-0 items-center md-errors-spacer">
+                <input ng-model="user.address" type="text" placeholder="Etkinlik ara..." aria-label="Address">
+              </md-input-container>
+            </div>
 
-      <div class="w-2/12">
-        <a href = "#!/arama">
-          <md-button class="md-icon-button">
-            <i class="material-icons">search</i>
-          </md-button>
-        </a>
-        
-      </div>
+            <div class="w-2/12 bg-indigo-200">
+              <a href = "#!/arama">
+                <md-button class="md-icon-button">
+                  <i class="material-icons">search</i>
+                </md-button>
+              </a>
+          </div> 
+        </md-content>
+      
 
 
     </div>
