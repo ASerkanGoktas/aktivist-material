@@ -10,28 +10,7 @@ class ContainerController {
         this.sidenav = SidenavService;
         this.isNav = true;
 
-        this.doc.find("md-content")[1].onscroll = e => {
-            let currentPos = e.target.scrollTop;
-            console.log(this.isNav);
 
-            if (currentPos > this.position) {
-                //scrolling down
-
-                this.isNav = true;
-                let a = angular.element(this.doc.find('navbar')[0]);
-                a.removeClass("hidden");
-                this.position = currentPos;
-            }else {
-                this.isNav = false;
-                let a = angular.element(this.doc.find('navbar')[0]);
-                a.addClass("hidden");
-                this.position = currentPos;
-            }   
-
-            
-
-
-        }
     }
 
     isSmaller(brkpoint) {
