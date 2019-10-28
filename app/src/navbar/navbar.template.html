@@ -2,7 +2,7 @@
 <md-toolbar md-scroll-shrink class="md-hue-2 top-0 h-16 z-40" style="height: 3.5rem">
   <div class="md-toolbar-tools" style="max-height: 3.5rem; height: 3.5rem; margin: auto">
     <!--hamburger ve site ismi-->
-    <div class="flex flew-row">
+    <div class="flex flew-row bg">
       <div class="mr-4" ng-class="{'hidden': $ctrl.isSmaller('768px')}">
         <md-button class="md-icon-button" ng-click="$ctrl.toggleLeft()">
           <md-icon md-svg-icon="{{$ctrl.icon.hamburger}}" class="favorite-icon"></md-icon>
@@ -16,39 +16,44 @@
 
     </div>
 
+
+    
     <!--arama çubuğu-->
     <div class="flex-grow h-full px-8 lg:px-40" ng-if="!$ctrl.isSmaller('768px')">
 
-      <div class="h-full flex flex-row">
-        <div class="flex-grow">
-          <md-input-container class="w-full">
-            <input ng-model="$ctrl.hello" />
-          </md-input-container>
-        </div>
+      <div class="self-start h-full p-2 px-1">
+        <md-content overflow="hidden" class="h-full flex flex-row items-center">
+          <div flex="auto" class="p-0">
+            <md-input-container md-no-float class="md-block m-0 items-center md-errors-spacer">
+              <input ng-model="$ctrl.hello">
+            </md-input-container>
+          </div>
 
-        <div class="self-center">
-          <a href="#!/arama">
-            <md-button class="md-icon-button">
-              <i class="material-icons">search</i>
-            </md-button>
-          </a>
-        </div>
-      </div>
+          <div class="self-center bg-indigo-200">
+            <a href="#!/arama">
+              <md-button class="md-icon-button">
+                <i class="material-icons">search</i>
+              </md-button>
+            </a>
+          </div>
+        </md-content>
+       </div>
+
 <!---->
 
 
     </div>
 
     <!-- arama icon -->
-    <div ng-class="{'hidden': !$ctrl.isSmaller('768px')}">
-      <md-button class="md-icon-button" aria-label="Favorite" ng-click="$ctrl.toggleSearch()">
+    <div ng-class="{'hidden': !$ctrl.isSmaller('768px')} ">
+      <md-button class="md-icon-button " aria-label="Favorite" ng-click="$ctrl.toggleSearch()">
         <md-icon class="favorite-icon">
           <i class="material-icons">search</i>
         </md-icon>
       </md-button>
     </div>
 
-    <div ng-class="{'hidden': !$ctrl.isSmaller('768px')}">
+    <div ng-class="{'hidden': !$ctrl.isSmaller('768px')} ">
       <md-button class="md-icon-button" aria-label="Favorite" ng-click="$ctrl.toggleLeft()">
         <md-icon md-svg-icon="{{$ctrl.icon.hamburger}}" class="favorite-icon"></md-icon>
       </md-button>
@@ -106,7 +111,7 @@
     <md-toolbar class="md-hue-2 fixed top-0 z-40">
         <div class="md-toolbar-tools" style="max-height: 3.5rem; height: 3.5rem">
           <div class="flex flex-row h-full items-center">
-            <div class="w-2/12 ">
+            <div class="w-2/12">
               <md-button class="md-icon-button inset-auto" ng-click="$ctrl.toggleSearch()">
                 <i class="material-icons">arrow_back</i>
               </md-button>
@@ -115,13 +120,13 @@
       
             <div class="w-10/12 self-start h-full p-2 px-1">
               <md-content overflow="hidden" class="h-full flex flex-row items-center">
-                  <div class="w-10/12 p-0">
+                  <div flex="auto" class="p-0">
                     <md-input-container md-no-float class="md-block m-0 items-center md-errors-spacer">
                       <input ng-model="user.address" type="text" placeholder="Etkinlik ara..." aria-label="Address">
                     </md-input-container>
                   </div>
       
-                  <div class="w-2/12 bg-indigo-200">
+                  <div flex="initial" class="bg-indigo-200">
                     <a href = "#!/arama">
                       <md-button class="md-icon-button">
                         <i class="material-icons">search</i>
