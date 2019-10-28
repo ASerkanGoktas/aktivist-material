@@ -48,13 +48,6 @@
       </md-button>
     </div>
 
-    <!--sidenav for mobile-->
-    <div ng-class="{'hidden': !$ctrl.isSmaller('768px')}">
-        <md-button class="md-icon-button" aria-label="Favorite" onclick = "toggleFullScreen()" ng-click="$ctrl.resize()">
-          <md-icon md-svg-icon="{{$ctrl.resizeicon}}" class="favorite-icon"></md-icon>
-        </md-button>
-      </div>
-
     <div ng-class="{'hidden': !$ctrl.isSmaller('768px')}">
       <md-button class="md-icon-button" aria-label="Favorite" ng-click="$ctrl.toggleLeft()">
         <md-icon md-svg-icon="{{$ctrl.icon.hamburger}}" class="favorite-icon"></md-icon>
