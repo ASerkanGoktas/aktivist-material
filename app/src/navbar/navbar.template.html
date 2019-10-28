@@ -107,72 +107,104 @@
   </div>
 </md-toolbar>
 
+
 <!--search part for mobile-->
-<md-toolbar class="md-hue-2 fixed top-0 z-40" ng-if="$ctrl.isSearchOpen">
-  <div class="md-toolbar-tools" style="max-height: 3.5rem; height: 3.5rem">
-    <div class="flex flex-row h-full items-center">
-      <div class="w-2/12 ">
-        <md-button class="md-icon-button inset-auto" ng-click="$ctrl.toggleSearch()">
-          <i class="material-icons">arrow_back</i>
-        </md-button>
-      </div>
-
-
-      <div class="w-10/12 self-start h-full p-2 px-1">
-        <md-content overflow="hidden" class="h-full flex flex-row items-center">
-            <div class="w-10/12 p-0">
-              <md-input-container md-no-float class="md-block m-0 items-center md-errors-spacer">
-                <input ng-model="user.address" type="text" placeholder="Etkinlik ara..." aria-label="Address">
-              </md-input-container>
+<div ng-if="$ctrl.isSearchOpen">
+    <md-toolbar class="md-hue-2 fixed top-0 z-40">
+        <div class="md-toolbar-tools" style="max-height: 3.5rem; height: 3.5rem">
+          <div class="flex flex-row h-full items-center">
+            <div class="w-2/12 ">
+              <md-button class="md-icon-button inset-auto" ng-click="$ctrl.toggleSearch()">
+                <i class="material-icons">arrow_back</i>
+              </md-button>
             </div>
-
-            <div class="w-2/12 bg-indigo-200">
-              <a href = "#!/arama">
-                <md-button class="md-icon-button">
-                  <i class="material-icons">search</i>
-                </md-button>
-              </a>
-          </div> 
-        </md-content>
       
+      
+            <div class="w-10/12 self-start h-full p-2 px-1">
+              <md-content overflow="hidden" class="h-full flex flex-row items-center">
+                  <div class="w-10/12 p-0">
+                    <md-input-container md-no-float class="md-block m-0 items-center md-errors-spacer">
+                      <input ng-model="user.address" type="text" placeholder="Etkinlik ara..." aria-label="Address">
+                    </md-input-container>
+                  </div>
+      
+                  <div class="w-2/12 bg-indigo-200">
+                    <a href = "#!/arama">
+                      <md-button class="md-icon-button">
+                        <i class="material-icons">search</i>
+                      </md-button>
+                    </a>
+                </div> 
+              </md-content>
+            
+      
+      
+          </div>
+        </div>
+      </div>
+      </md-toolbar>
+</div>
 
-
-    </div>
-  </div>
-
-</md-toolbar>
 
 <!--sidenav-->
 <md-sidenav class="md-sidenav-left fixed top-0" md-component-id="left" md-whiteframe="4">
 
-  <md-toolbar class="md-theme-indigo">
-    <h1 class="md-toolbar-tools">Disabled Backdrop</h1>
-  </md-toolbar>
-
-  <md-content layout-margin="">
-
-
-
-    <div class="w-full">
-      <div class="flex flex-col flex-wrap scrolling-touch justify-between">
-        <div class="w-full text-center self-center mr-4 p-1">
-          <md-button class="md-button flex flex-row"
-            style="display: flex !important; width: 100% !important; margin: auto !important">
-            <md-icon md-svg-icon="{{$ctrl.icon.concert}}" style="margin: 0px !important;"></md-icon>
-            <p class="self-center ml-8">Konserler</p>
-          </md-button>
-
-        </div>
-        <div class="h-px bg-gray-500 mb-1"></div>
-
-        <div class="w-full text-center self-center mr-4 p-1">
+    <md-toolbar class="md-theme-indigo">
+      <h1 class="md-toolbar-tools">Disabled Backdrop</h1>
+    </md-toolbar>
+  
+    <md-content layout-margin="">
+  
+  
+  
+      <div class="w-full">
+        <div class="flex flex-col flex-wrap scrolling-touch justify-between">
+          <div class="w-full text-center self-center mr-4 p-1">
             <md-button class="md-button flex flex-row"
-              style="display: flex !important; width: 80% !important; margin: auto !important">
+              style="display: flex !important; width: 100% !important; margin: auto !important">
               <md-icon md-svg-icon="{{$ctrl.icon.concert}}" style="margin: 0px !important;"></md-icon>
-              <p class="self-center ml-8">Alt başlık</p>
+              <p class="self-center ml-8">Konserler</p>
             </md-button>
   
           </div>
+          <div class="h-px bg-gray-500 mb-1"></div>
+  
+          <div class="w-full text-center self-center mr-4 p-1">
+              <md-button class="md-button flex flex-row"
+                style="display: flex !important; width: 80% !important; margin: auto !important">
+                <md-icon md-svg-icon="{{$ctrl.icon.concert}}" style="margin: 0px !important;"></md-icon>
+                <p class="self-center ml-8">Alt başlık</p>
+              </md-button>
+    
+            </div>
+            <div class="w-full text-center self-center mr-4 p-1">
+              <md-button class="md-button flex flex-row"
+                style="display: flex !important; width: 80% !important; margin: auto !important">
+                <md-icon md-svg-icon="{{$ctrl.icon.concert}}" style="margin: 0px !important;"></md-icon>
+                <p class="self-center ml-8">Alt başlık</p>
+              </md-button>
+    
+            </div>
+            <div class="w-full text-center self-center mr-4 p-1">
+              <md-button class="md-button flex flex-row"
+                style="display: flex !important; width: 80% !important; margin: auto !important">
+                <md-icon md-svg-icon="{{$ctrl.icon.concert}}" style="margin: 0px !important;"></md-icon>
+                <p class="self-center ml-8">Alt başlık</p>
+              </md-button>
+    
+            </div>
+  
+            
+          <div class="w-full text-center self-center mr-4 p-1">
+            <md-button class="md-button flex flex-row"
+              style="display: flex !important; width: 100% !important; margin: auto !important">
+              <md-icon md-svg-icon="{{$ctrl.icon.theater}}" style="margin: 0px !important"></md-icon>
+              <p class="self-center ml-8">Tiyatrolar</p>
+            </md-button>
+  
+          </div>
+          <div class="h-px bg-gray-500 mb-1"></div>
+  
           <div class="w-full text-center self-center mr-4 p-1">
             <md-button class="md-button flex flex-row"
               style="display: flex !important; width: 80% !important; margin: auto !important">
@@ -189,65 +221,37 @@
             </md-button>
   
           </div>
-
-          
-        <div class="w-full text-center self-center mr-4 p-1">
-          <md-button class="md-button flex flex-row"
-            style="display: flex !important; width: 100% !important; margin: auto !important">
-            <md-icon md-svg-icon="{{$ctrl.icon.theater}}" style="margin: 0px !important"></md-icon>
-            <p class="self-center ml-8">Tiyatrolar</p>
-          </md-button>
-
+          <div class="w-full text-center self-center mr-4 p-1">
+            <md-button class="md-button flex flex-row"
+              style="display: flex !important; width: 80% !important; margin: auto !important">
+              <md-icon md-svg-icon="{{$ctrl.icon.concert}}" style="margin: 0px !important;"></md-icon>
+              <p class="self-center ml-8">Alt başlık</p>
+            </md-button>
+  
+          </div>
+  
+          <div class="w-full text-center self-center mr-4 p-1">
+            <md-button class="md-button flex flex-row"
+              style="display: flex !important; width: 100% !important; margin: auto !important">
+              <md-icon md-svg-icon="{{$ctrl.icon.movie}}" style="margin: 0px !important"></md-icon>
+              <p class="self-center ml-8">Filmler</p>
+            </md-button>
+  
+          </div>
+          <div class="h-px bg-gray-500 mb-1"></div>
+          <div class="w-full text-center self-center mr-4 p-1">
+            <md-button class="md-button flex flex-row"
+              style="display: flex !important; width: 100% !important; margin: auto !important">
+              <md-icon md-svg-icon="{{$ctrl.icon.museum}}" style="margin: 0px !important"></md-icon>
+              <p class="self-center ml-8">Müzeler</p>
+            </md-button>
+  
+          </div>
+          <div class="h-px bg-gray-500 mb-1"></div>
         </div>
-        <div class="h-px bg-gray-500 mb-1"></div>
-
-        <div class="w-full text-center self-center mr-4 p-1">
-          <md-button class="md-button flex flex-row"
-            style="display: flex !important; width: 80% !important; margin: auto !important">
-            <md-icon md-svg-icon="{{$ctrl.icon.concert}}" style="margin: 0px !important;"></md-icon>
-            <p class="self-center ml-8">Alt başlık</p>
-          </md-button>
-
-        </div>
-        <div class="w-full text-center self-center mr-4 p-1">
-          <md-button class="md-button flex flex-row"
-            style="display: flex !important; width: 80% !important; margin: auto !important">
-            <md-icon md-svg-icon="{{$ctrl.icon.concert}}" style="margin: 0px !important;"></md-icon>
-            <p class="self-center ml-8">Alt başlık</p>
-          </md-button>
-
-        </div>
-        <div class="w-full text-center self-center mr-4 p-1">
-          <md-button class="md-button flex flex-row"
-            style="display: flex !important; width: 80% !important; margin: auto !important">
-            <md-icon md-svg-icon="{{$ctrl.icon.concert}}" style="margin: 0px !important;"></md-icon>
-            <p class="self-center ml-8">Alt başlık</p>
-          </md-button>
-
-        </div>
-
-        <div class="w-full text-center self-center mr-4 p-1">
-          <md-button class="md-button flex flex-row"
-            style="display: flex !important; width: 100% !important; margin: auto !important">
-            <md-icon md-svg-icon="{{$ctrl.icon.movie}}" style="margin: 0px !important"></md-icon>
-            <p class="self-center ml-8">Filmler</p>
-          </md-button>
-
-        </div>
-        <div class="h-px bg-gray-500 mb-1"></div>
-        <div class="w-full text-center self-center mr-4 p-1">
-          <md-button class="md-button flex flex-row"
-            style="display: flex !important; width: 100% !important; margin: auto !important">
-            <md-icon md-svg-icon="{{$ctrl.icon.museum}}" style="margin: 0px !important"></md-icon>
-            <p class="self-center ml-8">Müzeler</p>
-          </md-button>
-
-        </div>
-        <div class="h-px bg-gray-500 mb-1"></div>
       </div>
-    </div>
-
-
-  </md-content>
-
-</md-sidenav>
+  
+  
+    </md-content>
+  
+  </md-sidenav>
