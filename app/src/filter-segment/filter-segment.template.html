@@ -1,29 +1,29 @@
 <div class="h-auto lg:float-right w-4/5 xs:w-9/12 sm:w-9/12 mx-auto">
     <md-card class="md-padding">
-        <md-content >
-            <md-contact-chips ng-model="$ctrl.startContacts" 
-            md-min-length="0"
-            md-contacts="$ctrl.querySearch($query)" 
-            md-contact-name="name" 
-            md-contact-image="image"
-            md-require-match="true"
-            placeholder="Kategori Seç">
-            </md-contact-chips>
-        </md-content>
-        <md-content>
+        <md-content class="bg-white">
             <div>
-                <h4>Başlangıç</h4>
+                <md-contact-chips ng-model="$ctrl.startContacts" 
+                md-min-length="0"
+                md-contacts="$ctrl.querySearch($query)" 
+                md-contact-name="name" 
+                md-contact-image="image"
+                md-require-match="true"
+                placeholder="Kategori Seç">
+                </md-contact-chips>
+            </div>
+            <div class="py-1">
+                <h4 class="px-1">Başlangıç</h4>
                 <md-datepicker ng-model="$ctrl.myDate" md-placeholder="Tarih seçin"></md-datepicker>
             </div>
 
-            <div>
-                <h4>Bitiş</h4>
+            <div class="py-1">
+                <h4 class="px-1">Bitiş</h4>
                 <md-datepicker ng-model="ctrl.myDate2" md-placeholder="Tarih seçin"></md-datepicker>
             </div>
         </md-content>
 
 
-        <md-input-container>
+        <md-input-container class="py-1">
             <label>Şehir Seç</label>
             <md-select ng-model="ctrl.cityState">
                 <md-select-header class="city_header">
