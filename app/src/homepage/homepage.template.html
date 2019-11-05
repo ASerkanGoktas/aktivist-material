@@ -4,16 +4,14 @@
         <div class="h-64 w-64 flex-none  m-3" ng-repeat="act in $ctrl.acts">
             <md-card>
                 <div class="h-32 bg-gray-800"
-                    style="background-image : url('assets/metallica.jpg'); background-repeat: no-repeat; background-position: center center; background-size : cover;">
+                    ng-style="{'background-image': act.image, 'background-repeat': 'no-repeat', 'background-position': 'center center', 'background-size': 'cover'}">
                 </div>
                 <div class="flex flex-col p-2">
-
+                    
 
                     <span class="font-bold text-sm overflow-hidden"
-                        style="white-space: normal; -webkit-line-clamp: 3; max-height: 2.5rem; text-overflow: ellipsis;">Metallica
-                        çooooooooooooooook uzuuuuuuuun çoooook çok uzuuun mu uzun kardeşim biraz kısa be biraz kıs ama
-                        yani offfffff</span>
-                    <span class="text-xs mt-1">666/666/666</span>
+                        style="white-space: normal; -webkit-line-clamp: 3; max-height: 2.5rem; text-overflow: ellipsis;">{{act.name}}</span>
+                    <span class="text-xs mt-1">{{act.date}}</span>
 
                 </div>
                 <div class="flex flex-row justify-between float-right">
