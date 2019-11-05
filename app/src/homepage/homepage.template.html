@@ -4,7 +4,7 @@
         <div class="h-64 w-64 flex-none  m-3" ng-repeat="act in $ctrl.acts">
             <md-card>
                 <div class="h-32 bg-gray-800"
-                    ng-style="{'background-image': act.image, 'background-repeat': 'no-repeat', 'background-position': 'center center', 'background-size': 'cover'}">
+                    ng-style="{'background-image': 'url('+ act.image +')', 'background-repeat': 'no-repeat', 'background-position': 'center center', 'background-size': 'cover'}">
                 </div>
                 <div class="flex flex-col p-2">
                     
