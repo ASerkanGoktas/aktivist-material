@@ -27,8 +27,10 @@ angular.module('aktivist', [greetModule, navbarModule, maincontentmodule, detail
                 when("/arama", {
                     template: "<main-content></main-content>"
                 }).
-                when("/etkinlik", {
-                    template: "<act-details></act-details>"
+                when("/etkinlik/:ins_id", {
+                    template: params => {
+                        return '<act-details instance_id="' + params.ins_id + '"><act-details>';
+                    }
                 }).otherwise({
                     redirectTo: "/"
                 })

@@ -23,5 +23,5 @@ class ActDetailsController{
 export default {
     template : tpl,
     controller : ActDetailsController,
-    bindings : {instance_id = '@'}
+    bindings : {instance_id : '@'}
 }
