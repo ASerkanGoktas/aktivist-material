@@ -9,7 +9,7 @@ const pool = new Pool({
 })
 
 const getAll = (request, response) => {
-    pool.query('SELECT instances.date FROM etkinlik JOIN instances ON (etkinlik.etkinlik_id = instances.etkinlik_id)', (error, results) => {
+    pool.query('SELECT * FROM etkinlik JOIN instances ON (etkinlik.etkinlik_id = instances.etkinlik_id)', (error, results) => {
         console.log('nabeeer be kankaaa');
         if(error){
             console.log("error");
