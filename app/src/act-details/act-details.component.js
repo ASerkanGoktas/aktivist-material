@@ -4,20 +4,19 @@ class ActDetailsController{
     constructor(EtkinlikService){
         this.et = EtkinlikService;
         this.act = {};
-
-        this.$onInit = () => {
-            if(this.instance_id === this.et.selected.instance_id){
-                this.act = this.et.selected;
-            }
-            else{
-                this.et.getActivity(this.instance_id).then(response => {
-                    this.act = response.data;
-                });
-            }
-        }
     }
 
-    
+    $onInit(){
+        console.log(this);
+        if(this.instance_id === this.et.selected.instance_id){
+            this.act = this.et.selected;
+        }
+        else{
+            this.et.getActivity(this.instance_id).then(response => {
+                this.act = response.data;
+            });
+        }
+    }
 
 }
 
