@@ -7,7 +7,7 @@ class ActDetailsController{
 
         this.$onInit = () => {
             console.log(this);
-            if(this.instance_id === this.et.selected.instance_id){
+            if(this.instanceId === this.et.selected.instance_id){
                 this.act = this.et.selected;
             }
             else{
@@ -24,5 +24,5 @@ class ActDetailsController{
 export default {
     template : tpl,
     controller : ActDetailsController,
-    bindings : {instance_id : '<'}
+    bindings : {instanceId : '<'}
 }

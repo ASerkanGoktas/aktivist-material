@@ -29,7 +29,7 @@ angular.module('aktivist', [greetModule, navbarModule, maincontentmodule, detail
                 }).
                 when("/etkinlik/:ins_id", {
                     template: params => {
-                        return '<act-details instance_id="' + params.ins_id + '"><act-details>';
+                        return '<act-details instance-id="' + params.ins_id + '"><act-details>';
                     }
                 }).otherwise({
                     redirectTo: "/"
