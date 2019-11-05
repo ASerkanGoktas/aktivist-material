@@ -1,10 +1,19 @@
 import tpl from "./act-details.template.html"
-import metallica from "../assets/images/metallica.jpg"
 
 class ActDetailsController{
-    constructor(){
-        this.act = {
-            url: metallica
+    constructor(EtkinlikService){
+        this.et = EtkinlikService;
+        this.act = {};
+    }
+
+    $onInit(){
+        if(this.instance_id === this.et.selected.instance_id){
+            this.act = this.et.selected;
+        }
+        else{
+            this.et.getActivity(this.instance_id).then(response => {
+                this.act = response.data;
+            });
         }
     }
 
@@ -13,5 +22,6 @@ class ActDetailsController{
 
 export default {
     template : tpl,
-    controller : ActDetailsController
+    controller : ActDetailsController,
+    bindings : {instance_id = '@'}
 }

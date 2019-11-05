@@ -2,20 +2,20 @@
     <div class="bg-gray-500 container" flex = "66" flex-sm = "100" flex-xs = "100">
             <md-card>
                     <div class="h-56 md:h-72 xl:h-96 bg-gray-800"
-                            style="background-image : url('assets/metallica.jpg'); background-repeat: no-repeat; background-position: center center; background-size : cover;">
+                    ng-style="{'background-image': 'url('+ $ctrl.act.image +')', 'background-repeat': 'no-repeat', 'background-position': 'center center', 'background-size': 'cover'}">
                     </div>
     
     
                     <md-card-title>
                             <md-card-title-text>
-                              <span class="md-headline">Metallica</span>
-                              <span class="md-subhead">666/666/666</span>
+                              <span class="md-headline">{{$ctrl.act.name}}</span>
+                              <span class="md-subhead">{{$ctrl.act.date}}</span>
                             </md-card-title-text>
                           </md-card-title>
                           
                           <md-card-content>
                                 <p>
-                                    Bu konser şurda olacaktır şöyle olacaktır böyle olacaktır.
+                                    {{$ctrl.act.detail}}
                                 </p>
                             </md-card-content>
     

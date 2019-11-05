@@ -1,13 +1,14 @@
 import tpl from "./homepage.template.html"
 
 class HomepageController{
-    constructor($http){
+    constructor(EtkinlikService){
         this.acts = []
+        this.et = EtkinlikService;
 
-        $http.get('/deneme').then(response => {
+        EtkinlikService.getAllTemporary().then(response => {
             console.log(response);
             this.acts = response.data;
-            ////
+            
         });
     }
 }
@@ -17,4 +18,4 @@ export default {
     controller: HomepageController
 }
 
-HomepageController.$inject = ["$http"];
+HomepageController.$inject = ["EtkinlikService"];

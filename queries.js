@@ -20,6 +20,21 @@ const getAll = (request, response) => {
     });
 };
 
+const get_activity = (request, response) => {
+    pool.query('SELECT * FROM etkinlik JOIN instances ON' + 
+    '(etkinlik.etkinlik_id = instances.etkinlik_id) WHERE instance_id = ' + request.params.id, (error, results) => {
+        console.log('off manyak');
+        if(error){
+            console.log("error");
+            console.log(error);
+        }
+        else{
+            response.status(200).json(results.rows[0]);
+        }
+    });
+}
+
 module.exports = {
-    getAll
+    getAll,
+    get_activity
 };
