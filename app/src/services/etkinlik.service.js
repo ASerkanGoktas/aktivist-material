@@ -11,7 +11,7 @@ class EtkinlikService{
     }
 
     getActivity(instance_id){
-        return this.http.get("/get_activity/", instance_id);
+        return this.http.get("/get_activity/" + instance_id);
     }
 
 }
