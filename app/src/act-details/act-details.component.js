@@ -11,7 +11,7 @@ class ActDetailsController{
                 this.act = this.et.selected;
             }
             else{
-                this.et.getActivity(this.instance_id).then(response => {
+                this.et.getActivity(this.instanceId).then(response => {
                     this.act = response.data;
                 });
             }
