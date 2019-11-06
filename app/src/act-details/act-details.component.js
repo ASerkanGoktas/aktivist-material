@@ -13,6 +13,7 @@ class ActDetailsController{
             else{
                 this.et.getActivity(this.instanceId).then(response => {
                     this.act = response.data;
+                    
                 });
             }
         }
