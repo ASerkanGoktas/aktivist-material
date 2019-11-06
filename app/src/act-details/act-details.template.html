@@ -1,72 +1,76 @@
-<div class = "p-4" layout = "row" layout-sm = "column" layout-wrap>
-    <div class="bg-gray-500 container" flex = "66" flex-sm = "100" flex-xs = "100">
-            <md-card>
-                    <div class="h-56 md:h-72 xl:h-96 bg-gray-800"
-                    ng-style="{'background-image': 'url('+ $ctrl.act.image +')', 'background-repeat': 'no-repeat', 'background-position': 'center center', 'background-size': 'cover'}">
-                    </div>
-    
-    
-                    <md-card-title>
-                            <md-card-title-text>
-                              <span class="md-headline">{{$ctrl.act.name}}</span>
-                              <span class="md-subhead">{{$ctrl.act.date}}</span>
-                              <span class="float-right">hellooo</span>
-                            </md-card-title-text>
-                          </md-card-title>
-                          
-                          <md-card-content>
-                                <p class = "text">
-                                    {{$ctrl.act.details}}
-                                </p>
-                            </md-card-content>
-    
-                    <md-card-actions layout="row" layout-align = "end center">
-                            <md-button>Detay</md-button>
-    
-                        <md-card-icon-actions>
-                            <md-button class="md-icon-button" aria-label="Favorite">
-                                <i class="material-icons">favorite</i>
-                            </md-button>
-                            <md-button class="md-icon-button" aria-label="Settings">
-                                <i class="material-icons">share</i>
-                            </md-button>
-    
-                        </md-card-icon-actions>
-                    </md-card-actions>
-                </md-card>
-    </div>
-    <div class="bg-gray-400" flex = "33" flex-sm = "100" flex-xs = "100">
-            <md-card>
-                    <img ng-src="{{$ctrl.act.url}}" class="md-card-image" alt="Washed Out">
-    
-    
-                    <md-card-title>
-                            <md-card-title-text>
-                              <span class="md-headline">Reklamlaar</span>
-                              <span class="md-subhead">666/666/666</span>
-                            </md-card-title-text>
-                          </md-card-title>
+<div class="p-4" layout="row" layout-sm="column" layout-wrap>
+    <div class="bg-gray-500 container" flex="66" flex-sm="100" flex-xs="100">
+        <md-card>
+            <div class="h-56 md:h-72 xl:h-96 bg-gray-800"
+                ng-style="{'background-image': 'url('+ $ctrl.act.image +')', 'background-repeat': 'no-repeat', 'background-position': 'center center', 'background-size': 'cover'}">
+            </div>
 
-                    <md-card-content>
-                        <p>
-                            Ya bu nasıl gruptur. Bu nasıl gruptur manyak müzik yapıyolar ya adamlar. Kesinlikle 1000 tl vermelisin 
-                            bu konser için.
-                        </p>
-                    </md-card-content>
-    
-                    <md-card-actions layout="row" layout-align = "end center">
-                            <md-button>Detay</md-button>
-    
-                        <md-card-icon-actions>
-                            <md-button class="md-icon-button" aria-label="Favorite">
-                                <i class="material-icons">favorite</i>
-                            </md-button>
-                            <md-button class="md-icon-button" aria-label="Settings">
-                                <i class="material-icons">share</i>
-                            </md-button>
-    
-                        </md-card-icon-actions>
-                    </md-card-actions>
-                </md-card>
+
+            <md-card-title>
+                <md-card-title-text>
+                    <div>
+                        <span class="md-headline">{{$ctrl.act.name}}</span>
+                        <span class="md-subhead">{{$ctrl.act.date}}</span>
+                        <span class="float-right">hellooo</span>
+                    </div>
+
+                </md-card-title-text>
+            </md-card-title>
+
+            <md-card-content>
+                <p class="text">
+                    {{$ctrl.act.details}}
+                </p>
+            </md-card-content>
+
+            <md-card-actions layout="row" layout-align="end center">
+                <md-button>Detay</md-button>
+
+                <md-card-icon-actions>
+                    <md-button class="md-icon-button" aria-label="Favorite">
+                        <i class="material-icons">favorite</i>
+                    </md-button>
+                    <md-button class="md-icon-button" aria-label="Settings">
+                        <i class="material-icons">share</i>
+                    </md-button>
+
+                </md-card-icon-actions>
+            </md-card-actions>
+        </md-card>
+    </div>
+    <div class="bg-gray-400" flex="33" flex-sm="100" flex-xs="100">
+        <md-card>
+            <img ng-src="{{$ctrl.act.url}}" class="md-card-image" alt="Washed Out">
+
+
+            <md-card-title>
+                <md-card-title-text>
+                    <span class="md-headline">Reklamlaar</span>
+                    <span class="md-subhead">666/666/666</span>
+                </md-card-title-text>
+            </md-card-title>
+
+            <md-card-content>
+                <p>
+                    Ya bu nasıl gruptur. Bu nasıl gruptur manyak müzik yapıyolar ya adamlar. Kesinlikle 1000 tl
+                    vermelisin
+                    bu konser için.
+                </p>
+            </md-card-content>
+
+            <md-card-actions layout="row" layout-align="end center">
+                <md-button>Detay</md-button>
+
+                <md-card-icon-actions>
+                    <md-button class="md-icon-button" aria-label="Favorite">
+                        <i class="material-icons">favorite</i>
+                    </md-button>
+                    <md-button class="md-icon-button" aria-label="Settings">
+                        <i class="material-icons">share</i>
+                    </md-button>
+
+                </md-card-icon-actions>
+            </md-card-actions>
+        </md-card>
     </div>
 </div>
