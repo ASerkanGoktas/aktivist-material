@@ -1,17 +1,23 @@
-import tpl from "./filter-segment.template.html"
-
+import tpl from "./filter-segment.template.html" 
 
 class FilterSegmentController{
     constructor($mdMedia,$q) {
         this.myDate = new Date();
+        this.myDate2 = new Date();
         this.startContacts = [];
         this.allContacts = loadAllContacts();
         this.contacts = this.allContacts;       
         this.mdMedia = $mdMedia;
         this.acts = []
+        this.cities = iller;
+        this.cityInput = "";
+        this.cityState = "Tüm Şehirler";
         for(let i = 0; i<9; i++){
             this.acts.push(i);
         }        
+    }
+    clearSearchTerm(){
+      this.cityInput = "";
     }
 
     querySearch (criteria) {
@@ -34,9 +40,7 @@ class FilterSegmentController{
         };
   
       }
-  
 }
-
 
 
 function loadAllContacts(){    
@@ -56,9 +60,15 @@ function loadAllContacts(){
         return contact;
       });
     }
-
-
-
+    var iller = ['Tüm Şehirler','Adana', 'Adıyaman', 'Afyon', 'Ağrı', 'Aksaray', 'Amasya', 'Ankara', 'Antalya', 'Ardahan', 'Artvin',
+    'Aydın', 'Balıkesir', 'Bartın', 'Batman', 'Bayburt', 'Bilecik', 'Bingöl', 'Bitlis', 'Bolu', 'Burdur', 'Bursa', 'Çanakkale',
+    'Çankırı', 'Çorum', 'Denizli', 'Diyarbakır', 'Düzce',  'Edirne', 'Elazığ', 'Erzincan', 'Erzurum', 'Eskişehir',
+    'Gaziantep', 'Giresun', 'Gümüşhane', 'Hakkari', 'Hatay', 'Iğdır', 'Isparta', 'Mersin', 'İstanbul', 'İzmir', 'Karabük', 'Karaman', 
+    'Kars', 'Kastamonu', 'Kayseri', 'Kırıkkale', 'Kırklareli', 'Kırşehir', 'Kilis', 'Kocaeli', 'Konya', 'Kütahya', 'Malatya', 
+    'Manisa', 'Kahramanmaraş', 'Mardin', 'Muğla', 'Muş', 'Nevşehir', 'Niğde', 'Ordu', 'Osmaniye',  'Rize', 'Sakarya',
+    'Samsun', 'Siirt', 'Sinop', 'Sivas', 'Şırnak', 'Tekirdağ', 'Tokat', 'Trabzon', 'Tunceli', 'Şanlıurfa', 'Uşak',
+    'Van', 'Yalova', 'Yozgat', 'Zonguldak'];
+    
 export default {
     template : tpl,
     controller : FilterSegmentController
