@@ -34,7 +34,21 @@ const get_activity = (request, response) => {
     });
 }
 
+const get_prices_of_act = (request, response) => {
+    pool.query('SELECT * FROM fiyatlar WHERE instance_id = ' + request.params.id, (error, results) => {
+        console.log('off manyak');
+        if(error){
+            console.log("error");
+            console.log(error);
+        }
+        else{
+            response.status(200).json(results.rows);
+        }
+    });
+}
+
 module.exports = {
     getAll,
-    get_activity
+    get_activity,
+    get_prices_of_act
 };

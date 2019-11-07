@@ -14,8 +14,12 @@ class EtkinlikService{
         return this.http.get("/get_activity/" + instance_id);
     }
 
-}
+    getPricesOfActivity(instance_id){
+        return this.http.get("/get_prices_of_activity/" + instance_id);
+    }
 
-EtkinlikService.$inject = ["$inject"];
+
+
+}
 
 export default EtkinlikService;

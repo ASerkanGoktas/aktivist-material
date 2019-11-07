@@ -7,20 +7,17 @@ class ActDetailsController{
 
         this.$onInit = () => {
             console.log(this);
-            if(this.instanceId === this.et.selected.instance_id){
-                this.act = this.et.selected;
-            }
-            else{
-                this.et.getActivity(this.instanceId).then(response => {
-                    this.act = response.data;
-                    
-                });
-            }
+
+            this.et.getActivity(this.instanceId).then(response => {
+                this.act = response.data;
+            });
+            this.et.getPricesOfActivity(this.instanceId).then(response => {
+                this.act.fiyatlar = response.data;
+            });
         }
     }
 
 }
-
 
 export default {
     template : tpl,
