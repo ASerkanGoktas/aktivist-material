@@ -36,12 +36,13 @@ const get_activity = (request, response) => {
 
 const get_prices_of_act = (request, response) => {
     pool.query('SELECT * FROM fiyatlar WHERE instance_id = ' + request.params.id, (error, results) => {
-        console.log('off manyak');
+        console.log('fiyat caigirldi');
         if(error){
             console.log("error");
             console.log(error);
         }
         else{
+            console.log(result.rows);
             response.status(200).json(results.rows);
         }
     });
