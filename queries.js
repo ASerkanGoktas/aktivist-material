@@ -42,7 +42,7 @@ const get_prices_of_act = (request, response) => {
             console.log(error);
         }
         else{
-            console.log(result.rows);
+            console.log(results.rows);
             response.status(200).json(results.rows);
         }
     });
