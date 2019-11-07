@@ -4,6 +4,7 @@ class ActDetailsController{
     constructor(EtkinlikService){
         this.et = EtkinlikService;
         this.act = {};
+        this.fiyatlar = []
 
         this.$onInit = () => {
             console.log(this);
@@ -12,7 +13,7 @@ class ActDetailsController{
                 this.act = response.data;
             });
             this.et.getPricesOfActivity(this.instanceId).then(response => {
-                this.act.fiyatlar = response.data;
+                this.fiyatlar = response.data;
             });
         }
     }
