@@ -35,7 +35,7 @@ const get_activity = (request, response) => {
 }
 
 const get_prices_of_act = (request, response) => {
-    pool.query('SELECT * FROM fiyatlar WHERE instance_id = ' + request.params.id, (error, results) => {
+    pool.query('SELECT * FROM fiyat WHERE instance_id = ' + request.params.id, (error, results) => {
         console.log('fiyat caigirldi');
         if(error){
             console.log("error");
