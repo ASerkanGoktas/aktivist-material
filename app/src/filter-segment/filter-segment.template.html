@@ -28,14 +28,17 @@
         <md-input-container class="py-1">
             <label>Şehir Seç</label>
             <md-select ng-model="$ctrl.cityState" md-on-close="$ctrl.clearSearchTerm()" layout="column">
-                        <md-select-header>
-                            <input  ng-model="$ctrl.cityInput" placeholder="Şehir ara..." onkeydown="event.stopPropagation()">
+                <div class="w-auto m-2" layout="row" >       
+                <md-select-header flex="full">
+                            <input  flex="full" ng-model="$ctrl.cityInput" placeholder="Şehir ara..." onkeydown="event.stopPropagation()" class="px-6 py-2 border border-black">
                         </md-select-header>
+                    </div>
                         <md-optgroup >
                             <md-option ng-value="city" ng-repeat="city in $ctrl.cities |
                                 filter:$ctrl.cityInput">{{city}}</md-option>
                         </md-optgroup>
             </md-select>
+           
         </md-input-container>
     </md-card>
 </div>

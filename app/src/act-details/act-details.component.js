@@ -1,10 +1,11 @@
 import tpl from "./act-details.template.html"
 
 class ActDetailsController{
-    constructor(EtkinlikService){
+    constructor(EtkinlikService,IconService){
         this.et = EtkinlikService;
         this.act = {};
-        this.fiyatlar = []
+        this.fiyatlar = [];
+        this.icon = IconService;
 
         this.$onInit = () => {
             console.log(this);
@@ -19,6 +20,8 @@ class ActDetailsController{
     }
 
 }
+
+
 
 export default {
     template : tpl,

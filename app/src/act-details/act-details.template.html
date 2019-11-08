@@ -8,9 +8,11 @@
     
                     <md-card-title>
                             <md-card-title-text>
-                                <div class = "flex flex-row justify-between">
-                                        <span class="md-headline">{{$ctrl.act.name + " / " + $ctrl.act.city}}</span>
-                                        <span class="text-sm my-auto">{{$ctrl.act.date.slice(0,10)}}</span>
+                               
+                                    <span class="md-headline">{{$ctrl.act.name}}</span>
+                                <div layout="row">
+                                    <md-icon md-svg-icon="{{$ctrl.icon.sehir}}" style="margin: 0px !important;"></md-icon>
+                                    <p class="text-sm my-auto"> : {{$ctrl.act.city}}</p>
                                 </div>
                               
                             </md-card-title-text>
@@ -18,10 +20,29 @@
                           </md-card-title>
                           <div class = "h-px bg-gray-400 w-full"></div>
                           <md-card-content>
+                              <div layout="column">
+                                <div layout="row" class="my-1">
+                                        <md-icon md-svg-icon="{{$ctrl.icon.mekan}}" style="margin: 0px !important;"></md-icon>
+                                        <p class="text-sm my-auto"> : {{$ctrl.act.place}}</p>
+                                </div>
+                                <div layout="row" class="my-1">
+                                    <md-icon md-svg-icon="{{$ctrl.icon.takvim}}" style="margin: 0px !important;"></md-icon>
+                                    <p class="text-sm my-auto"> : {{$ctrl.act.date.slice(0,10)}}</p>
+                                </div>
+                                <div layout="row" class="my-1">
+                                        <md-icon md-svg-icon="{{$ctrl.icon.saat}}" style="margin: 0px !important;"></md-icon>
+                                        <p class="text-sm my-auto"> : {{$ctrl.act.time}}</p>
+                                </div>
+                              </div>
+                          </md-card-content>
+                          <div class = "h-px bg-gray-400 w-full"></div>
+                          <md-card-content>
                                 <p>
                                     {{$ctrl.act.details}}
                                 </p>
-                                <div class = "h-px bg-gray-400 w-full my-3"></div>
+                           </md-card-content>
+                           <div class = "h-px bg-gray-400 w-full my-3"></div>
+                           <md-card-content>
                                 <div class = "flex flex-col">
                                     <div class = "flex flex-row justify-start" ng-repeat = "fiyat in $ctrl.fiyatlar">
                                         <span class = "mr-5">{{fiyat.category}}</span>
@@ -30,7 +51,7 @@
                                         <span ng-if = "fiyat.campaign">{{fiyat.campaign}}</span>
                                     </div>
                                 </div>
-                            </md-card-content>
+                           </md-card-content>
     
                     <md-card-actions layout="row" layout-align = "end center">
                             <md-button>BİLET AL</md-button>

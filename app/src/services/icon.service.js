@@ -5,6 +5,10 @@ import movie from "../assets/icons/film-roll.svg";
 import hamburger from "../assets/icons/icon_menu.svg";
 import buyult from "../assets/icons/buyult.svg";
 import kucult from "../assets/icons/kucult.svg";
+import takvim from "../assets/icons/takvim.svg";
+import saat from "../assets/icons/saat.svg";
+import mekan from "../assets/icons/mekan.svg";
+import sehir from "../assets/icons/location_city-24px.svg";
 
 class IconService{
     constructor(){
@@ -15,8 +19,10 @@ class IconService{
         this.hamburger = hamburger;
         this.buyult = buyult;
         this.kucult = kucult;
-
-        
+        this.takvim = takvim;
+        this.saat = saat;
+        this.mekan = mekan;
+        this.sehir = sehir;
     }
 }
 
