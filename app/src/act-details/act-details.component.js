@@ -6,6 +6,7 @@ class ActDetailsController{
         this.act = {};
         this.fiyatlar = [];
         this.icon = IconService;
+        this.option;
 
         this.$onInit = () => {
             console.log(this);
@@ -17,11 +18,10 @@ class ActDetailsController{
                 this.fiyatlar = response.data;
             });
         }
+       
     }
 
 }
-
-
 
 export default {
     template : tpl,
