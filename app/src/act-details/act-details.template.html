@@ -55,14 +55,23 @@
                                     <div flex="50" class="pt-1">
                                         <h2 class = "text-xl font-bold">Fiyatlar:</h2>
                                         <div class="border border-indigo-500 rounded-lg" layout = "row" layout-align="start center">
-                                            <md-input-container class="my-1">
-                                                <md-select ng-model="selectedOption">
-                                                <md-option  ng-repeat="fiyat in $ctrl.fiyatlar" ng-selected="fiyat.campaign == null" ng-value="{{fiyat}}" ng-if="fiyat.campaign == null">{{fiyat.category}}</md-option>
-                                                </md-select>
-                                            </md-input-container>
+                                            <div>
+                                                <md-input-container class="my-1">
+                                                    <md-select ng-model="selectedOption">
+                                                    <md-option  ng-repeat="fiyat in $ctrl.fiyatlar" ng-selected="fiyat.campaign == null" ng-value="{{fiyat}}" ng-if="fiyat.campaign == null">{{fiyat.category}}</md-option>
+                                                    </md-select>
+                                                </md-input-container>
+                                            </div>
+                                            <div>
+                                                <md-input-container class="my-1">
+                                                    <md-select ng-model="selectedOption5">
+                                                        <md-option  ng-repeat="fiyat in $ctrl.fiyatlar"  ng-selected="fiyat.campaign == null && fiyat.category == selectedOption.category" ng-value="{{fiyat}}" ng-if="fiyat.campaign == null && fiyat.category == selectedOption.category">{{fiyat.name}}</md-option>
+                                                    </md-select>
+                                                </md-input-container> 
+                                            </div>
                                             <div flex="" layout-align="end none">
                                                 <div class="bg-blue-700 rounded-lg">
-                                                        <p class="text-4xl text-white px-1">{{selectedOption.price}}</p>
+                                                        <p class="text-4xl text-white px-1">{{selectedOption5.price}}</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -80,14 +89,14 @@
                                             <div>
                                                 <md-input-container class="my-1">
                                                     <md-select ng-model="selectedOption3">
-                                                        <md-option  ng-repeat="fiyat3 in $ctrl.fiyatlar"  ng-selected="fiyat3.campaign == selectedOption2.campaign" ng-value="{{fiyat3}}" ng-show="fiyat3.campaign == selectedOption2.campaign">{{fiyat3.category}}</md-option>
+                                                        <md-option  ng-repeat="fiyat3 in $ctrl.fiyatlar"  ng-selected="fiyat3.campaign == selectedOption2.campaign" ng-value="{{fiyat3}}" ng-if="fiyat3.campaign == selectedOption2.campaign">{{fiyat3.category}}</md-option>
                                                     </md-select>
                                                 </md-input-container> 
                                             </div>
                                             <div>
                                                 <md-input-container class="my-1">
                                                     <md-select ng-model="selectedOption4">
-                                                        <md-option  ng-repeat="fiyat4 in $ctrl.fiyatlar"  ng-selected="selectedOption3.category == fiyat4.category && selectedOption2.campaign == fiyat4.campaign" ng-value="{{fiyat4}}" ng-show="selectedOption3.category == fiyat4.category && selectedOption2.campaign == fiyat4.campaign">{{fiyat4.name}}</md-option>
+                                                        <md-option  ng-repeat="fiyat4 in $ctrl.fiyatlar"  ng-selected="selectedOption3.category == fiyat4.category && selectedOption2.campaign == fiyat4.campaign" ng-value="{{fiyat4}}" ng-if="selectedOption3.category == fiyat4.category && selectedOption2.campaign == fiyat4.campaign">{{fiyat4.name}}</md-option>
                                                     </md-select>
                                                 </md-input-container>
                                             </div>
