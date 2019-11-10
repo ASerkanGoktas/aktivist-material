@@ -7,6 +7,7 @@ class ActDetailsController{
         this.fiyatlar = [];
         this.icon = IconService;
         this.option;
+        
 
         this.$onInit = () => {
             console.log(this);
@@ -18,10 +19,18 @@ class ActDetailsController{
                 this.fiyatlar = response.data;
             });
         }
-       
+        
     }
-
+    checkNull(){
+        for(var i = 0; i < this.fiyatlar.length; i++) {
+            if(this.fiyatlar[i].campaign != null)
+            return 0;
+        }
+        return 1;
+    }
 }
+
+
 
 export default {
     template : tpl,
