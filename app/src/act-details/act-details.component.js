@@ -7,7 +7,6 @@ class ActDetailsController{
         this.fiyatlar = [];
         this.icon = IconService;
         this.option;
-        
 
         this.$onInit = () => {
             console.log(this);
