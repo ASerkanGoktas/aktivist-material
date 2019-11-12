@@ -86,14 +86,14 @@
                                             <div>
                                             <md-input-container class="my-1">
                                                 <md-select ng-model="selectedOption2">
-                                                    <md-option  ng-repeat="fiyat2 in $ctrl.fiyatlar | unique: 'campaign'"  ng-selected="fiyat2.campaign != null" ng-value="{{fiyat2}}" ng-show="fiyat2.campaign != null">{{fiyat2.campaign}}</md-option>
+                                                    <md-option  ng-repeat="fiyat2 in $ctrl.fiyatlar | filter:{campaign: ''} | unique: 'campaign' | orderBy:'campaign'"   ng-selected="true" ng-value="{{fiyat2}}" ng-show="fiyat2.campaign != null">{{fiyat2.campaign}}</md-option>
                                                 </md-select>
                                             </md-input-container>
                                             </div>
                                             <div>
                                                 <md-input-container class="my-1">
                                                     <md-select ng-model="selectedOption3">
-                                                        <md-option  ng-repeat="fiyat3 in $ctrl.fiyatlar | unique: 'category'"  ng-selected="$first" ng-value="{{fiyat3}}">{{fiyat3.category}}</md-option>
+                                                        <md-option class="no-anime" ng-repeat="fiyat3 in $ctrl.fiyatlar | filter:{campaign: selectedOption2.campaign} | unique: 'category'"  ng-selected="true" ng-value="{{fiyat3}}">{{fiyat3.category}}</md-option>
                                                     </md-select>
                                                 </md-input-container> 
                                             </div>
@@ -101,7 +101,7 @@
                                                 <div>
                                                     <md-input-container class="my-1">
                                                         <md-select ng-model="selectedOption4">
-                                                            <md-option  ng-repeat="fiyat4 in $ctrl.fiyatlar"  ng-selected="selectedOption3.category == fiyat4.category && selectedOption2.campaign == fiyat4.campaign" ng-value="{{fiyat4}}" ng-show="selectedOption3.category == fiyat4.category && selectedOption2.campaign == fiyat4.campaign">{{fiyat4.name}}</md-option>
+                                                            <md-option class="no-anime" ng-repeat="fiyat4 in $ctrl.fiyatlar | filter:{campaign: selectedOption2.campaign, category: selectedOption3.category} " ng-selected="true"  ng-value="{{fiyat4}}">{{fiyat4.name}}</md-option>
                                                         </md-select>
                                                     </md-input-container>
                                                 </div>

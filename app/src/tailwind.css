@@ -101729,4 +101729,7 @@ video {
   .landscape\:z-auto {
     z-index: auto;
   }
+  .no-anime{
+    transition: none;
+  }
 }
