@@ -13,6 +13,7 @@ import ngaria from "angular-aria";
 import "../../node_modules/angular-material/angular-material.css"
 import IconService from "./services/icon.service";
 import EtkinlikService from "./services/etkinlik.service";
+import moment from "moment";
 
 
 
@@ -43,7 +44,7 @@ angular.module('aktivist', [greetModule, navbarModule, maincontentmodule, detail
     }]).factory("IconService", [() => {
         return new IconService();
     }]).factory(
-        "EtkinlikService", ["$http", $http => new EtkinlikService($http)]
+        "EtkinlikService", ["$http", "$rootScope", ($http, $rootScope) => new EtkinlikService($http, $rootScope)]
     )
     .config(function($mdThemingProvider) {
         $mdThemingProvider.theme('default')
@@ -51,4 +52,17 @@ angular.module('aktivist', [greetModule, navbarModule, maincontentmodule, detail
           .accentPalette('orange');
           
          
+      }).config(function($mdDateLocaleProvider){
+        $mdDateLocaleProvider.formatDate = function(date) {
+            return date ? moment(date).format('D/M/Y') : '';
+          };
+      
+          /**
+           * @param dateString {string} string that can be converted to a Date
+           * @returns {Date} JavaScript Date object created from the provided dateString
+           */
+          $mdDateLocaleProvider.parseDate = function(dateString) {
+            var m = moment(dateString, 'D/M/Y', true);
+            return m.isValid() ? m.toDate() : new Date(NaN);
+          };
       });

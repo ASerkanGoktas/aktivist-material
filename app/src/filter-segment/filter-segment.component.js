@@ -1,20 +1,20 @@
 import tpl from "./filter-segment.template.html" 
 
 class FilterSegmentController{
-    constructor($mdMedia,$q) {
+    constructor($mdMedia, EtkinlikService, $rootScope) {
         this.myDate = new Date();
         this.myDate2 = new Date();
         this.startContacts = [];
         this.allContacts = loadAllContacts();
         this.contacts = this.allContacts;       
         this.mdMedia = $mdMedia;
-        this.acts = []
         this.cities = iller;
         this.cityInput = "";
         this.cityState = "Tüm Şehirler";
-        for(let i = 0; i<9; i++){
-            this.acts.push(i);
-        }        
+
+        this.etc = EtkinlikService;
+        this.rootScope = $rootScope;
+
     }
     clearSearchTerm(){
       this.cityInput = "";
@@ -40,6 +40,14 @@ class FilterSegmentController{
         };
   
       }
+
+    filter(){
+      this.etc.filter_date(this.myDate).then(response => {
+        this.etc.loadedActs = response.data;
+
+        this.rootScope.$broadcast("sendData", "hi");
+      });
+    }
 }
 
 
@@ -73,3 +81,6 @@ export default {
     template : tpl,
     controller : FilterSegmentController
 }
+
+
+FilterSegmentController.$inject = ["$mdMedia", "EtkinlikService", "$rootScope"];

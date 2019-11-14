@@ -3,14 +3,20 @@ import tpl from './main-content.template.html'
 class MainContentController {
 
 
-    constructor($mdMedia) {
+    constructor($mdMedia, EtkinlikService, $scope) {
       
         this.mdMedia = $mdMedia;
-        this.acts = []
-        for(let i = 0; i<12; i++){
-            this.acts.push(i);
-        }
+        this.acts = [];
+
+        this.etc = EtkinlikService;
+        this.etc.getAllTemporary().then(response => {
+            this.acts = response.data;
+        });
         
+        $scope.$on("sendData", (evt, data) => {
+            this.acts = this.etc.loadedActs;
+            console.log(data);
+        });
     }
 
     isLandscape(){
@@ -36,7 +42,7 @@ class MainContentController {
     }
 }
 
-MainContentController.$inject = ["$mdMedia"];
+MainContentController.$inject = ["$mdMedia", "EtkinlikService", "$scope"];
 
 export default {
     template: tpl,

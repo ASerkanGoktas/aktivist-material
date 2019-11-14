@@ -9,7 +9,8 @@ var server = http.Server(app);
 app.use(express.static(__dirname + "/dist"));
 app.get('/deneme', db.getAll);
 app.get('/get_activity/:id', db.get_activity);
-app.get('/get_prices_of_activity/:id', db.get_prices_of_act)
+app.get('/get_prices_of_activity/:id', db.get_prices_of_act);
+app.get('/filter_date/:date', db.filter_date);
 
 server.listen(PORT, () => {
     console.log("hey")
