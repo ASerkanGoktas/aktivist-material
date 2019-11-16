@@ -15,7 +15,6 @@ class MainContentController {
         
         $scope.$on("sendData", (evt, data) => {
             this.acts = this.etc.loadedActs;
-            console.log(data);
         });
     }
 

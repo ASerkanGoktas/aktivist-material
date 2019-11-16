@@ -42,7 +42,11 @@ class FilterSegmentController{
       }
 
     filter(){
-      this.etc.filter_date(this.myDate).then(response => {
+      var city = this.cityState;
+      if(this.cityState == "Tüm Şehirler"){
+        city = null;
+      }
+      this.etc.filter_activities(this.myDate, this.myDate2, city).then(response => {
         this.etc.loadedActs = response.data;
 
         this.rootScope.$broadcast("sendData", "hi");
