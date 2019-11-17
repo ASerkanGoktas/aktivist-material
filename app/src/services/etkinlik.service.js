@@ -56,6 +56,10 @@ class EtkinlikService {
         return this.http.get(query);
     }
 
+    liveSearch(actName){
+        return this.http.get("/livesearch/".concat(actName));
+    }
+
 }
 
 export default EtkinlikService;

@@ -1,14 +1,16 @@
 import tpl from "./navbar.template.html"
 
 class NavbarController {
-    constructor($mdSidenav, $mdMedia, $document, SidenavService, IconService) {
+    constructor($mdSidenav, $mdMedia, $document, SidenavService, IconService, EtkinlikService, $rootScope) {
 
+        this.rootScope = $rootScope;
         this.doc = $document;
         this.icon = IconService;
         this.media = $mdMedia;
         this.sidenav = SidenavService;
         this.isLarge = false;
         this.resizeicon = IconService.buyult;
+        this.etc = EtkinlikService;
 
         console.log(SidenavService);
 
@@ -24,6 +26,14 @@ class NavbarController {
         this.isSearchOpen = false;
         this.isSideNav = false;
 
+        this.searchResults = [];
+
+        this.body = this.doc.find("body")[0];
+        this.body.click(e => {
+            console.log("Target:");
+            console.log(e);
+        });
+    
         
     }
 
@@ -41,21 +51,24 @@ class NavbarController {
         this.sidenav.toggleSidenav();
     }
 
-    resize(){
-        
-        if(this.isLarge){
-            this.resizeicon = this.icon.buyult;
-        }else{
-            this.resizeicon = this.icon.kucult;
-        }
+    change(actName){
+        this.etc.liveSearch(actName).then(response => {
+            //No error
+            this.searchResults = response.data;
+        }, response => {
+            //No result
+            this.searchResults = [];
+        });
+    }
 
-        this.isLarge = !this.isLarge;
+    search(){
+        this.etc.loadedActs = this.searchResults;
     }
 
 
 }
 
-NavbarController.$inject = ["$mdSidenav", "$mdMedia", "$document", "SidenavService", "IconService"];
+NavbarController.$inject = ["$mdSidenav", "$mdMedia", "$document", "SidenavService", "IconService", "EtkinlikService", "$rootScope"];
 
 
 export default {

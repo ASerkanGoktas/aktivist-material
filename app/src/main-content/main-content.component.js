@@ -6,16 +6,15 @@ class MainContentController {
     constructor($mdMedia, EtkinlikService, $scope) {
       
         this.mdMedia = $mdMedia;
-        this.acts = [];
+        this.acts = EtkinlikService.loadedActs;
+        this.searchText = "";
 
         this.etc = EtkinlikService;
-        this.etc.getAllTemporary().then(response => {
-            this.acts = response.data;
-        });
         
         $scope.$on("sendData", (evt, data) => {
             this.acts = this.etc.loadedActs;
         });
+
     }
 
     isLandscape(){
@@ -36,9 +35,6 @@ class MainContentController {
         return land == phone;
     }
 
-    getLayout(){
-        
-    }
 }
 
 MainContentController.$inject = ["$mdMedia", "EtkinlikService", "$scope"];
