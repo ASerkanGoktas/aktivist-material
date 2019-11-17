@@ -144,13 +144,13 @@
           <md-content overflow="hidden" class="h-full flex flex-row items-center rounded-lg">
             <div flex="auto">
               <md-input-container md-no-float class="md-block m-0 items-center md-errors-spacer px-1">
-                <input ng-model="user.address" type="text" placeholder="Etkinlik ara..." aria-label="Address">
+                <input type="text" placeholder="Etkinlik ara..." aria-label="Address" ng-model="$ctrl.searchText" ng-change="$ctrl.change($ctrl.searchText)">
               </md-input-container>
             </div>
 
             <div flex="initial" class="bg-indigo-200">
               <a href="#!/arama">
-                <md-button class="md-icon-button">
+                <md-button class="md-icon-button" ng-click = "$ctrl.search()">
                   <i class="material-icons">search</i>
                 </md-button>
               </a>
@@ -162,6 +162,26 @@
         </div>
       </div>
     </div>
+
+    <div class="relative w-full bg-gray-300" style="top: 0.5rem" ng-if="$ctrl.searchResults.length != 0">
+      <md-list flex layout="column">
+
+        <div ng-repeat="result in $ctrl.searchResults">
+          <a href="#!/etkinlik/{{result.instance_id}}" >
+            <md-list-item class="md-2-line" ng-click="null">
+
+              <div class="md-list-item-text" layout="column">
+                <h3>{{result.name}}</h3>
+                <p>{{result.city}}</p>
+              </div>
+          </a>
+          </md-list-item>
+
+        </div>
+
+      </md-list>
+    </div>
+
   </md-toolbar>
 </div>
 
