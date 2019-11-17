@@ -8,7 +8,6 @@
     
                     <md-card-title>
                             <md-card-title-text>
-                               
                                     <span class="md-headline">{{$ctrl.act.name}}</span>
                                 <div layout="row">
                                     <md-icon md-svg-icon="{{$ctrl.icon.sehir}}" style="margin: 0px !important;"></md-icon>
@@ -18,7 +17,7 @@
                             </md-card-title-text>
                             
                           </md-card-title>
-                          <div class = "h-px bg-gray-400 w-full"></div>
+                          <div class = "h-px bg-gray-400 w-full my-2"></div>
                           <md-card-content>
                               <div layout="column">
                                 <div layout="row" class="my-1">
@@ -35,13 +34,13 @@
                                 </div>
                               </div>
                           </md-card-content>
-                          <div class = "h-px bg-gray-400 w-full"></div>
+                          <div class = "h-px bg-gray-400 w-full my-2"></div>
                           <md-card-content>
                                 <p>
                                     {{$ctrl.act.details}}
                                 </p>
                            </md-card-content>
-                           <div class = "h-px bg-gray-400 w-full my-3"></div>
+                           <div class = "h-px bg-gray-400 w-full my-2"></div>
                            <md-card-content>
                                <div class = "flex flex-col">
                                     <div class = "flex flex-row justify-start" ng-repeat = "fiyat in $ctrl.fiyatlar">
@@ -52,9 +51,9 @@
                                     </div>
                                 </div>
                                 <div layout="column">
-                                    <div flex="50" class="pt-1">
+                                    <div flex="0" class="pt-1">
                                         <h2 class = "text-xl font-bold">Fiyatlar:</h2>
-                                        <div class="border border-indigo-500 rounded-lg" layout = "column " layout-gt-sm="row" layout-align="start none" layout-align-gt-sm="start center">
+                                        <div layout = "column " layout-gt-sm="row" layout-align="start none" layout-align-gt-sm="start center">
                                             <div>
                                                 <md-input-container class="my-1">
                                                     <md-select ng-model="selectedOption">
@@ -62,56 +61,48 @@
                                                     </md-select>
                                                 </md-input-container>
                                             </div>
-                                            <div flex="grow" layout="row" layout-align="start center"> 
-                                                <div>
-                                                    <md-input-container class="my-1">
-                                                        <md-select ng-model="selectedOption5">
-                                                            <md-option  ng-repeat="fiyat in $ctrl.fiyatlar"  ng-selected="fiyat.campaign == null && fiyat.category == selectedOption.category" ng-value="{{fiyat}}" ng-show="fiyat.campaign == null && fiyat.category == selectedOption.category">{{fiyat.name}}</md-option>
-                                                        </md-select>
-                                                    </md-input-container> 
-                                                </md-input-container> 
-                                                    </md-input-container> 
-                                                </div>
-                                                <div flex="" layout-align="end none">
-                                                    <div class="bg-blue-700 rounded-lg">
-                                                            <p class="text-4xl text-white px-1">{{selectedOption5.price}}</p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div flex="50"  class="pt-1" ng-hide="$ctrl.checkNull()">
-                                        <h2  class = "text-xl font-bold">Kampanyalar:</h2>
-                                        <div class="border border-indigo-500 rounded-lg" layout = "column " layout-gt-sm="row" layout-align="start none" layout-align-gt-sm="start center">
-                                            <div>
-                                            <md-input-container class="my-1">
-                                                <md-select ng-model="selectedOption2">
-                                                    <md-option  ng-repeat="fiyat2 in $ctrl.fiyatlar | filter:{campaign: ''} | unique: 'campaign' | orderBy:'campaign'"   ng-selected="true" ng-value="{{fiyat2}}" ng-show="fiyat2.campaign != null">{{fiyat2.campaign}}</md-option>
-                                                </md-select>
-                                            </md-input-container>
-                                            </div>
                                             <div>
                                                 <md-input-container class="my-1">
-                                                    <md-select ng-model="selectedOption3">
-                                                        <md-option class="no-anime" ng-repeat="fiyat3 in $ctrl.fiyatlar | filter:{campaign: selectedOption2.campaign} | unique: 'category'"  ng-selected="true" ng-value="{{fiyat3}}">{{fiyat3.category}}</md-option>
+                                                    <md-select ng-model="selectedOption5">
+                                                        <md-option  ng-repeat="fiyat in $ctrl.fiyatlar"  ng-selected="fiyat.campaign == null && fiyat.category == selectedOption.category" ng-value="{{fiyat}}" ng-show="fiyat.campaign == null && fiyat.category == selectedOption.category">{{fiyat.name}}</md-option>
                                                     </md-select>
                                                 </md-input-container> 
                                             </div>
-                                            <div flex="grow" layout="row" layout-align="start center">
-                                                <div>
-                                                    <md-input-container class="my-1">
-                                                        <md-select ng-model="selectedOption4">
-                                                            <md-option class="no-anime" ng-repeat="fiyat4 in $ctrl.fiyatlar | filter:{campaign: selectedOption2.campaign, category: selectedOption3.category} " ng-selected="true"  ng-value="{{fiyat4}}">{{fiyat4.name}}</md-option>
-                                                        </md-select>
-                                                    </md-input-container>
-                                                </div>
-                                                <div flex="" layout-align="end none">
-                                                    <div class="bg-blue-700 rounded-lg">
-                                                        <p class="text-4xl text-white px-1">{{selectedOption4.price}}</p>
-                                                    </div>
-                                                </div>
+                                        </div>
+                                        <div>
+                                            <p class="text-xl px-1">{{selectedOption5.price}}  ₺</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div flex="50"  class="pt-2" ng-hide="$ctrl.checkNull()">
+                                    <h2  class = "text-xl font-bold">Kampanyalar:</h2>
+                                    <div layout = "column " layout-gt-sm="row" layout-align="start none" layout-align-gt-sm="start center">
+                                        <div>
+                                        <md-input-container class="my-1">
+                                            <md-select ng-model="selectedOption2">
+                                                <md-option  ng-repeat="fiyat2 in $ctrl.fiyatlar | filter:{campaign: ''} | unique: 'campaign' | orderBy:'campaign'"   ng-selected="true" ng-value="{{fiyat2}}" ng-show="fiyat2.campaign != null">{{fiyat2.campaign}}</md-option>
+                                            </md-select>
+                                        </md-input-container>
+                                        </div>
+                                        <div>
+                                            <md-input-container class="my-1">
+                                                <md-select ng-model="selectedOption3">
+                                                    <md-option class="no-anime" ng-repeat="fiyat3 in $ctrl.fiyatlar | filter:{campaign: selectedOption2.campaign} | unique: 'category'"  ng-selected="true" ng-value="{{fiyat3}}">{{fiyat3.category}}</md-option>
+                                                </md-select>
+                                            </md-input-container> 
+                                        </div>
+                                        <div flex="grow" layout="row" layout-align="start center">
+                                            <div>
+                                                <md-input-container class="my-1">
+                                                    <md-select ng-model="selectedOption4">
+                                                        <md-option class="no-anime" ng-repeat="fiyat4 in $ctrl.fiyatlar | filter:{campaign: selectedOption2.campaign, category: selectedOption3.category} " ng-selected="true"  ng-value="{{fiyat4}}">{{fiyat4.name}}</md-option>
+                                                    </md-select>
+                                                </md-input-container>
                                             </div>
                                         </div>
+                                    </div>
+                                    <div>
+                                        <p class="text-xl px-1">{{selectedOption4.price}}  ₺</p>
                                     </div>
                                 </div>
                            </md-card-content>
