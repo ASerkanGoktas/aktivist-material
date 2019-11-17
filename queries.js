@@ -97,7 +97,7 @@ const filter_activities = (request, response) => {
 
 const liveSearch = (request, response) => {
     qry = "SELECT * FROM instances JOIN etkinlik ON (etkinlik.etkinlik_id = instances.etkinlik_id) WHERE";
-    qry = qry.concat(" etkinlik.name LIKE '", request.params.actname, "%'");
+    qry = qry.concat(" LOWER(etkinlik.name) LIKE LOWER('", request.params.actname, "%')");
 
     console.log(qry);
     pool.query(qry, (error, results) => {
