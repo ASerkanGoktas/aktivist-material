@@ -28,11 +28,6 @@ class NavbarController {
 
         this.searchResults = [];
 
-        this.body = this.doc.find("body")[0];
-        this.body.click(e => {
-            console.log("Target:");
-            console.log(e);
-        });
     
         
     }
@@ -63,6 +58,8 @@ class NavbarController {
 
     search(){
         this.etc.loadedActs = this.searchResults;
+        this.rootScope.$broadcast("sendData", "hi");
+        
     }
 
 
