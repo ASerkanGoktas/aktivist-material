@@ -15,8 +15,12 @@
 
 <script>
 
-    function toggle_display(){
-        var elm = document.getElementById("results");
+    function toggle_display(elm){
+        
+        if(!elm){
+            return;
+        }
+        
         if(elm.style.display == "none"){
             elm.style.display = "block";
         }else{
@@ -25,14 +29,18 @@
     }
 
     document.addEventListener("click", evt => {
-    const flyoutElement = document.getElementById("results");
+    const results_large= document.getElementById("results-large");
+    const results_small = document.getElementById("results-small");
     const searchlarge = document.getElementById("search-large");
+    const searchsmall = document.getElementById("search-small");
+
     let targetElement = evt.target; // clicked element
 
     do {
-        if (targetElement == flyoutElement || targetElement == searchlarge) {
+        if (targetElement == results_large|| targetElement == searchlarge || targetElement == searchsmall || targetElement == results_small) {
             // This is a click inside. Do nothing, just return.
-            toggle_display();
+            toggle_display(results_small);
+            toggle_display(results_large);
             console.log("içeri tıklandı");
             return;
         }
@@ -42,7 +50,8 @@
 
     // This is a click outside.
     console.log("dışarı tıklandı")
-    toggle_display();
+    toggle_display(results_small);
+    toggle_display(results_large);
 });
 </script>
 

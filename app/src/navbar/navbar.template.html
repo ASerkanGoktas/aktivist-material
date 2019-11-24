@@ -38,7 +38,7 @@
           </div>
         </md-content>
 
-        <div class="relative w-full bg-gray-300" style="top: 0.5rem" ng-if="$ctrl.searchResults.length != 0" id = "results">
+        <div class="relative w-full bg-gray-300" style="top: 0.5rem" ng-if="$ctrl.searchResults.length != 0" id = "results-large">
           <md-list flex layout="column">
 
             <div ng-repeat="result in $ctrl.searchResults">
@@ -129,7 +129,7 @@
 
 
 <!--search part for mobile-->
-<div ng-if="$ctrl.isSearchOpen">
+<div ng-if="$ctrl.isSearchOpen" id = "search-small">
   <md-toolbar class="md-hue-2 fixed top-0 z-40">
     <div class="md-toolbar-tools" style="max-height: 3.5rem; height: 3.5rem">
       <div class="flex flex-row h-full items-center">
@@ -163,7 +163,7 @@
       </div>
     </div>
 
-    <div class="relative w-full bg-gray-300" style="top: 0.5rem" ng-if="$ctrl.searchResults.length != 0">
+    <div class="relative w-full bg-gray-300" style="top: 0.5rem" ng-if="$ctrl.searchResults.length != 0" id = "results-small">
       <md-list flex layout="column">
 
         <div ng-repeat="result in $ctrl.searchResults">
