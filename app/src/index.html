@@ -15,17 +15,26 @@
 
 <script>
 
-    function toggle_display(elm){
-        
+    function close_display(elm){
         if(!elm){
             return;
         }
+        elm.style.display = "none";
         
-        if(elm.style.display == "none"){
-            elm.style.display = "block";
-        }else{
-            elm.style.display = "none";
+    }
+
+    function open_display(elm){
+        if(!elm){
+            return;
         }
+        elm.style.display = "block";
+    }
+
+    function isClosed(elm){
+        if(!elm){
+            return true;
+        }
+        return elm.style.display === "none";
     }
 
     document.addEventListener("click", evt => {
@@ -39,8 +48,14 @@
     do {
         if (targetElement == results_large|| targetElement == searchlarge || targetElement == searchsmall || targetElement == results_small) {
             // This is a click inside. Do nothing, just return.
-            toggle_display(results_small);
-            toggle_display(results_large);
+
+            if(isClosed(results_small) || isClosed(results_large)){
+                open_display(results_small);
+                open_display(results_large);
+                
+            }else{
+                //Stay same
+            }
             console.log("içeri tıklandı");
             return;
         }
@@ -50,8 +65,8 @@
 
     // This is a click outside.
     console.log("dışarı tıklandı")
-    toggle_display(results_small);
-    toggle_display(results_large);
+    close_display(results_small);
+    close_display(results_large);
 });
 </script>
 
