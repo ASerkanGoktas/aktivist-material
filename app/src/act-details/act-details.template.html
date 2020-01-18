@@ -2,7 +2,7 @@
     <div class="bg-gray-500 container" flex = "66" flex-sm = "100" flex-xs = "100">
             <md-card>
                     <div class="h-56 md:h-72 xl:h-96 bg-gray-800"
-                    ng-style="{'background-image': 'url('+ $ctrl.act.image +')', 'background-repeat': 'no-repeat', 'background-position': 'center center', 'background-size': 'cover'}">
+                    ng-style="{'background-image': 'url('+ $ctrl.act.image_url +')', 'background-repeat': 'no-repeat', 'background-position': 'center center', 'background-size': 'cover'}">
                     </div>
     
     
@@ -30,7 +30,7 @@
                                 </div>
                                 <div layout="row" class="my-1">
                                         <md-icon md-svg-icon="{{$ctrl.icon.saat}}" style="margin: 0px !important;"></md-icon>
-                                        <p class="text-sm my-auto"> : {{$ctrl.act.time}}</p>
+                                        <p class="text-sm my-auto"> : {{$ctrl.act.date.slice(12,16)}}</p>
                                 </div>
                               </div>
                           </md-card-content>
@@ -109,7 +109,7 @@
                           
     
                     <md-card-actions layout="row" layout-align = "end center">
-                            <md-button>BİLET AL</md-button>
+                            <a href = "{{$ctrl.act.url}}"><md-button>BİLET AL</md-button></a>
     
                         <md-card-icon-actions>
                             <md-button class="md-icon-button" aria-label="Favorite">
