@@ -18,9 +18,9 @@ class EtkinlikService {
         return this.http.get("/get_prices_of_activity/" + instance_id);
     }
 
-    filter_activities(dateFirst, dateSecond, city) {
+    filter_activities_date(dateFirst, dateSecond, city) {
 
-        let query = "/filter_activities/";
+        let query = "/filter_activities_date/";
         const NONE = "NONE";
 
         if (dateFirst != null) {

@@ -52,7 +52,7 @@ const get_prices_of_act = (request, response) => {
     });
 }
 //Creates a sql query that filters the activities by given paramaters
-const filter_activities = (request, response) => {
+const filter_activities_date = (request, response) => {
 
     const NONE = "NONE";
     qry = "SELECT * FROM instance JOIN event ON (event.event_id = instance.event) WHERE";
@@ -111,6 +111,6 @@ module.exports = {
     getAll,
     get_activity,
     get_prices_of_act,
-    filter_activities,
+    filter_activities_date,
     liveSearch
 };
