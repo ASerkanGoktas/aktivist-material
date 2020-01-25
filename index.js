@@ -12,6 +12,7 @@ app.get('/get_activity/:id', db.get_activity);
 app.get('/get_prices_of_activity/:id', db.get_prices_of_act);
 app.get('/filter_activities_date/:datefirst/:datesecond/:city', db.filter_activities_date);
 app.get('/livesearch/:actname', db.liveSearch);
+app.get('/filter_types/:type/:subtype', db.filter_types);
 
 server.listen(PORT, () => {
     console.log("hey")

@@ -12,6 +12,50 @@ class NavbarController {
         this.resizeicon = IconService.buyult;
         this.etc = EtkinlikService;
 
+        this.types = [
+            {
+                name: "Konser",
+                icon: IconService.concert,
+                subtypes: [{name: "Alternatif"}, {name: "Rock"}, {name: "Pop"}] 
+            },
+            {
+                name: "Tiyatro",
+                icon: IconService.theater,
+                subtypes: [{name: "Çocuk Tiyatrosu"}]
+            },
+            {
+                name: "Sinema",
+                icon: IconService.movie
+            },
+            {
+                name: "Sahne",
+                icon: null,
+                subtypes: [{name: "Dans"}, {name: "Gösteri"}, {name: "Opera"}, {name: "Bale"}]
+            },
+            {
+                name: "Eğitim",
+                icon: null
+            },
+            {
+                name: "Konferans",
+                icon: null
+            },
+            {
+                name: "Workshop",
+                icon: null
+            },
+            {
+                name: "Spor",
+                icon: null,
+                subtypes: [{name: "Futbol"}, {name: "Basketbol"}, {name: "Voleybol"}]
+            },
+            {
+                name: "Aile",
+                icon: null,
+            }
+            
+        ]
+
         console.log(SidenavService);
 
         this.buildToggler = componentId => {

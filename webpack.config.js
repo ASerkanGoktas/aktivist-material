@@ -9,6 +9,7 @@ const CopyPlugin = require('copy-webpack-plugin');
 
 module.exports = {
 
+    
     mode: "development",
     entry: srcPath + "src/app.module.js",
     devtool: "source-map",

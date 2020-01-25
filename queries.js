@@ -7,11 +7,12 @@ const pool = new Pool(/* {
     port: "5432",
     password: "8257debded76d2a2b1cdf810cfb28939b450e88616b9778ee18b70308922501a"
 } */{
-    user: "postgres",
+    user: "seko",
     host: "localhost",
-    database: "aktivistlocal",
+    database: "aktivist_local",
     port: "5432",
-    password: "279157"
+    password: "279157",
+
 })
 
 const getAll = (request, response) => {
@@ -96,7 +97,7 @@ const liveSearch = (request, response) => {
     qry = qry.concat(" LOWER(event.name) LIKE LOWER('", request.params.actname, "%')");
     qry = qry.concat(" LIMIT 5");
 
-    console.log(qry);
+    
     pool.query(qry, (error, results) => {
         if(error){
             
@@ -107,10 +108,31 @@ const liveSearch = (request, response) => {
     });
 }
 
+const filter_types = (request, response) => {
+    var type = request.params.type
+    var subtype = request.params.subtype
+    qry = "SELECT * FROM instance JOIN event ON (event.event_id = instance.event) WHERE event.type ='"
+    qry = qry.concat(type, "'")
+    if(subtype != 'null'){
+        qry = qry.concat(" AND event.subtype ='", subtype, "'")
+    }
+        
+
+    console.log(qry)
+    pool.query(qry, (error, results) => {
+        if(error){
+            console.log(error)
+        }else{
+            response.status(200).json(results.rows)
+        }
+    })
+}
+
 module.exports = {
     getAll,
     get_activity,
     get_prices_of_act,
     filter_activities_date,
-    liveSearch
+    liveSearch,
+    filter_types
 };

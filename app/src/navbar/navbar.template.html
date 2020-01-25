@@ -199,95 +199,32 @@
 
     <div class="w-full">
       <div class="flex flex-col flex-wrap scrolling-touch justify-between">
-        <div class="w-full text-center self-center mr-4 p-1">
-          <md-button class="md-button flex flex-row"
-            style="display: flex !important; width: 100% !important; margin: auto !important">
-            <md-icon md-svg-icon="{{$ctrl.icon.concert}}" style="margin: 0px !important;"></md-icon>
-            <p class="self-center ml-8">Konserler</p>
-          </md-button>
 
+        <div ng-repeat = "type in $ctrl.types">
+          <div class="h-px bg-gray-500 mb-1"></div>
+          <div class="w-full text-center self-center mr-4 p-1">
+            <md-button class="md-button flex flex-row"
+              style="display: flex !important; width: 100% !important; margin: auto !important">
+              <md-icon md-svg-icon="{{type.icon}}" style="margin: 0px !important;"></md-icon>
+              <p class="self-center ml-8">{{type.name}}</p>
+            </md-button>
+  
+          </div>
+          
+          <div ng-if = "type.subtypes" class="h-px bg-gray-500 mb-1"></div>
+          <div ng-repeat = "subtype in type.subtypes">
+            <div class="w-full text-center self-center mr-4 p-1">
+              <md-button class="md-button flex flex-row"
+                style="display: flex !important; width: 80% !important; margin: auto !important">
+                <p class="self-center ml-8">{{subtype.name}}</p>
+              </md-button>
+    
+            </div>
+          </div>
+
+         
         </div>
-        <div class="h-px bg-gray-500 mb-1"></div>
-
-        <div class="w-full text-center self-center mr-4 p-1">
-          <md-button class="md-button flex flex-row"
-            style="display: flex !important; width: 80% !important; margin: auto !important">
-            <md-icon md-svg-icon="{{$ctrl.icon.concert}}" style="margin: 0px !important;"></md-icon>
-            <p class="self-center ml-8">Alt başlık</p>
-          </md-button>
-
-        </div>
-        <div class="w-full text-center self-center mr-4 p-1">
-          <md-button class="md-button flex flex-row"
-            style="display: flex !important; width: 80% !important; margin: auto !important">
-            <md-icon md-svg-icon="{{$ctrl.icon.concert}}" style="margin: 0px !important;"></md-icon>
-            <p class="self-center ml-8">Alt başlık</p>
-          </md-button>
-
-        </div>
-        <div class="w-full text-center self-center mr-4 p-1">
-          <md-button class="md-button flex flex-row"
-            style="display: flex !important; width: 80% !important; margin: auto !important">
-            <md-icon md-svg-icon="{{$ctrl.icon.concert}}" style="margin: 0px !important;"></md-icon>
-            <p class="self-center ml-8">Alt başlık</p>
-          </md-button>
-
-        </div>
-
-
-        <div class="w-full text-center self-center mr-4 p-1">
-          <md-button class="md-button flex flex-row"
-            style="display: flex !important; width: 100% !important; margin: auto !important">
-            <md-icon md-svg-icon="{{$ctrl.icon.theater}}" style="margin: 0px !important"></md-icon>
-            <p class="self-center ml-8">Tiyatrolar</p>
-          </md-button>
-
-        </div>
-        <div class="h-px bg-gray-500 mb-1"></div>
-
-        <div class="w-full text-center self-center mr-4 p-1">
-          <md-button class="md-button flex flex-row"
-            style="display: flex !important; width: 80% !important; margin: auto !important">
-            <md-icon md-svg-icon="{{$ctrl.icon.concert}}" style="margin: 0px !important;"></md-icon>
-            <p class="self-center ml-8">Alt başlık</p>
-          </md-button>
-
-        </div>
-        <div class="w-full text-center self-center mr-4 p-1">
-          <md-button class="md-button flex flex-row"
-            style="display: flex !important; width: 80% !important; margin: auto !important">
-            <md-icon md-svg-icon="{{$ctrl.icon.concert}}" style="margin: 0px !important;"></md-icon>
-            <p class="self-center ml-8">Alt başlık</p>
-          </md-button>
-
-        </div>
-        <div class="w-full text-center self-center mr-4 p-1">
-          <md-button class="md-button flex flex-row"
-            style="display: flex !important; width: 80% !important; margin: auto !important">
-            <md-icon md-svg-icon="{{$ctrl.icon.concert}}" style="margin: 0px !important;"></md-icon>
-            <p class="self-center ml-8">Alt başlık</p>
-          </md-button>
-
-        </div>
-
-        <div class="w-full text-center self-center mr-4 p-1">
-          <md-button class="md-button flex flex-row"
-            style="display: flex !important; width: 100% !important; margin: auto !important">
-            <md-icon md-svg-icon="{{$ctrl.icon.movie}}" style="margin: 0px !important"></md-icon>
-            <p class="self-center ml-8">Filmler</p>
-          </md-button>
-
-        </div>
-        <div class="h-px bg-gray-500 mb-1"></div>
-        <div class="w-full text-center self-center mr-4 p-1">
-          <md-button class="md-button flex flex-row"
-            style="display: flex !important; width: 100% !important; margin: auto !important">
-            <md-icon md-svg-icon="{{$ctrl.icon.museum}}" style="margin: 0px !important"></md-icon>
-            <p class="self-center ml-8">Müzeler</p>
-          </md-button>
-
-        </div>
-        <div class="h-px bg-gray-500 mb-1"></div>
+        
       </div>
     </div>
 

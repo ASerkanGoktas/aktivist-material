@@ -60,6 +60,10 @@ class EtkinlikService {
         return this.http.get("/livesearch/".concat(actName));
     }
 
+    filter_types(type, subtype){
+        return this.http.get("/filter_types/".concat(type, "/",  subtype));
+    }
+
 }
 
 export default EtkinlikService;
