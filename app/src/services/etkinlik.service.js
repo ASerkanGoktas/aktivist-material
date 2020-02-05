@@ -33,7 +33,7 @@ class EtkinlikService {
             query = query.concat(NONE, "/");
         }
 
-        if (dateFirst != null) {
+        if (dateSecond != null) {
             const year = dateSecond.getFullYear()
             const month = parseInt(dateSecond.getMonth()) + 1;
             const day = dateSecond.getDate();

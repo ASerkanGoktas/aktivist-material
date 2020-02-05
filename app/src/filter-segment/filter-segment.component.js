@@ -2,8 +2,9 @@ import tpl from "./filter-segment.template.html"
 
 class FilterSegmentController{
     constructor($mdMedia, EtkinlikService, $rootScope) {
-        this.myDate = new Date();
-        this.myDate2 = new Date();
+        
+        this.myDateStart = new Date();
+        this.myDateEnd = new Date();
         this.startContacts = [];
         this.allContacts = loadAllContacts();
         this.contacts = this.allContacts;       
@@ -14,7 +15,9 @@ class FilterSegmentController{
 
         this.etc = EtkinlikService;
         this.rootScope = $rootScope;
-
+        this.isBitisOpen = false;
+        this.isLoadedAll = false;
+        this.filter();
     }
     clearSearchTerm(){
       this.cityInput = "";
@@ -46,7 +49,12 @@ class FilterSegmentController{
       if(this.cityState == "Tüm Şehirler"){
         city = null;
       }
-      this.etc.filter_activities_date(this.myDate, this.myDate2, city).then(response => {
+      var endDate = this.myDateEnd;
+
+      if(!this.isBitisOpen){
+        endDate = null;
+      }
+      this.etc.filter_activities_date(this.myDateStart, endDate, city).then(response => {
         this.etc.loadedActs = response.data;
 
         this.rootScope.$broadcast("sendData", "hi");

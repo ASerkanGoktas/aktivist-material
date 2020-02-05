@@ -13,12 +13,12 @@
             </div>
             <div class="py-1">
                 <h4 class="px-1">Başlangıç</h4>
-                <md-datepicker ng-model="$ctrl.myDate" md-placeholder="Tarih seçin"></md-datepicker>
+                <md-datepicker ng-model="$ctrl.myDateStart" md-placeholder="Tarih seçin"></md-datepicker>
             </div>
 
             <div class="py-1">
                 <h4 class="px-1">Bitiş</h4>
-                <md-datepicker ng-model="$ctrl.myDate2" md-placeholder="Tarih seçin"></md-datepicker>
+                <md-datepicker ng-disabled = "$ctrl.isBitisOpen" ng-model="$ctrl.myDateEnd" md-placeholder="Tarih seçin"></md-datepicker>
             </div>
         </md-content>
 

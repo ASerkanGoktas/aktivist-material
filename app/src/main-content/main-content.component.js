@@ -35,6 +35,10 @@ class MainContentController {
         return land == phone;
     }
 
+    trim_name(name){
+        return ((name.length < 60) ? name : name.slice(0, 56) + "...")
+    }
+
 }
 
 MainContentController.$inject = ["$mdMedia", "EtkinlikService", "$scope"];
