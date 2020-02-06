@@ -7,12 +7,12 @@ var http = require('http');
 var server = http.Server(app);
 
 app.use(express.static(__dirname + "/dist"));
-app.get('/deneme', db.getAll);
 app.get('/get_activity/:id', db.get_activity);
 app.get('/get_prices_of_activity/:id', db.get_prices_of_act);
 app.get('/filter_activities_date/:datefirst/:datesecond/:city', db.filter_activities_date);
 app.get('/livesearch/:actname', db.liveSearch);
 app.get('/filter_types/:type/:subtype', db.filter_types);
+app.get('/get_activities_distinct_withCount/:start/:end/:type/:subtype', db.get_activities_distinct_withCount);
 
 server.listen(PORT, () => {
     console.log("hey")

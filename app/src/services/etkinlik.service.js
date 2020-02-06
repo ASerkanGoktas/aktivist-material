@@ -6,10 +6,6 @@ class EtkinlikService {
         this.loadedActs = [];
     }
 
-    getAllTemporary() {
-        return this.http.get("/deneme");
-    }
-
     getActivity(instance_id) {
         return this.http.get("/get_activity/" + instance_id);
     }
@@ -60,8 +56,37 @@ class EtkinlikService {
         return this.http.get("/livesearch/".concat(actName));
     }
 
-    filter_types(type, subtype){
-        return this.http.get("/filter_types/".concat(type, "/",  subtype));
+    getActivitiesDistinctWithCount(start, end, type, subtype){
+        const base = "/get_activities_distinct_withCount";
+        const NONE = "NONE";
+
+        if(start == null){
+            start = NONE;
+        }else{
+            const year = start.getFullYear()
+            const month = parseInt(start.getMonth()) + 1;
+            const day = start.getDate();
+
+            start = `${year}-${month}-${day}`;
+        }
+
+        if(end == null){
+            end = NONE;
+        }else{
+            const year = end.getFullYear()
+            const month = parseInt(end.getMonth()) + 1;
+            const day = end.getDate();
+
+            end = `${year}-${month}-${day}`;
+        }
+
+        if(type == null)
+            type = NONE
+        if(subtype == null)
+            subtype = NONE
+
+        const qry = `${base}/${start}/${end}/${type}/${subtype}`;
+        return this.http.get(qry);
     }
 
 }

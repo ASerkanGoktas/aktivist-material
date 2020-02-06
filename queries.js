@@ -15,12 +15,50 @@ const pool = new Pool(/* {
 
 })
 
-const getAll = (request, response) => {
-    pool.query('SELECT * FROM event JOIN instance ON (event.event_id = instance)', (error, results) => {
+
+const get_activities_distinct_withCount = (request, response) => {
+    
+    const NONE = "NONE";
+
+    console.log(request.params);
+    var start = request.params.start;
+    var end = request.params.end; 
+    var type = request.params.type;
+    var subtype = request.params.subtype;
+
+    var qry = `SELECT * FROM (SELECT event, COUNT(event) AS event_count, MIN(date) AS first_date FROM instance GROUP BY event, date) AS foo
+    JOIN event ON (event.event_id = foo.event) WHERE`;
+
+    if(start != NONE){
+        var today = new Date();
+
+        //yy mm dd
+        start= `${today.getFullYear()}-${today.getMonth() + 1}-${today.getDate()}`;
+        qry = qry.concat(` first_date >= '${start}'::date AND`);
+    }
+
+    if(end != NONE){
+        qry = qry.concat(` first_date <= '${start}'::date AND`);
+    }
+
+    if(type != NONE){
+        qry = qry.concat(` type = '${type}' AND`);
+    }
+
+    if(subtype != NONE){
+        qry = qry.concat(` subtype = ${subtype}' AND`);
+    }
+
+    //To remove last AND
+    qry = qry.substring(0, qry.length - 3);
+
+    console.log(qry);
+    pool.query(qry, (error, results) => {
         
         if(error){
-
+            console.log(error);
         }else{
+            console.log("commming");
             response.status(200).json(results.rows);
         }
     });
@@ -43,6 +81,18 @@ const get_activity = (request, response) => {
 const get_prices_of_act = (request, response) => {
     pool.query('SELECT * FROM price WHERE instance = ' + request.params.id, (error, results) => {
         
+        if(error){
+            
+        }
+        else{
+            
+            response.status(200).json(results.rows);
+        }
+    });
+}
+
+const get_instances = (request, response) => {
+    pool.query("SELECT * FROM instance JOIN event ON (instance.event = '"+ request.params.event_id +"')", (error, results) =>{
         if(error){
             
         }
@@ -125,14 +175,15 @@ const filter_types = (request, response) => {
         }else{
             response.status(200).json(results.rows)
         }
-    })
+    });
 }
 
 module.exports = {
-    getAll,
+    get_instances,
     get_activity,
     get_prices_of_act,
     filter_activities_date,
     liveSearch,
-    filter_types
+    filter_types,
+    get_activities_distinct_withCount
 };

@@ -100,9 +100,9 @@ class NavbarController {
         
     }
 
-    filter_types(type, subtype){
-        this.et.filter_types(type, subtype).then(response => {
-            this.et.loadedActs = response.data;
+    filter_types(type, subtype){        
+        this.etc.getActivitiesDistinctWithCount(null, null, type, subtype).then(response => {
+            this.etc.loadedActs = response.data;
             console.log("hector salamanca")
             this.rootScope.$broadcast("sendData", "hello there");
             this.rootScope.$broadcast("catSelected", {"type": type, "sub": subtype});

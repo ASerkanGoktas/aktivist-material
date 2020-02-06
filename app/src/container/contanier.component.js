@@ -29,7 +29,7 @@ class ContainerController {
     }
 
     filter_types(type, subtype){
-        this.et.filter_types(type, subtype).then(response => {
+        this.et.getActivitiesDistinctWithCount(null, null, type, subtype).then(response => {
             this.et.loadedActs = response.data;
             console.log("hector salamanca")
             this.rootScope.$broadcast("sendData", "hello there");

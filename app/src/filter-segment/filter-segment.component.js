@@ -70,7 +70,7 @@ class FilterSegmentController{
       if(!this.isBitisOpen){
         endDate = null;
       }
-      this.etc.filter_activities_date(this.myDateStart, endDate, city).then(response => {
+      this.etc.getActivitiesDistinctWithCount(this.myDateStart, endDate, null, null).then(response => {
         this.etc.loadedActs = response.data;
 
         this.rootScope.$broadcast("sendData", "hi");
