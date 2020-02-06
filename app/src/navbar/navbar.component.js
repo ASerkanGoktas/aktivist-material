@@ -14,7 +14,7 @@ class NavbarController {
 
         this.types = [
             {
-                name: "Konser",
+                name: "Müzik",
                 icon: IconService.concert,
                 subtypes: [{name: "Alternatif"}, {name: "Rock"}, {name: "Pop"}] 
             },
