@@ -51,6 +51,7 @@ const get_activities_distinct_withCount = (request, response) => {
 
     //To remove last AND
     qry = qry.substring(0, qry.length - 3);
+    qry = qry.concat(" LIMIT 50");
 
     console.log(qry);
     pool.query(qry, (error, results) => {
