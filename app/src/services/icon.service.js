@@ -9,6 +9,10 @@ import takvim from "../assets/icons/takvim.svg";
 import saat from "../assets/icons/saat.svg";
 import mekan from "../assets/icons/mekan.svg";
 import sehir from "../assets/icons/location_city-24px.svg";
+import sahne from "../assets/icons/sahne.svg";
+import aile from "../assets/icons/aile.svg";
+import egitim from "../assets/icons/egitim.svg";
+import spor from "../assets/icons/spor.svg";
 
 class IconService{
     constructor(){
@@ -23,6 +27,10 @@ class IconService{
         this.saat = saat;
         this.mekan = mekan;
         this.sehir = sehir;
+        this.sahne = sahne;
+        this.aile = aile;
+        this.egitim = egitim;
+        this.spor = spor;
     }
 }
 

@@ -29,29 +29,23 @@ class NavbarController {
             },
             {
                 name: "Sahne",
-                icon: null,
+                icon: IconService.sahne,
                 subtypes: [{name: "Dans"}, {name: "Gösteri"}, {name: "Opera"}, {name: "Bale"}]
             },
             {
                 name: "Eğitim",
-                icon: null
-            },
-            {
-                name: "Konferans",
-                icon: null
-            },
-            {
-                name: "Workshop",
-                icon: null
+                icon: IconService.egitim,
+                subtypes: [{name: "Konferans/Fuar"}, {name: "Atölye"}]
             },
             {
                 name: "Spor",
-                icon: null,
+                icon: IconService.spor,
                 subtypes: [{name: "Futbol"}, {name: "Basketbol"}, {name: "Voleybol"}]
             },
             {
                 name: "Aile",
-                icon: null,
+                icon: IconService.aile,
+                subtypes: [{name: "Gösteri"}, {name: "Sirk"}, {name: "Diğer"}]
             }
             
         ]
@@ -104,6 +98,15 @@ class NavbarController {
         this.etc.loadedActs = this.searchResults;
         this.rootScope.$broadcast("sendData", "hi");
         
+    }
+
+    filter_types(type, subtype){
+        this.et.filter_types(type, subtype).then(response => {
+            this.et.loadedActs = response.data;
+            console.log("hector salamanca")
+            this.rootScope.$broadcast("sendData", "hello there");
+            this.rootScope.$broadcast("catSelected", {"type": type, "sub": subtype});
+        });
     }
 
 

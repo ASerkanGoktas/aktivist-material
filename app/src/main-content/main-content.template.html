@@ -9,14 +9,17 @@
                     <md-card style = "height: 16rem">
                         <div class="h-32 bg-gray-800"
                             ng-style="{'background-image': 'url('+ act.image_url +')', 'background-repeat': 'no-repeat', 'background-position': 'center center', 'background-size': 'cover'}">
-                            
+                            <div class = "rounded-full w-12 w-12 float-right" style = "background-color: #54123b;">
+                                <span class = "block font-bold text-white text-center" style = "color: #29c7ac">{{$ctrl.get_ay(act.date)}}</span>
+                                <span class = "block font-bold text-white text-center" style = "color: #29c7ac">{{$ctrl.get_gunSayi(act.date)}}</span>
+                            </div>
                         </div>
+
                         <div class="flex flex-col p-2 h-24">
                             
-        
                             <span class="font-bold text-sm overflow-hidden"
                                 style="white-space: normal; -webkit-line-clamp: 3; max-height: 2.5rem; text-overflow: ellipsis;">{{$ctrl.trim_name(act.name)}}</span>
-                            <span class="text-xs mt-1">{{act.date}}</span>
+                            <span class="text-xs mt-1">{{$ctrl.get_gun(act.date) + " - " + $ctrl.get_saat(act.date)}}</span>
         
                         </div>
                         <div class="flex flex-row justify-between float-right">

@@ -12,6 +12,16 @@ class ContainerController {
         this.et = EtkinlikService;
         this.rootScope = $rootScope;
 
+        this.cats = [
+            {type: "Müzik", icon: this.icon.concert},
+            {type: "Tiyatro", icon: this.icon.theater},
+            {type: "Sinema", icon: this.icon.movie},
+            {type: "Sahne", icon: this.icon.sahne},
+            {type: "Aile", icon: this.icon.aile},
+            {type: "Eğitim", icon: this.icon.egitim},
+            {type: "Müze", icon: this.icon.museum},
+            {type: "Spor", icon: this.icon.spor}
+        ]
     }
 
     isSmaller(brkpoint) {
@@ -23,8 +33,11 @@ class ContainerController {
             this.et.loadedActs = response.data;
             console.log("hector salamanca")
             this.rootScope.$broadcast("sendData", "hello there");
+            this.rootScope.$broadcast("catSelected", {"type": type, "sub": subtype});
         });
     }
+
+    
 
 }
 

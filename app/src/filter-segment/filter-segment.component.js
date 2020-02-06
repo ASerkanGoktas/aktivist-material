@@ -1,8 +1,10 @@
 import tpl from "./filter-segment.template.html" 
 
 class FilterSegmentController{
-    constructor($mdMedia, EtkinlikService, $rootScope) {
+    constructor($mdMedia, EtkinlikService, $scope, $rootScope) {
         
+        this.scope = $scope;
+        this.searchMessage = "Genelde ara...";
         this.myDateStart = new Date();
         this.myDateEnd = new Date();
         this.startContacts = [];
@@ -18,6 +20,20 @@ class FilterSegmentController{
         this.isBitisOpen = false;
         this.isLoadedAll = false;
         this.filter();
+
+        this.scope.$on("catSelected", (evt, data) => {
+          var type = data.type;
+          var sub = data.subtype;
+
+          var str = type;
+          if(sub != null){
+            str = str + " - " + sub;
+          }
+
+          str = str + " içinde ara: ";
+
+          this.searchMessage = str;
+        });
     }
     clearSearchTerm(){
       this.cityInput = "";
@@ -95,4 +111,4 @@ export default {
 }
 
 
-FilterSegmentController.$inject = ["$mdMedia", "EtkinlikService", "$rootScope"];
+FilterSegmentController.$inject = ["$mdMedia", "EtkinlikService", "$scope", "$rootScope"];
