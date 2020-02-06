@@ -11,15 +11,19 @@
                 placeholder="{{$ctrl.searchMessage}}">
                 </md-contact-chips>
             </div>
-            <div class="py-1">
+            <div class="flex flex-row py-1">
+                <md-checkbox name = "baslangic" ng-model = "$ctrl.isBasla"></md-checkbox>
                 <h4 class="px-1">Başlangıç</h4>
-                <md-datepicker ng-model="$ctrl.myDateStart" md-placeholder="Tarih seçin"></md-datepicker>
             </div>
 
-            <div class="py-1">
+            <md-datepicker ng-if = "$ctrl.isBasla" ng-model="$ctrl.myDateStart" md-placeholder="Tarih seçin"></md-datepicker>
+
+            <div class="flex flex-row py-1">
+                <md-checkbox name = "baslangic" ng-model = "$ctrl.isBitis"></md-checkbox>
                 <h4 class="px-1">Bitiş</h4>
-                <md-datepicker ng-disabled = "$ctrl.isBitisOpen" ng-model="$ctrl.myDateEnd" md-placeholder="Tarih seçin"></md-datepicker>
             </div>
+
+            <md-datepicker ng-if = "$ctrl.isBitis" ng-model="$ctrl.myDateEnd" md-placeholder="Tarih seçin"></md-datepicker>
         </md-content>
 
         
