@@ -18,6 +18,12 @@ class ActDetailsController{
         this.$onInit = () => {
             this.et.get_instances(this.eventId).then(response => {
                 this.instances = response.data;
+                if(this.instances.length == 1){
+                    this.selectedInstance = this.instances[0];
+                    this.selectedPlace = this.selectedInstance.place
+                    this.selectedDate = this.selectedInstance.date
+                    this.selectedTime = this.selectedInstance.time
+                }
             });
 
             this.et.getEvent(this.eventId).then(response => {
