@@ -7,7 +7,7 @@ class ActDetailsController{
         this.fiyatlar = [];
         this.icon = IconService;
         this.option;
-        this.selectedInstance = {};
+        this.selectedInstance = {time: null, date: null, place: null};
     
 
         this.event = {};
@@ -19,10 +19,7 @@ class ActDetailsController{
             this.et.get_instances(this.eventId).then(response => {
                 this.instances = response.data;
                 if(this.instances.length == 1){
-                    this.selectedInstance = this.instances[0];
-                    this.selectedPlace = this.selectedInstance.place
-                    this.selectedDate = this.selectedInstance.date
-                    this.selectedTime = this.selectedInstance.time
+                    this.preset = true;
                 }
             });
 
@@ -71,6 +68,8 @@ class ActDetailsController{
     }
 
     date_aygun(date){
+        if(!date)
+            return null
         var date = new Date(date);
 
         var datestr = `${date.getDate()} ${this.aylar[date.getMonth()]}`;
@@ -97,6 +96,8 @@ class ActDetailsController{
     }
 
     time_saat(time){
+        if(!time)
+            return null
         var a = time;
         var hour = a.slice(0, 2)
         var minute = a.slice(3, 5)
@@ -107,7 +108,8 @@ class ActDetailsController{
     }
 
     checkdate(insdate){
-
+        if(!insdate)
+            return false
         
         var a = insdate;
         var b = this.selectedDate;
@@ -118,6 +120,8 @@ class ActDetailsController{
     }
 
     checkTime(time){
+        if(!time)
+            return false
         var a = time;
         var b = this.selectedTime;
         var c = a == b;

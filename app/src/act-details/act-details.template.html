@@ -1,186 +1,206 @@
-<div class = "p-4 lg:w-10/12 mx-auto" layout = "row" layout-sm = "column" layout-wrap>
-    <div class="bg-gray-500 container" flex = "66" flex-sm = "100" flex-xs = "100">
-            <md-card>
-                    <div class="h-56 md:h-72 xl:h-96 bg-gray-800"
-                    ng-style="{'background-image': 'url('+ $ctrl.act.image_url +')', 'background-repeat': 'no-repeat', 'background-position': 'center center', 'background-size': 'cover'}">
+<div class="p-4 lg:w-10/12 mx-auto" layout="row" layout-sm="column" layout-wrap>
+    <div class="bg-gray-500 container" flex="66" flex-sm="100" flex-xs="100">
+        <md-card>
+            <div class="h-56 md:h-72 xl:h-96 bg-gray-800"
+                ng-style="{'background-image': 'url('+ $ctrl.act.image_url +')', 'background-repeat': 'no-repeat', 'background-position': 'center center', 'background-size': 'cover'}">
+            </div>
+
+
+            <md-card-title>
+                <md-card-title-text>
+                    <span class="md-headline">{{$ctrl.event.name}}</span>
+                    <div layout="row">
+                        <md-icon md-svg-icon="{{$ctrl.icon.sehir}}" style="margin: 0px !important;"></md-icon>
+                        <p class="text-sm my-auto"> : {{$ctrl.selectedInstance.city}}</p>
                     </div>
-    
-                    
-                    <md-card-title>
-                            <md-card-title-text>
-                                    <span class="md-headline">{{$ctrl.event.name}}</span>
-                                <div layout="row">
-                                    <md-icon md-svg-icon="{{$ctrl.icon.sehir}}" style="margin: 0px !important;"></md-icon>
-                                    <p class="text-sm my-auto"> : {{$ctrl.selectedInstance.city}}</p>
-                                </div>
-                              
-                            </md-card-title-text>
-                            
-                          </md-card-title>
-                          <div class = "h-px bg-gray-400 w-full my-2"></div>
-                          <md-card-content>
-                              <div>
-                                <md-input-container>
-                                    <md-select ng-model = "$ctrl.selectedDate" ng-change = "$ctrl.filter_dates()">
-                                        <md-option ng-repeat = "ins in $ctrl.instances | unique: 'date'" value = "{{ins.date}}">
-                                            {{$ctrl.date_aygun(ins.date)}}
-                                        </md-option>
+
+                </md-card-title-text>
+
+            </md-card-title>
+            <div class="h-px bg-gray-400 w-full my-2"></div>
+            <md-card-content>
+                <div>
+                    <md-input-container>
+                        <md-select ng-model="$ctrl.selectedDate" ng-change="$ctrl.filter_dates()">
+                            <md-option ng-repeat="ins in $ctrl.instances | unique: 'date'" value="{{ins.date}}"
+                                ng-selected="$ctrl.preset">
+                                {{$ctrl.date_aygun(ins.date)}}
+                            </md-option>
+                        </md-select>
+                    </md-input-container>
+
+                    <md-input-container>
+                        <md-select ng-model="$ctrl.selectedTime" ng-change="$ctrl.filter_times()">
+                            <md-option ng-repeat="ins in $ctrl.dayFiltered | unique: 'time'" value="{{ins.time}}"
+                                ng-selected="$ctrl.preset">
+                                {{$ctrl.time_saat(ins.time)}}
+                            </md-option>
+                        </md-select>
+                    </md-input-container>
+                    <md-input-container>
+                        <md-select ng-model="$ctrl.selectedPlace" ng-change="$ctrl.filter_place()">
+                            <md-option ng-repeat="ins in $ctrl.timeFiltered | unique: 'place'" value="{{ins.place}}"
+                                ng-selected="$ctrl.preset">
+                                {{ins.place}}
+                            </md-option>
+                        </md-select>
+                    </md-input-container>
+                </div>
+
+                <div layout="column">
+                    <div layout="row" class="my-1">
+                        <md-icon md-svg-icon="{{$ctrl.icon.mekan}}" style="margin: 0px !important;"></md-icon>
+                        <p class="text-sm my-auto"> : {{$ctrl.selectedInstance.place}}</p>
+                    </div>
+                    <div layout="row" class="my-1">
+                        <md-icon md-svg-icon="{{$ctrl.icon.takvim}}" style="margin: 0px !important;"></md-icon>
+                        <p class="text-sm my-auto"> : {{$ctrl.date_aygun($ctrl.selectedInstance.date)}}</p>
+                    </div>
+                    <div layout="row" class="my-1">
+                        <md-icon md-svg-icon="{{$ctrl.icon.saat}}" style="margin: 0px !important;"></md-icon>
+                        <p class="text-sm my-auto"> : {{$ctrl.time_saat($ctrl.selectedInstance.time)}}</p>
+                    </div>
+                </div>
+            </md-card-content>
+            <div class="h-px bg-gray-400 w-full my-2"></div>
+            <md-card-content>
+                <p>
+                    {{$ctrl.event.details}}
+                </p>
+            </md-card-content>
+            <div class="h-px bg-gray-400 w-full my-2"></div>
+            <md-card-content>
+                <div class="flex flex-col">
+                    <div class="flex flex-row justify-start" ng-repeat="fiyat in $ctrl.fiyatlar">
+                        <span class="mr-5">{{fiyat.category}}</span>
+                        <span class="mr-5">{{fiyat.name}}</span>
+                        <span class="mr-5">{{fiyat.price + " TL"}}</span>
+                        <span ng-if="fiyat.campaign">{{fiyat.campaign}}</span>
+                    </div>
+                </div>
+                <div layout="column">
+                    <div flex="0" class="pt-1">
+                        <h2 class="text-xl font-bold">Fiyatlar:</h2>
+                        <div layout="column " layout-gt-sm="row" layout-align="start none"
+                            layout-align-gt-sm="start center">
+                            <div>
+                                <md-input-container class="my-1">
+                                    <md-select ng-model="selectedOption">
+                                        <md-option ng-repeat="fiyat in $ctrl.fiyatlar | unique: 'category'"
+                                            ng-selected="fiyat.campaign == null" ng-value="{{fiyat}}"
+                                            ng-show="fiyat.campaign == null">{{fiyat.category}}</md-option>
                                     </md-select>
-                                  </md-input-container>
-                              </div>
-                              <div>
-                            <md-input-container>
-                                <md-select ng-model = "$ctrl.selectedTime" ng-change = "$ctrl.filter_times()">
-                                    <md-option ng-repeat = "ins in $ctrl.dayFiltered | unique: 'time'" value = "{{ins.time}}">
-                                      {{$ctrl.time_saat(ins.time)}}
-                                    </md-option>
-                                </md-select>
-                            </md-input-container>
-                            <md-input-container>
-                                <md-select ng-model = "$ctrl.selectedPlace" ng-change = "$ctrl.filter_place()">
-                                    <md-option ng-repeat = "ins in $ctrl.timeFiltered | unique: 'place'" value = "{{ins.place}}">
-                                        {{ins.place}}
-                                    </md-option>
+                                </md-input-container>
+                            </div>
+                            <div>
+                                <md-input-container class="my-1">
+                                    <md-select ng-model="selectedOption5">
+                                        <md-option ng-repeat="fiyat in $ctrl.fiyatlar"
+                                            ng-selected="fiyat.campaign == null && fiyat.category == selectedOption.category"
+                                            ng-value="{{fiyat}}"
+                                            ng-show="fiyat.campaign == null && fiyat.category == selectedOption.category">
+                                            {{fiyat.subcategory}}</md-option>
+                                    </md-select>
+                                </md-input-container>
+                            </div>
+                        </div>
+                        <div>
+                            <p class="text-xl px-1">{{selectedOption5.price}} ₺</p>
+                        </div>
+                    </div>
+                </div>
+                <div flex="50" class="pt-2" ng-hide="$ctrl.checkNull()">
+                    <h2 class="text-xl font-bold">Kampanyalar:</h2>
+                    <div layout="column " layout-gt-sm="row" layout-align="start none"
+                        layout-align-gt-sm="start center">
+                        <div>
+                            <md-input-container class="my-1">
+                                <md-select ng-model="selectedOption2">
+                                    <md-option
+                                        ng-repeat="fiyat2 in $ctrl.fiyatlar | filter:{campaign: ''} | unique: 'campaign' | orderBy:'campaign'"
+                                        ng-selected="true" ng-value="{{fiyat2}}" ng-show="fiyat2.campaign != null">
+                                        {{fiyat2.campaign}}</md-option>
                                 </md-select>
                             </md-input-container>
                         </div>
-                                
-                              <div layout="column">
-                                <div layout="row" class="my-1">
-                                        <md-icon md-svg-icon="{{$ctrl.icon.mekan}}" style="margin: 0px !important;"></md-icon>
-                                        <p class="text-sm my-auto"> : {{$ctrl.selectedInstance.place}}</p>
-                                </div>
-                                <div layout="row" class="my-1">
-                                    <md-icon md-svg-icon="{{$ctrl.icon.takvim}}" style="margin: 0px !important;"></md-icon>
-                                    <p class="text-sm my-auto"> : {{$ctrl.date_aygun($ctrl.selectedInstance.date)}}</p>
-                                </div>
-                                <div layout="row" class="my-1">
-                                        <md-icon md-svg-icon="{{$ctrl.icon.saat}}" style="margin: 0px !important;"></md-icon>
-                                        <p class="text-sm my-auto"> : {{$ctrl.time_saat($ctrl.selectedInstance.time)}}</p>
-                                </div>
-                              </div>
-                          </md-card-content>
-                          <div class = "h-px bg-gray-400 w-full my-2"></div>
-                          <md-card-content>
-                                <p>
-                                    {{$ctrl.event.details}}
-                                </p>
-                           </md-card-content>
-                           <div class = "h-px bg-gray-400 w-full my-2"></div>
-                           <md-card-content>
-                               <div class = "flex flex-col">
-                                    <div class = "flex flex-row justify-start" ng-repeat = "fiyat in $ctrl.fiyatlar">
-                                        <span class = "mr-5">{{fiyat.category}}</span>
-                                        <span class = "mr-5">{{fiyat.name}}</span>
-                                        <span class = "mr-5">{{fiyat.price + " TL"}}</span>
-                                        <span ng-if = "fiyat.campaign">{{fiyat.campaign}}</span>
-                                    </div>
-                                </div>
-                                <div layout="column">
-                                    <div flex="0" class="pt-1">
-                                        <h2 class = "text-xl font-bold">Fiyatlar:</h2>
-                                        <div layout = "column " layout-gt-sm="row" layout-align="start none" layout-align-gt-sm="start center">
-                                            <div>
-                                                <md-input-container class="my-1">
-                                                    <md-select ng-model="selectedOption">
-                                                    <md-option  ng-repeat="fiyat in $ctrl.fiyatlar | unique: 'category'" ng-selected="fiyat.campaign == null" ng-value="{{fiyat}}" ng-show="fiyat.campaign == null">{{fiyat.category}}</md-option>
-                                                    </md-select>
-                                                </md-input-container>
-                                            </div>
-                                            <div>
-                                                <md-input-container class="my-1">
-                                                    <md-select ng-model="selectedOption5">
-                                                        <md-option  ng-repeat="fiyat in $ctrl.fiyatlar"  ng-selected="fiyat.campaign == null && fiyat.category == selectedOption.category" ng-value="{{fiyat}}" ng-show="fiyat.campaign == null && fiyat.category == selectedOption.category">{{fiyat.subcategory}}</md-option>
-                                                    </md-select>
-                                                </md-input-container> 
-                                            </div>
-                                        </div>
-                                        <div>
-                                            <p class="text-xl px-1">{{selectedOption5.price}}  ₺</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div flex="50"  class="pt-2" ng-hide="$ctrl.checkNull()">
-                                    <h2  class = "text-xl font-bold">Kampanyalar:</h2>
-                                    <div layout = "column " layout-gt-sm="row" layout-align="start none" layout-align-gt-sm="start center">
-                                        <div>
-                                        <md-input-container class="my-1">
-                                            <md-select ng-model="selectedOption2">
-                                                <md-option  ng-repeat="fiyat2 in $ctrl.fiyatlar | filter:{campaign: ''} | unique: 'campaign' | orderBy:'campaign'"   ng-selected="true" ng-value="{{fiyat2}}" ng-show="fiyat2.campaign != null">{{fiyat2.campaign}}</md-option>
-                                            </md-select>
-                                        </md-input-container>
-                                        </div>
-                                        <div>
-                                            <md-input-container class="my-1">
-                                                <md-select ng-model="selectedOption3">
-                                                    <md-option class="no-anime" ng-repeat="fiyat3 in $ctrl.fiyatlar | filter:{campaign: selectedOption2.campaign} | unique: 'category'"  ng-selected="true" ng-value="{{fiyat3}}">{{fiyat3.category}}</md-option>
-                                                </md-select>
-                                            </md-input-container> 
-                                        </div>
-                                        <div flex="grow" layout="row" layout-align="start center">
-                                            <div>
-                                                <md-input-container class="my-1">
-                                                    <md-select ng-model="selectedOption4">
-                                                        <md-option class="no-anime" ng-repeat="fiyat4 in $ctrl.fiyatlar | filter:{campaign: selectedOption2.campaign, category: selectedOption3.category} " ng-selected="true"  ng-value="{{fiyat4}}">{{fiyat4.name}}</md-option>
-                                                    </md-select>
-                                                </md-input-container>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <p class="text-xl px-1">{{selectedOption4.price}}  ₺</p>
-                                    </div>
-                                </div>
-                           </md-card-content>
-                          
-    
-                    <md-card-actions layout="row" layout-align = "end center">
-                            <a href = "{{$ctrl.act.url}}"><md-button>BİLET AL</md-button></a>
-    
-                        <md-card-icon-actions>
-                            <md-button class="md-icon-button" aria-label="Favorite">
-                                <i class="material-icons">favorite</i>
-                            </md-button>
-                            <md-button class="md-icon-button" aria-label="Settings">
-                                <i class="material-icons">share</i>
-                            </md-button>
-    
-                        </md-card-icon-actions>
-                    </md-card-actions>
-                </md-card>
-    </div>
-    <div class="bg-gray-400" flex = "33" flex-sm = "100" flex-xs = "100">
-            <md-card>
-                    <img ng-src="{{$ctrl.act.url}}" class="md-card-image" alt="Washed Out">
-    
-    
-                    <md-card-title>
-                            <md-card-title-text>
-                              <span class="md-headline">Reklamlaar</span>
-                              <span class="md-subhead">666/666/666</span>
-                            </md-card-title-text>
-                          </md-card-title>
+                        <div>
+                            <md-input-container class="my-1">
+                                <md-select ng-model="selectedOption3">
+                                    <md-option class="no-anime"
+                                        ng-repeat="fiyat3 in $ctrl.fiyatlar | filter:{campaign: selectedOption2.campaign} | unique: 'category'"
+                                        ng-selected="true" ng-value="{{fiyat3}}">{{fiyat3.category}}</md-option>
+                                </md-select>
+                            </md-input-container>
+                        </div>
+                        <div flex="grow" layout="row" layout-align="start center">
+                            <div>
+                                <md-input-container class="my-1">
+                                    <md-select ng-model="selectedOption4">
+                                        <md-option class="no-anime"
+                                            ng-repeat="fiyat4 in $ctrl.fiyatlar | filter:{campaign: selectedOption2.campaign, category: selectedOption3.category} "
+                                            ng-selected="true" ng-value="{{fiyat4}}">{{fiyat4.name}}</md-option>
+                                    </md-select>
+                                </md-input-container>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <p class="text-xl px-1">{{selectedOption4.price}} ₺</p>
+                    </div>
+                </div>
+            </md-card-content>
 
-                    <md-card-content>
-                        <p>
-                            Ya bu nasıl gruptur. Bu nasıl gruptur manyak müzik yapıyolar ya adamlar. Kesinlikle 1000 tl vermelisin 
-                            bu konser için.
-                        </p>
-                    </md-card-content>
-    
-                    <md-card-actions layout="row" layout-align = "end center">
-                            <md-button>Detay</md-button>
-    
-                        <md-card-icon-actions>
-                            <md-button class="md-icon-button" aria-label="Favorite">
-                                <i class="material-icons">favorite</i>
-                            </md-button>
-                            <md-button class="md-icon-button" aria-label="Settings">
-                                <i class="material-icons">share</i>
-                            </md-button>
-    
-                        </md-card-icon-actions>
-                    </md-card-actions>
-                </md-card>
+
+            <md-card-actions layout="row" layout-align="end center">
+                <a href="{{$ctrl.act.url}}">
+                    <md-button>BİLET AL</md-button>
+                </a>
+
+                <md-card-icon-actions>
+                    <md-button class="md-icon-button" aria-label="Favorite">
+                        <i class="material-icons">favorite</i>
+                    </md-button>
+                    <md-button class="md-icon-button" aria-label="Settings">
+                        <i class="material-icons">share</i>
+                    </md-button>
+
+                </md-card-icon-actions>
+            </md-card-actions>
+        </md-card>
+    </div>
+    <div class="bg-gray-400" flex="33" flex-sm="100" flex-xs="100">
+        <md-card>
+            <img ng-src="{{$ctrl.act.url}}" class="md-card-image" alt="Washed Out">
+
+
+            <md-card-title>
+                <md-card-title-text>
+                    <span class="md-headline">Reklamlaar</span>
+                    <span class="md-subhead">666/666/666</span>
+                </md-card-title-text>
+            </md-card-title>
+
+            <md-card-content>
+                <p>
+                    Ya bu nasıl gruptur. Bu nasıl gruptur manyak müzik yapıyolar ya adamlar. Kesinlikle 1000 tl
+                    vermelisin
+                    bu konser için.
+                </p>
+            </md-card-content>
+
+            <md-card-actions layout="row" layout-align="end center">
+                <md-button>Detay</md-button>
+
+                <md-card-icon-actions>
+                    <md-button class="md-icon-button" aria-label="Favorite">
+                        <i class="material-icons">favorite</i>
+                    </md-button>
+                    <md-button class="md-icon-button" aria-label="Settings">
+                        <i class="material-icons">share</i>
+                    </md-button>
+
+                </md-card-icon-actions>
+            </md-card-actions>
+        </md-card>
     </div>
 </div>
