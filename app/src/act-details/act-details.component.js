@@ -14,13 +14,12 @@ class ActDetailsController{
         this.instances = [];
         this.dayFiltered = [];
         this.timeFiltetered = [];
-        $scope.$on("sendInstances", (evt, data) => {
-            this.instances = data;
-            this.selectedInstance = this.instances[0];
-        });
 
         this.$onInit = () => {
-        
+            this.et.get_instances(this.eventId).then(response => {
+                this.instances = response.data;
+            });
+
             this.et.getEvent(this.eventId).then(response => {
                 this.event = response.data;
             });

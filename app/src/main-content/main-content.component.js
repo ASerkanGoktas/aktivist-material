@@ -97,14 +97,6 @@ class MainContentController {
         return temp_date.getDate();
     }
 
-    get_details(event_id){
-        this.etc.get_instances(event_id).then(response => {
-            
-            this.rootScope.$broadcast("sendInstances", response.data);
-
-        });
-    }
-
 }
 
 MainContentController.$inject = ["$mdMedia", "EtkinlikService", "$scope", "$rootScope"];
