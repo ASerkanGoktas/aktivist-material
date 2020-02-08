@@ -4,10 +4,11 @@ class EtkinlikService {
     constructor($http) {
         this.http = $http;
         this.loadedActs = [];
+        
     }
 
-    getActivity(instance_id) {
-        return this.http.get("/get_activity/" + instance_id);
+    getEvent(event_id) {
+        return this.http.get("/get_event/" + event_id);
     }
 
     getPricesOfActivity(instance_id) {
@@ -87,6 +88,10 @@ class EtkinlikService {
 
         const qry = `${base}/${start}/${end}/${type}/${subtype}`;
         return this.http.get(qry);
+    }
+
+    get_instances(event_id){
+        return this.http.get(`/get_instances/${event_id}`);
     }
 
 }

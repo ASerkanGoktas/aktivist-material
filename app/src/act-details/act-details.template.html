@@ -5,13 +5,13 @@
                     ng-style="{'background-image': 'url('+ $ctrl.act.image_url +')', 'background-repeat': 'no-repeat', 'background-position': 'center center', 'background-size': 'cover'}">
                     </div>
     
-    
+                    
                     <md-card-title>
                             <md-card-title-text>
-                                    <span class="md-headline">{{$ctrl.act.name}}</span>
+                                    <span class="md-headline">{{$ctrl.event.name}}</span>
                                 <div layout="row">
                                     <md-icon md-svg-icon="{{$ctrl.icon.sehir}}" style="margin: 0px !important;"></md-icon>
-                                    <p class="text-sm my-auto"> : {{$ctrl.act.city}}</p>
+                                    <p class="text-sm my-auto"> : {{$ctrl.selectedInstance.city}}</p>
                                 </div>
                               
                             </md-card-title-text>
@@ -19,25 +19,56 @@
                           </md-card-title>
                           <div class = "h-px bg-gray-400 w-full my-2"></div>
                           <md-card-content>
+                              <div>
+                                <md-input-container>
+                                    <md-select ng-model = "$ctrl.selectedDate" ng-change = "$ctrl.filter_dates()">
+                                        <md-option ng-repeat = "ins in $ctrl.instances | unique: 'date'" value = "{{ins.date}}">
+                                            {{$ctrl.date_aygun(ins.date)}}
+                                        </md-option>
+                                    </md-select>
+                                  </md-input-container>
+                              </div>
+                              <div>
+                            <md-input-container>
+                                <md-select ng-model = "$ctrl.selectedTime" ng-change = "$ctrl.filter_times()">
+                                    <md-option ng-repeat = "ins in $ctrl.dayFiltered | unique: 'time'" value = "{{ins.time}}">
+                                      {{$ctrl.time_saat(ins.time)}}
+                                    </md-option>
+                                </md-select>
+                            </md-input-container>
+                            <md-input-container>
+                                <md-select ng-model = "$ctrl.selectedPlace" ng-change = "$ctrl.filter_place()">
+                                    <md-option ng-repeat = "ins in $ctrl.timeFiltered | unique: 'place'" value = "{{ins.place}}">
+                                        {{ins.place}}
+                                    </md-option>
+                                </md-select>
+                            </md-input-container>
+                        </div>
+                        <div>
+                            <div ng-repeat = "ins in $ctrl.instances">
+                                {{ins.date + " " + ins.time + " " + ins.place}}
+                            </div>
+                        </div>
+                                
                               <div layout="column">
                                 <div layout="row" class="my-1">
                                         <md-icon md-svg-icon="{{$ctrl.icon.mekan}}" style="margin: 0px !important;"></md-icon>
-                                        <p class="text-sm my-auto"> : {{$ctrl.act.place}}</p>
+                                        <p class="text-sm my-auto"> : {{$ctrl.selectedInstance.place}}</p>
                                 </div>
                                 <div layout="row" class="my-1">
                                     <md-icon md-svg-icon="{{$ctrl.icon.takvim}}" style="margin: 0px !important;"></md-icon>
-                                    <p class="text-sm my-auto"> : {{$ctrl.act.date.slice(0,10)}}</p>
+                                    <p class="text-sm my-auto"> : {{$ctrl.date_aygun($ctrl.selectedInstance.date)}}</p>
                                 </div>
                                 <div layout="row" class="my-1">
                                         <md-icon md-svg-icon="{{$ctrl.icon.saat}}" style="margin: 0px !important;"></md-icon>
-                                        <p class="text-sm my-auto"> : {{$ctrl.act.date.slice(12,16)}}</p>
+                                        <p class="text-sm my-auto"> : {{$ctrl.time_saat($ctrl.selectedInstance.time)}}</p>
                                 </div>
                               </div>
                           </md-card-content>
                           <div class = "h-px bg-gray-400 w-full my-2"></div>
                           <md-card-content>
                                 <p>
-                                    {{$ctrl.act.details}}
+                                    {{$ctrl.event.details}}
                                 </p>
                            </md-card-content>
                            <div class = "h-px bg-gray-400 w-full my-2"></div>

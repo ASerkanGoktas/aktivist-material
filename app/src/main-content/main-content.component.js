@@ -3,12 +3,12 @@ import tpl from './main-content.template.html'
 class MainContentController {
 
 
-    constructor($mdMedia, EtkinlikService, $scope) {
+    constructor($mdMedia, EtkinlikService, $scope, $rootScope) {
       
         this.mdMedia = $mdMedia;
         this.acts = EtkinlikService.loadedActs;
         this.searchText = "";
-
+        this.rootScope = $rootScope;
         this.etc = EtkinlikService;
         
         $scope.$on("sendData", (evt, data) => {
@@ -77,8 +77,8 @@ class MainContentController {
         return this.aylar[temp_date.getMonth()];
     }
 
-    get_saat(datestr){
-        var temp_date = new Date(datestr);
+    get_saat(timestr){
+        var temp_date = new Date(timestr);
         var saat = temp_date.getHours();
         var dakika = temp_date.getMinutes();
         if(dakika == 0){
@@ -97,9 +97,17 @@ class MainContentController {
         return temp_date.getDate();
     }
 
+    get_details(event_id){
+        this.etc.get_instances(event_id).then(response => {
+            
+            this.rootScope.$broadcast("sendInstances", response.data);
+
+        });
+    }
+
 }
 
-MainContentController.$inject = ["$mdMedia", "EtkinlikService", "$scope"];
+MainContentController.$inject = ["$mdMedia", "EtkinlikService", "$scope", "$rootScope"];
 
 export default {
     template: tpl,

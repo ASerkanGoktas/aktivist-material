@@ -1,32 +1,31 @@
 const Pool = require('pg').Pool
 
-const pool = new Pool( {
+const pool = new Pool(/*  {
     user: "kqddeaplbhelix",
     host: "ec2-46-137-113-157.eu-west-1.compute.amazonaws.com",
     database: "d9bblfnn09vkg7",
     port: "5432",
     password: "8257debded76d2a2b1cdf810cfb28939b450e88616b9778ee18b70308922501a"
-} /*{
+}  */{
     user: "seko",
     host: "localhost",
     database: "aktivist_local",
     port: "5432",
     password: "279157",
 
-}*/)
+})
 
 
 const get_activities_distinct_withCount = (request, response) => {
     
     const NONE = "NONE";
 
-    console.log(request.params);
     var start = request.params.start;
     var end = request.params.end; 
     var type = request.params.type;
     var subtype = request.params.subtype;
 
-    var qry = `SELECT * FROM (SELECT event, COUNT(event) AS event_count, MIN(date) AS first_date FROM instance GROUP BY event, date) AS foo
+    var qry = `SELECT * FROM (SELECT event, COUNT(event) AS event_count FROM instance GROUP BY event, date) AS foo
     JOIN event ON (event.event_id = foo.event) WHERE`;
 
     if(start != NONE){
@@ -53,21 +52,22 @@ const get_activities_distinct_withCount = (request, response) => {
     qry = qry.substring(0, qry.length - 3);
     qry = qry.concat(" LIMIT 50");
 
-    console.log(qry);
+    
     pool.query(qry, (error, results) => {
         
         if(error){
-            console.log(error);
+
         }else{
-            console.log("commming");
+            
             response.status(200).json(results.rows);
         }
     });
 };
 
-const get_activity = (request, response) => {
-    pool.query('SELECT *  FROM event JOIN instance ON' + 
-    '(event.event_id = instance.event) WHERE instance_id = ' + request.params.id, (error, results) => {
+const get_event = (request, response) => {
+
+    var qry = `SELECT * FROM event WHERE event_id = '${request.params.event_id}'`
+    pool.query(qry, (error, results) => {
         
         if(error){
             console.log(error);
@@ -93,9 +93,11 @@ const get_prices_of_act = (request, response) => {
 }
 
 const get_instances = (request, response) => {
-    pool.query("SELECT * FROM instance JOIN event ON (instance.event = '"+ request.params.event_id +"')", (error, results) =>{
+    var today = new Date();
+    var start = `${today.getFullYear()}-${today.getMonth() + 1}-${today.getDate()}`;
+    pool.query(`SELECT * FROM instance JOIN event ON (instance.event = event.event_id) WHERE date > '${start}'::date AND event.event_id = '${request.params.event_id}' ORDER BY date`, (error, results) =>{
         if(error){
-            
+            console.log(error);
         }
         else{
             
@@ -181,7 +183,7 @@ const filter_types = (request, response) => {
 
 module.exports = {
     get_instances,
-    get_activity,
+    get_event,
     get_prices_of_act,
     filter_activities_date,
     liveSearch,
