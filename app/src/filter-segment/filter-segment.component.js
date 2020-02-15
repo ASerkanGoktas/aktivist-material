@@ -8,7 +8,6 @@ class FilterSegmentController{
         this.myDateStart = new Date();
         this.myDateEnd = new Date();
         this.startContacts = [];
-        this.allContacts = loadAllContacts();
         this.contacts = this.allContacts;       
         this.mdMedia = $mdMedia;
         this.cities = iller;
@@ -17,23 +16,28 @@ class FilterSegmentController{
 
         this.etc = EtkinlikService;
         this.rootScope = $rootScope;
-        this.isBitisOpen = false;
-        this.isLoadedAll = false;
-        this.filter();
+        this.isBitis = false
+        this.isBasla = false
+        
 
         this.scope.$on("catSelected", (evt, data) => {
-          var type = data.type;
-          var sub = data.subtype;
+          this.currentType = data.type;
+          this.currentSub = data.subtype;
 
-          var str = type;
-          if(sub != null){
-            str = str + " - " + sub;
+          this.etc.get_places(this.currentType).then(response => {
+            this.places = response.data;
+          });
+          var str = this.currentType;
+          if(this.currentSub != null){
+            str = str + " - " + this.currentSub;
           }
 
           str = str + " içinde ara: ";
 
           this.searchMessage = str;
         });
+
+        
     }
     clearSearchTerm(){
       this.cityInput = "";
@@ -66,36 +70,20 @@ class FilterSegmentController{
         city = null;
       }
       var endDate = this.myDateEnd;
-
-      if(!this.isBitisOpen){
+      var startDate =this.myDateStart;
+      if(!this.isBitis){
         endDate = null;
       }
-      this.etc.getActivitiesDistinctWithCount(this.myDateStart, endDate, null, null).then(response => {
-        this.etc.loadedActs = response.data;
+      if(!this.isBasla){
+        startDate = null;
+      }
+      
+  
+      this.rootScope.$broadcast("filterSet", {"city": city, "endDate": endDate, "startDate":startDate, "type": this.currentType, "subtype": this.currentSub})
 
-        this.rootScope.$broadcast("sendData", "hi");
-      });
     }
 }
 
-
-function loadAllContacts(){    
-    var contacts = [
-        'Marina Augustine',
-        'Oddr Sarno',
-        'Nick Giannopoulos',
-        'Narayana Garner',
-      ];
-
-      return contacts.map(function (c, index) {
-        var contact = {
-          name: c,
-          image: '//www.gravatar.com/avatar/'
-        };
-        contact._lowername = contact.name.toLowerCase();
-        return contact;
-      });
-    }
     var iller = ['Tüm Şehirler','Adana', 'Adıyaman', 'Afyon', 'Ağrı', 'Aksaray', 'Amasya', 'Ankara', 'Antalya', 'Ardahan', 'Artvin',
     'Aydın', 'Balıkesir', 'Bartın', 'Batman', 'Bayburt', 'Bilecik', 'Bingöl', 'Bitlis', 'Bolu', 'Burdur', 'Bursa', 'Çanakkale',
     'Çankırı', 'Çorum', 'Denizli', 'Diyarbakır', 'Düzce',  'Edirne', 'Elazığ', 'Erzincan', 'Erzurum', 'Eskişehir',

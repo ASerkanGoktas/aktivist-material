@@ -17,7 +17,12 @@ class ActDetailsController{
 
         this.$onInit = () => {
             this.et.get_instances(this.eventId).then(response => {
+                this.place = this.place.replace(/[+]/g, " ");
                 this.instances = response.data;
+                if(this.place != "NONE"){
+                    this.instances = this.instances.filter(instance => instance.place == this.place);
+                    this.selectedPlace = this.place;
+                }
                 if(this.instances.length == 1){
                     this.preset = true;
                 }
@@ -26,6 +31,18 @@ class ActDetailsController{
             this.et.getEvent(this.eventId).then(response => {
                 this.event = response.data;
             });
+        }
+
+        this.get_pricestr = fiyat => {
+            if(!fiyat){
+                return ""
+            }
+            var tutar = fiyat.price + "";
+            var uzunluk = tutar.length;
+            var lira = tutar.slice(0, uzunluk-2)
+            var kurus = tutar.slice(uzunluk-2, uzunluk)
+            var kur = fiyat.currency
+            return `${lira}.${kurus} ${kur}`
         }
 
         this.check = (ilk, iki) => {
@@ -83,13 +100,13 @@ class ActDetailsController{
         this.dayFiltered = this.instances.filter(instance => instance.date == this.selectedDate)
     }
 
-    filter_times(){
-        this.selectedPlace = null;
-        this.timeFiltered = this.dayFiltered.filter(instance => instance.time == this.selectedTime)
+    filter_place(){
+        this.selectedTime = null
+        this.placeFiltered = this.dayFiltered.filter(instance => instance.place == this.selectedPlace)
     }
 
-    filter_place(){
-        this.selectedInstance = this.dayFiltered.filter(instance => instance.place == this.selectedPlace)[0]
+    filter_times(){
+        this.selectedInstance = this.placeFiltered.filter(instance => instance.time == this.selectedTime)[0]
         this.et.getPricesOfActivity(this.selectedInstance.instance_id).then(response => {
             this.fiyatlar = response.data;
         })
@@ -136,5 +153,5 @@ class ActDetailsController{
 export default {
     template : tpl,
     controller : ActDetailsController,
-    bindings : {eventId : '<'}
+    bindings : {eventId : '<', place : '@'}
 }

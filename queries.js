@@ -15,6 +15,41 @@ const pool = new Pool(/*  {
 
 })
 
+const get_moviesByPlace = (request, response) => {
+
+    var today = new Date();
+
+        //yy mm dd
+    today= `${today.getFullYear()}-${today.getMonth() + 1}-${today.getDate() - 3}`;
+
+    var qry = `SELECT DISTINCT ON (event_id) * FROM event JOIN instance ON (event.event_id = instance.event) WHERE
+                    instance.place LIKE '${request.params.place}' and date >= '${today}'::date`
+
+    
+
+    pool.query(qry, (error, results) => {
+        if(error){
+            console.log(error)
+        }else{
+            response.status(200).json(results.rows)
+        }
+    });
+}
+
+const get_places = (request, response) => {
+
+    var qry = `SELECT DISTINCT place FROM event JOIN instance ON (event.event_id = instance.event) WHERE 
+                event.type = '${request.params.type}'`
+
+    pool.query(qry, (error, results) => {
+        if(error){
+            console.log(error)
+        }else{
+            response.status(200).json(results.rows);
+        }
+    });
+}
+
 
 const get_activities_distinct_withCount = (request, response) => {
     
@@ -25,19 +60,22 @@ const get_activities_distinct_withCount = (request, response) => {
     var type = request.params.type;
     var subtype = request.params.subtype;
 
-    var qry = `SELECT * FROM (SELECT event, COUNT(event) AS event_count FROM instance GROUP BY event, date) AS foo
-    JOIN event ON (event.event_id = foo.event) WHERE`;
+    var qry = `SELECT * FROM (SELECT event, COUNT(event) AS event_count, MIN(date) AS first_date FROM instance GROUP BY event, date) AS foo JOIN event ON (event.event_id = foo.event) WHERE`;
 
     if(start != NONE){
-        var today = new Date();
+        var start = new Date(start);
 
         //yy mm dd
-        start= `${today.getFullYear()}-${today.getMonth() + 1}-${today.getDate()}`;
+        start= `${start.getFullYear()}-${start.getMonth() + 1}-${start.getDate()}`;
         qry = qry.concat(` first_date >= '${start}'::date AND`);
     }
 
     if(end != NONE){
-        qry = qry.concat(` first_date <= '${start}'::date AND`);
+
+        var endDate = new Date(end);
+
+        end = `${endDate.getFullYear()}-${endDate.getMonth() + 1}-${endDate.getDate()}`
+        qry = qry.concat(` first_date <= '${end}'::date AND`);
     }
 
     if(type != NONE){
@@ -50,9 +88,9 @@ const get_activities_distinct_withCount = (request, response) => {
 
     //To remove last AND
     qry = qry.substring(0, qry.length - 3);
-    qry = qry.concat(" LIMIT 50");
-
     
+
+    console.log(qry);
     pool.query(qry, (error, results) => {
         
         if(error){
@@ -73,7 +111,7 @@ const get_event = (request, response) => {
             console.log(error);
         }
         else{
-            console.log(results.rows[0]);
+            
             response.status(200).json(results.rows[0]);
         }
     });
@@ -83,7 +121,7 @@ const get_prices_of_act = (request, response) => {
     pool.query('SELECT * FROM price WHERE instance = ' + request.params.id, (error, results) => {
         
         if(error){
-            
+            console.log(error)
         }
         else{
             
@@ -94,8 +132,11 @@ const get_prices_of_act = (request, response) => {
 
 const get_instances = (request, response) => {
     var today = new Date();
-    var start = `${today.getFullYear()}-${today.getMonth() + 1}-${today.getDate()}`;
-    pool.query(`SELECT * FROM instance JOIN event ON (instance.event = event.event_id) WHERE date > '${start}'::date AND event.event_id = '${request.params.event_id}' ORDER BY date`, (error, results) =>{
+    var start = `${today.getFullYear()}-${today.getMonth() + 1}-${today.getDate()-3}`;
+    var qry = `SELECT * FROM instance JOIN event ON (instance.event = event.event_id) WHERE date >= '${start}'::date AND event.event_id = '${request.params.event_id}' ORDER BY date`;
+
+    
+    pool.query(qry, (error, results) =>{
         if(error){
             console.log(error);
         }
@@ -171,7 +212,7 @@ const filter_types = (request, response) => {
     }
         
 
-    console.log(qry)
+    
     pool.query(qry, (error, results) => {
         if(error){
             console.log(error)
@@ -188,5 +229,7 @@ module.exports = {
     filter_activities_date,
     liveSearch,
     filter_types,
-    get_activities_distinct_withCount
+    get_activities_distinct_withCount,
+    get_places,
+    get_moviesByPlace
 };

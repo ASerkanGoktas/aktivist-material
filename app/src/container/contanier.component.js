@@ -29,12 +29,21 @@ class ContainerController {
     }
 
     filter_types(type, subtype){
-        this.et.getActivitiesDistinctWithCount(null, null, type, subtype).then(response => {
-            this.et.loadedActs = response.data;
-            console.log("hector salamanca")
-            this.rootScope.$broadcast("sendData", "hello there");
-            this.rootScope.$broadcast("catSelected", {"type": type, "sub": subtype});
-        });
+        if(type == "Sinema"){
+            this.et.get_places(type).then(response => {
+                this.places = response.data;
+                this.rootScope.$broadcast("sendPlaces", this.places);
+                this.rootScope.$broadcast("catSelected", {"type": type, "sub": subtype});
+            });
+        }else{
+            this.et.getActivitiesDistinctWithCount(null, null, type, subtype).then(response => {
+
+                this.rootScope.$broadcast("sendData", response.data);
+                this.rootScope.$broadcast("catSelected", {"type": type, "sub": subtype});
+            });
+        }
+
+        
     }
 
     

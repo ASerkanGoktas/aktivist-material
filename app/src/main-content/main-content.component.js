@@ -6,13 +6,23 @@ class MainContentController {
     constructor($mdMedia, EtkinlikService, $scope, $rootScope) {
       
         this.mdMedia = $mdMedia;
-        this.acts = EtkinlikService.loadedActs;
         this.searchText = "";
         this.rootScope = $rootScope;
         this.etc = EtkinlikService;
+        this.scope = $scope;
         
-        $scope.$on("sendData", (evt, data) => {
-            this.acts = this.etc.loadedActs;
+        this.scope.$on("sendData", (evt, data) => {
+            this.acts = data;
+            this.showPlaces = false;
+        });
+
+        this.scope.$on("sendPlaces", (evt, data) => {
+            this.places = data;
+            this.showPlaces = true;
+        });
+
+        this.scope.$on("filterSet", (evt, data) => {
+            this.filters = data;
         });
 
         this.gunler = {
@@ -71,6 +81,18 @@ class MainContentController {
         return this.gunler[temp_date.getDay()];
     }
 
+    toggle_actsOfplace(index, place){
+        if(this.selectedIndex === index)
+            this.selectedIndex = -1;
+        else{
+            this.selectedIndex = index;
+            this.get_moviesByplace(place)
+        }
+
+        
+
+    }
+
     get_ay(datestr){
         var temp_date = new Date(datestr);
 
@@ -97,6 +119,16 @@ class MainContentController {
         return temp_date.getDate();
     }
 
+    get_moviesByplace(place){
+        this.etc.get_moviesByplace(place).then(response => {
+            this.acts = response.data;
+            
+        });
+    }
+
+    bitistir(str){
+        return str.replace(/ /g, "+");
+    }
 }
 
 MainContentController.$inject = ["$mdMedia", "EtkinlikService", "$scope", "$rootScope"];

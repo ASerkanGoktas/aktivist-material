@@ -28,20 +28,19 @@
                             </md-option>
                         </md-select>
                     </md-input-container>
-
                     <md-input-container>
-                        <md-select ng-model="$ctrl.selectedTime" ng-change="$ctrl.filter_times()">
-                            <md-option ng-repeat="ins in $ctrl.dayFiltered | unique: 'time'" value="{{ins.time}}"
+                        <md-select ng-model="$ctrl.selectedPlace" ng-change="$ctrl.filter_place()">
+                            <md-option ng-repeat="ins in $ctrl.dayFiltered | unique: 'place'" value="{{ins.place}}"
                                 ng-selected="$ctrl.preset">
-                                {{$ctrl.time_saat(ins.time)}}
+                                {{ins.place}}
                             </md-option>
                         </md-select>
                     </md-input-container>
                     <md-input-container>
-                        <md-select ng-model="$ctrl.selectedPlace" ng-change="$ctrl.filter_place()">
-                            <md-option ng-repeat="ins in $ctrl.timeFiltered | unique: 'place'" value="{{ins.place}}"
+                        <md-select ng-model="$ctrl.selectedTime" ng-change="$ctrl.filter_times()">
+                            <md-option ng-repeat="ins in $ctrl.placeFiltered | unique: 'time'" value="{{ins.time}}"
                                 ng-selected="$ctrl.preset">
-                                {{ins.place}}
+                                {{$ctrl.time_saat(ins.time)}}
                             </md-option>
                         </md-select>
                     </md-input-container>
@@ -105,7 +104,7 @@
                             </div>
                         </div>
                         <div>
-                            <p class="text-xl px-1">{{selectedOption5.price}} ₺</p>
+                            <p class="text-xl px-1">{{$ctrl.get_pricestr(selectedOption5)}}</p>
                         </div>
                     </div>
                 </div>
@@ -152,7 +151,7 @@
 
 
             <md-card-actions layout="row" layout-align="end center">
-                <a href="{{$ctrl.act.url}}">
+                <a href="{{$ctrl.selectedInstance.url}}">
                     <md-button>BİLET AL</md-button>
                 </a>
 

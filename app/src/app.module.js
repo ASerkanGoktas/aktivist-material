@@ -28,9 +28,9 @@ angular.module('aktivist', [greetModule, navbarModule, maincontentmodule, detail
                 when("/arama", {
                     template: "<main-content></main-content>"
                 }).
-                when("/etkinlik/:event_id", {
+                when("/etkinlik/:event_id/:place", {
                     template: params => {
-                        return '<act-details event-id="' + params.event_id + '"><act-details>';
+                        return `<act-details event_id='${params.event_id}' place='${params.place}'></act-details>`;
                     }
                 }).otherwise({
                     redirectTo: "/"

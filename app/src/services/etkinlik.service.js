@@ -93,6 +93,15 @@ class EtkinlikService {
     get_instances(event_id){
         return this.http.get(`/get_instances/${event_id}`);
     }
+    
+
+    get_places(type){
+        return this.http.get(`/get_places/${type}`);
+    }
+
+    get_moviesByplace(place){
+        return this.http.get(`/get_moviesByplace/${place}`);
+    }
 
 }
 

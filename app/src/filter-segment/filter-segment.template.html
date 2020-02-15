@@ -2,31 +2,34 @@
     <md-card class="md-padding">
         <md-content class="bg-white">
             <div>
-                <md-contact-chips ng-model="$ctrl.startContacts" 
-                md-min-length="0"
-                md-contacts="$ctrl.querySearch($query)" 
-                md-contact-name="name" 
-                md-contact-image="image"
-                md-require-match="true"
-                placeholder="{{$ctrl.searchMessage}}">
-                </md-contact-chips>
+            <md-input-container>
+                <input ng-model = "$ctrl.filter_query" placeholder="{{$ctrl.searchMessage}}" type = "text"/>
+            </md-input-container>
+                
             </div>
+            
             <div class="flex flex-row py-1">
-                <md-checkbox name = "baslangic" ng-model = "$ctrl.isBasla"></md-checkbox>
+                <md-checkbox name = "baslangic" ng-model = "$ctrl.isBasla" aria-label = "checkbox-date-start"></md-checkbox>
                 <h4 class="px-1">Başlangıç</h4>
             </div>
 
             <md-datepicker ng-if = "$ctrl.isBasla" ng-model="$ctrl.myDateStart" md-placeholder="Tarih seçin"></md-datepicker>
 
             <div class="flex flex-row py-1">
-                <md-checkbox name = "baslangic" ng-model = "$ctrl.isBitis"></md-checkbox>
+                <md-checkbox name = "baslangic" ng-model = "$ctrl.isBitis" aria-label = "checkbox-date-end"></md-checkbox>
                 <h4 class="px-1">Bitiş</h4>
             </div>
 
             <md-datepicker ng-if = "$ctrl.isBitis" ng-model="$ctrl.myDateEnd" md-placeholder="Tarih seçin"></md-datepicker>
         </md-content>
 
-        
+        <md-input-container class="py-1">
+            <md-select ng-model = "$ctrl.selectedPlace">
+                <md-option ng-value = "{{place}}" ng-repeat = "place in $ctrl.places">
+                    {{place.place}}
+                </md-option>
+            </md-select>
+        </md-input-container>
 
 
         <md-input-container class="py-1">
@@ -41,7 +44,7 @@
                             <md-option ng-value="city" ng-repeat="city in $ctrl.cities |
                                 filter:$ctrl.cityInput">{{city}}</md-option>
                         </md-optgroup>
-            </md-select>
+                    </md-select>
            <md-button class = "md-button md-primary" ng-click = "$ctrl.filter()">
                GO!
            </md-button>
