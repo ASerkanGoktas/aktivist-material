@@ -60,7 +60,7 @@ const get_activities_distinct_withCount = (request, response) => {
     var type = request.params.type;
     var subtype = request.params.subtype;
 
-    var qry = `SELECT * FROM (SELECT event, COUNT(event) AS event_count, MIN(date) AS first_date FROM instance GROUP BY event, date) AS foo JOIN event ON (event.event_id = foo.event) WHERE`;
+    var qry = `SELECT * FROM (SELECT event, COUNT(event) AS event_count, MIN(date) AS date FROM instance GROUP BY event, date) AS foo JOIN event ON (event.event_id = foo.event) WHERE`;
 
     if(start != NONE){
         var start = new Date(start);
