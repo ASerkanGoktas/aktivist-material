@@ -1,7 +1,7 @@
 <md-card style = "height: 16rem">
     <div class="h-32 bg-gray-800"
         ng-style="{'background-image': 'url('+ $ctrl.imageUrl +')', 'background-repeat': 'no-repeat', 'background-position': 'center center', 'background-size': 'cover'}">
-        <div class = "rounded-full w-12 w-12 float-right" style = "background-color: #3667c9;">
+        <div class = "rounded-full w-12 w-12 float-right" ng-if = "$ctrl.showTopLeft" style = "background-color: #3667c9;">
             <span class = "block font-bold text-white text-center" style = "color: #e4eaf7">{{$ctrl.dayOfMonth}}</span>
             <span class = "block font-bold text-white text-center" style = "color: #e4eaf7">{{$ctrl.month}}</span>
         </div>

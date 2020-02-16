@@ -1,7 +1,13 @@
 import tpl from "./act-card.template.html"
 
 class actCardController{
-    constructor(){}
+    constructor(){
+        this.$onInit = () => {
+            console.log(this)
+            var a = 3;
+            var b = 1;
+        }
+    }
 
     
 }
@@ -9,5 +15,6 @@ class actCardController{
 export default{
     template: tpl,
     controller: actCardController,
-    bindings: {title: "@", subtitle: "@", dayOfMonth: "@", month: "@", eventId: "@", imageUrl: "@", place: "@"}
+    bindings: {title: "@", subtitle: "@", dayOfMonth: "@", month: "@",
+     eventId: "@", imageUrl: "@", place: "@", showTopLeft : "<"}
 }
