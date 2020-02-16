@@ -100,13 +100,22 @@ class NavbarController {
         });
     }
 
-    filter_types(type, subtype){        
-        this.etc.getActivitiesDistinctWithCount(null, null, type, subtype).then(response => {
-            this.etc.loadedActs = response.data;
-            console.log("hector salamanca")
-            this.rootScope.$broadcast("sendData", "hello there");
-            this.rootScope.$broadcast("catSelected", {"type": type, "sub": subtype});
-        });
+    filter_types(type, subtype){
+        if(type == "Sinema"){
+            this.etc.get_places(type).then(response => {
+                this.places = response.data;
+                this.rootScope.$broadcast("sendPlaces", this.places);
+                this.rootScope.$broadcast("catSelected", {"type": type, "sub": subtype});
+            });
+        }else{
+            this.etc.getActivitiesDistinctWithCount(null, null, type, subtype).then(response => {
+
+                this.rootScope.$broadcast("sendData", response.data);
+                this.rootScope.$broadcast("catSelected", {"type": type, "sub": subtype});
+            });
+        }
+
+        
     }
 
 
