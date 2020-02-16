@@ -204,7 +204,7 @@ const liveSearch = (request, response) => {
 
 const search_name = (request, response) => {
 
-    qry = `SELECT * FROM instance JOIN event ON (event.event_id = instance.event) WHERE LOWER(name) LIKE ('%${request.params.text}%')`
+    qry = `SELECT DISTINCT ON(place) place, * FROM instance JOIN event ON (event.event_id = instance.event) WHERE LOWER(name) LIKE LOWER('%${request.params.text}%')`
 
     pool.query(qry, (error, results) => {
         if(error){

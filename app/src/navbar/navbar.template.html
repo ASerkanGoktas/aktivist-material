@@ -31,7 +31,7 @@
 
           <div class=" self-center bg-indigo-200">
             <a href="#!/arama">
-              <md-button class="md-icon-button" ng-click="$ctrl.search()">
+              <md-button class="md-icon-button" ng-click="$ctrl.search($ctrl.searchText)">
                 <i class="material-icons">search</i>
               </md-button>
             </a>
@@ -43,15 +43,16 @@
           <md-list flex layout="column">
 
             <div ng-repeat="result in $ctrl.searchResults">
-              <a href="#!/etkinlik/{{result.instance_id}}">
-                <md-list-item class="md-2-line" ng-click="null">
+              <a href="#!/arama">
+                <md-list-item class="md-2-line" ng-click="$ctrl.search(result.name)">
 
                   <div class="md-list-item-text" layout="column">
                     <h3>{{result.name}}</h3>
                     <p>{{result.city}}</p>
                   </div>
+                </md-list-item>
               </a>
-              </md-list-item>
+
 
             </div>
 
@@ -206,7 +207,7 @@
           <div class="h-px bg-gray-500 mb-1"></div>
           <div class="w-full text-center self-center mr-4 p-1">
             <a href="#!/arama">
-              <md-button class="md-button flex flex-row" ng-click = "$ctrl.filter_types(type.name, null)"
+              <md-button class="md-button flex flex-row" ng-click="$ctrl.filter_types(type.name, null)"
                 style="display: flex !important; width: 100% !important; margin: auto !important">
                 <md-icon md-svg-icon="{{type.icon}}" style="margin: 0px !important;"></md-icon>
                 <p class="self-center ml-8">{{type.name}}</p>
@@ -218,7 +219,8 @@
           <div ng-repeat="subtype in type.subtypes">
             <div class="w-full text-center self-center mr-4 p-1">
               <a href="#!/arama">
-                <md-button class="md-button flex flex-row" ng-click = "$ctrl.filter_types(null, null, type.name, subtype.name)"
+                <md-button class="md-button flex flex-row"
+                  ng-click="$ctrl.filter_types(null, null, type.name, subtype.name)"
                   style="display: flex !important; width: 80% !important; margin: auto !important">
                   <p class="self-center ml-8">{{subtype.name}}</p>
                 </md-button>
