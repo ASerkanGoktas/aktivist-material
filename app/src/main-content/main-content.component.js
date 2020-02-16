@@ -98,9 +98,6 @@ class MainContentController {
             this.selectedIndex = index;
             this.get_moviesByplace(place)
         }
-
-        
-
     }
 
     get_ay(datestr){

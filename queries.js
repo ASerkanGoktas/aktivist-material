@@ -202,9 +202,9 @@ const liveSearch = (request, response) => {
     });
 }
 
-const search_name= (request, response) => {
+const search_name = (request, response) => {
 
-    qry = `SELECT * FROM (SELECT event, COUNT(event) AS event_count, MIN(date) AS first_date FROM instance GROUP BY event, date) AS foo JOIN event ON (event.event_id = foo.event) WHERE LOWER(name) LIKE ('%${request.params.text}%')`
+    qry = `SELECT * FROM instance JOIN event ON (event.event_id = instance.event) WHERE LOWER(name) LIKE ('%${request.params.text}%')`
 
     pool.query(qry, (error, results) => {
         if(error){
