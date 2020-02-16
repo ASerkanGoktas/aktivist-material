@@ -6,6 +6,7 @@ import navbarModule from "./navbar/navbar.module";
 import maincontentmodule from "./main-content/main-content.module";
 import detailsmodule from "./act-details/act-details.module";
 import filtersegmentmodule from "./filter-segment/filter-segment.module";
+import actCardModule from "./act-card/act-card.module";
 import homepagemodule from "./homepage/homepage.module";
 import SidenavService from "./services/sidenav.service";
 import containermodule from "./container/container.module";
@@ -17,7 +18,7 @@ import moment from "moment";
 
 
 
-angular.module('aktivist', [greetModule, navbarModule, maincontentmodule, detailsmodule, ngaria, filtersegmentmodule, angularRoute,
+angular.module('aktivist', [greetModule, navbarModule, maincontentmodule, detailsmodule, actCardModule, ngaria, filtersegmentmodule, angularRoute,
     homepagemodule, containermodule]).
     config(
         ["$routeProvider", function config($routeProvider) {

@@ -75,6 +75,16 @@ class MainContentController {
         return ((name.length < 60) ? name : name.slice(0, 56) + "...")
     }
 
+    get_subtitle(act){
+        if(!act.place)
+            return ""
+
+        if(act.event_count == 1)
+            return act.place
+        else
+            return `${act.event_count} Farklı mekan`
+    }
+
     get_gun(datestr){
         var temp_date = new Date(datestr);
 

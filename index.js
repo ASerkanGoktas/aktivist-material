@@ -16,6 +16,7 @@ app.get('/get_activities_distinct_withCount/:start/:end/:type/:subtype', db.get_
 app.get('/get_instances/:event_id', db.get_instances);
 app.get('/get_places/:type', db.get_places);
 app.get('/get_moviesByplace/:place', db.get_moviesByPlace);
+app.get('/search_name/:text', db.search_name);
 
 server.listen(PORT, () => {
     console.log("hey")

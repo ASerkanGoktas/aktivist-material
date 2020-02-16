@@ -103,6 +103,10 @@ class EtkinlikService {
         return this.http.get(`/get_moviesByplace/${place}`);
     }
 
+    search_name(text){
+        return this.http.get(`/search_name/${text}`);
+    }
+
 }
 
 export default EtkinlikService;

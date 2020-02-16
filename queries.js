@@ -90,7 +90,7 @@ const get_activities_distinct_withCount = (request, response) => {
     qry = qry.substring(0, qry.length - 3);
     
 
-    console.log(qry);
+    
     pool.query(qry, (error, results) => {
         
         if(error){
@@ -202,6 +202,19 @@ const liveSearch = (request, response) => {
     });
 }
 
+const search_name= (request, response) => {
+
+    qry = `SELECT * FROM (SELECT event, COUNT(event) AS event_count, MIN(date) AS first_date FROM instance GROUP BY event, date) AS foo JOIN event ON (event.event_id = foo.event) WHERE LOWER(name) LIKE ('%${request.params.text}%')`
+
+    pool.query(qry, (error, results) => {
+        if(error){
+            console.log(error);
+        }else{
+            response.status(200).json(results.rows);
+        }
+    });
+}
+
 const filter_types = (request, response) => {
     var type = request.params.type
     var subtype = request.params.subtype
@@ -231,5 +244,6 @@ module.exports = {
     filter_types,
     get_activities_distinct_withCount,
     get_places,
-    get_moviesByPlace
+    get_moviesByPlace,
+    search_name
 };

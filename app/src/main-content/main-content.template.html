@@ -6,65 +6,18 @@
         <div flex="70" flex-lg="70" flex-md = "60" flex-xl="80" flex-sm="100" flex-xs="100" class="min-h-screen xl:pr-16 h-auto">
             <div class="flex flex-wrap" ng-if = "!$ctrl.showPlaces">
                 <div class="w-4/5 xs:w-9/12 mx-auto sm:w-1/2 sm:mx-0 md:h-58 md:w-58 lg:h-64 lg:w-64 xxl:h-64 xxl:w-64 xxxl:w-72 xxxl:w-72 mb-3"  ng-repeat="act in $ctrl.acts">
-                    <md-card style = "height: 16rem">
-                        <div class="h-32 bg-gray-800"
-                            ng-style="{'background-image': 'url('+ act.image_url +')', 'background-repeat': 'no-repeat', 'background-position': 'center center', 'background-size': 'cover'}">
-                            <div class = "rounded-full w-12 w-12 float-right" style = "background-color: #3667c9;">
-                                <span class = "block font-bold text-white text-center" style = "color: #e4eaf7">{{$ctrl.get_ay(act.first_date)}}</span>
-                                <span class = "block font-bold text-white text-center" style = "color: #e4eaf7">{{$ctrl.get_gunSayi(act.first_date)}}</span>
-                            </div>
-                        </div>
-
-                        <div class="flex flex-col p-2 h-24">
-                            
-                            <span class="font-bold text-sm overflow-hidden"
-                                style="white-space: normal; -webkit-line-clamp: 3; max-height: 2.5rem; text-overflow: ellipsis;">{{$ctrl.trim_name(act.name) + " - " + act.event_count + " farklı sonuç"}}</span>
-                            
-        
-                        </div>
-                        <div class="flex flex-row justify-between float-right">
-                            <a href="#!/etkinlik/{{act.event_id}}/{{'NONE'}}">
-                                <md-button class="md-button" ng-click="$ctrl.get_details(act.event_id)">DETAY</md-button>
-                            </a>
-                            <md-button class="md-icon-button h-1 w-1 self-center">
-                                <i class="material-icons">share</i>
-                            </md-button>
-        
-                        </div>
-                    </md-card>
+                    <act-card title = "{{$ctrl.trim_name(act.name)}}" subtitle = "" day-of-month = "{{$ctrl.get_gunSayi(act.first_date)}}" month = "{{$ctrl.get_ay(act.first_date)}}" event-id = "{{act.event_id}}" image-url = "{{act.image_url}}" place = "{{act.place}}"></act-card>
                 </div>
             </div>
-            
             <ul ng-if = "$ctrl.showPlaces">
-                <li ng-repeat = "place in $ctrl.places" class = "md-2-line border-black rounded-md my-3 text-white font-bold" layout = "column" ng-click = "$ctrl.toggle_actsOfplace($index, place.place)">
+                <li ng-repeat = "place in $ctrl.places" class = "md-2-line border-black rounded-lg my-3 text-white font-bold" layout = "column" ng-click = "$ctrl.toggle_actsOfplace($index, place.place)">
                     <div class="md-list-item-text p-2" style = "background-color: rgb(33,150,243);">
                         <h3>{{ place.place }}</h3>
                         <h4>Yer ismi</h4>
                       </div>
                       <div class = "flex flex-row w-full bg-white overflow-y-scroll" ng-if = "$index === $ctrl.selectedIndex">
                         <div ng-repeat="act in $ctrl.acts" class="w-4/5 xs:w-9/12 mx-auto sm:w-1/2 sm:mx-0 md:h-58 md:w-58 lg:h-64 lg:w-64 xxl:h-64 xxl:w-64 xxxl:w-72 xxxl:w-72 mb-3">
-                            <md-card style = "height: 14rem; width: 14rem;">
-                                <div class="h-32 bg-gray-800"
-                                    ng-style="{'background-image': 'url('+ act.image_url +')', 'background-repeat': 'no-repeat', 'background-position': 'center center', 'background-size': 'cover'}">
-                                </div>
-        
-                                <div class="flex flex-col p-2 h-24">
-                                    
-                                    <span class="font-bold text-sm overflow-hidden"
-                                        style="white-space: normal; -webkit-line-clamp: 3; max-height: 2.5rem; text-overflow: ellipsis;">{{$ctrl.trim_name(act.name)}}</span>
-                                    
-                
-                                </div>
-                                <div class="flex flex-row justify-between float-right">
-                                    <a href="#!/etkinlik/{{act.event_id}}/{{$ctrl.bitistir(place.place)}}">
-                                        <md-button class="md-button" ng-click="$ctrl.get_details(act.event_id)">DETAY</md-button>
-                                    </a>
-                                    <md-button class="md-icon-button h-1 w-1 self-center">
-                                        <i class="material-icons">share</i>
-                                    </md-button>
-                
-                                </div>
-                            </md-card>
+                            <act-card title = "{{$ctrl.trim_name(act.name)}}" subtitle = "" day-of-month = "{{$ctrl.get_gunSayi(act.first_date)}}" month = "{{$ctrl.get_ay(act.first_date)}}" event-id = "{{act.event_id}}" image-url = "{{act.image_url}}" place = "{{$ctrl.bitistir(place.place)}}"></act-card>
                         </div>
                       </div> 
                 </li>
