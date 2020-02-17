@@ -6,9 +6,9 @@
             <div class="w-full h-full flex justify-start flex-col">
                 <div ng-repeat="cat in $ctrl.cats">
                     <div class="flex flex-col flex-initial items-center">
-                        <a href = "#!/arama">
+                        <a href = "#!/arama/{{cat.type}}/{{'NONE'}}/{{'NONE'}}">
                             <md-button class="md-button" style="margin:0; padding:4px"
-                                ng-click="$ctrl.filter_types(cat.type, null)">
+                                ng-click="null">
                                 <md-icon md-svg-icon="{{cat.icon}}"></md-icon>
                                 <p class="text-xs font-normal normal-case">{{cat.type}}</p>
                             </md-button>

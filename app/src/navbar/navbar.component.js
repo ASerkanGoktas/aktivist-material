@@ -95,6 +95,7 @@ class NavbarController {
     }
 
     search(text){
+        this.searchText = text;
         this.etc.search_name(text).then(response => {
             this.rootScope.$broadcast("sendData", response.data);
         });

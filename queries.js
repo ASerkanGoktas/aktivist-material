@@ -83,12 +83,12 @@ const get_activities_distinct_withCount = (request, response) => {
     }
 
     if(subtype != NONE){
-        qry = qry.concat(` subtype = ${subtype}' AND`);
+        qry = qry.concat(` subtype = '${subtype}' AND`);
     }
 
     //To remove last AND
     qry = qry.substring(0, qry.length - 3);
-    
+    console.log(qry);
 
     
     pool.query(qry, (error, results) => {
@@ -204,7 +204,7 @@ const liveSearch = (request, response) => {
 
 const search_name = (request, response) => {
 
-    qry = `SELECT DISTINCT ON(place) place, * FROM instance JOIN event ON (event.event_id = instance.event) WHERE LOWER(name) LIKE LOWER('%${request.params.text}%')`
+    qry = `SELECT DISTINCT ON(place) * FROM instance JOIN event ON (event.event_id = instance.event) WHERE LOWER(name) LIKE LOWER('%${request.params.text}%')`
 
     pool.query(qry, (error, results) => {
         if(error){

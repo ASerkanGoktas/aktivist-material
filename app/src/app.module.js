@@ -26,8 +26,10 @@ angular.module('aktivist', [greetModule, navbarModule, maincontentmodule, detail
                 when("/", {
                     template: "<greet></greet><homepage></homepage>"
                 }).
-                when("/arama", {
-                    template: "<main-content></main-content>"
+                when("/arama/:type/:subtype/:searchText", {
+                    template: params => {
+                        return `<main-content type='${params.type}' subtype = '${params.subtype}' search-text = '${params.searchText}'></main-content>`
+                    }
                 }).
                 when("/etkinlik/:event_id/:place", {
                     template: params => {

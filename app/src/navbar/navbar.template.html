@@ -30,8 +30,8 @@
           </div>
 
           <div class=" self-center bg-indigo-200">
-            <a href="#!/arama">
-              <md-button class="md-icon-button" ng-click="$ctrl.search($ctrl.searchText)">
+            <a href="#!/arama/{{'NONE'}}/{{'NONE'}}/{{$ctrl.searchText}}">
+              <md-button class="md-icon-button" ng-click="null">
                 <i class="material-icons">search</i>
               </md-button>
             </a>
@@ -43,8 +43,8 @@
           <md-list flex layout="column">
 
             <div ng-repeat="result in $ctrl.searchResults">
-              <a href="#!/arama">
-                <md-list-item class="md-2-line" ng-click="$ctrl.search(result.name)">
+              <a href="#!/arama/{{'NONE'}}/{{'NONE'}}/{{result.name}}">
+                <md-list-item class="md-2-line" ng-click="null">
 
                   <div class="md-list-item-text" layout="column">
                     <h3>{{result.name}}</h3>

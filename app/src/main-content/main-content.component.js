@@ -10,20 +10,8 @@ class MainContentController {
         this.rootScope = $rootScope;
         this.etc = EtkinlikService;
         this.scope = $scope;
-        
-        this.scope.$on("sendData", (evt, data) => {
-            this.acts = data;
-            this.showPlaces = false;
-        });
+        this.showPlaces = false;
 
-        this.scope.$on("sendPlaces", (evt, data) => {
-            this.places = data;
-            this.showPlaces = true;
-        });
-
-        this.scope.$on("filterSet", (evt, data) => {
-            this.filters = data;
-        });
 
         this.gunler = {
             0 : "Pazar",
@@ -49,6 +37,28 @@ class MainContentController {
             10: "Kasım",
             11: "Aralık"
         }
+
+        this.$onInit = () => {
+            var NONE = "NONE";
+
+            if(this.searchText == NONE){
+                if(this.type == "Sinema"){
+                    this.etc.get_places(this.type).then(response => {
+                        this.places = response.data;
+                        this.showPlaces = true;
+                    });
+                }else{
+                    this.etc.getActivitiesDistinctWithCount(null, null, this.type, this.subtype).then(response => {
+                        this.acts = response.data;
+                        this.showPlaces = false;
+                    });
+                }
+            }else{
+                this.etc.search_name(this.searchText).then(response => {
+                    this.acts = response.data;
+                });
+            }
+        };
 
     }
 
@@ -142,5 +152,6 @@ MainContentController.$inject = ["$mdMedia", "EtkinlikService", "$scope", "$root
 
 export default {
     template: tpl,
-    controller: MainContentController
+    controller: MainContentController,
+    bindings: {type: "@", subtype: "@", searchText: "@"}
 }
