@@ -69,14 +69,6 @@
             </md-card-content>
             <div class="h-px bg-gray-400 w-full my-2"></div>
             <md-card-content>
-                <div class="flex flex-col">
-                    <div class="flex flex-row justify-start" ng-repeat="fiyat in $ctrl.fiyatlar">
-                        <span class="mr-5">{{fiyat.category}}</span>
-                        <span class="mr-5">{{fiyat.name}}</span>
-                        <span class="mr-5">{{fiyat.price + " TL"}}</span>
-                        <span ng-if="fiyat.campaign">{{fiyat.campaign}}</span>
-                    </div>
-                </div>
                 <div layout="column">
                     <div flex="0" class="pt-1">
                         <h2 class="text-xl font-bold">Fiyatlar:</h2>
