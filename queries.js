@@ -142,7 +142,7 @@ const get_instances = (request, response) => {
 UNION
 SELECT *
 	FROM event,instance
-	WHERE event = event_id AND event_id = '${request.params.event_id}' AND date >= '${start}'::date	`;
+	WHERE event = event_id AND event_id = '${request.params.event_id}' AND date >= '${start}'`;
 
     
     pool.query(qry, (error, results) =>{
