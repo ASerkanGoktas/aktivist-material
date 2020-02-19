@@ -1,6 +1,6 @@
 const Pool = require('pg').Pool
 
-const pool = new Pool(/*  {
+const pool = new Pool( {/*
     user: "kqddeaplbhelix",
     host: "ec2-46-137-113-157.eu-west-1.compute.amazonaws.com",
     database: "d9bblfnn09vkg7",
@@ -9,7 +9,7 @@ const pool = new Pool(/*  {
 }  */{
     user: "seko",
     host: "localhost",
-    database: "aktivist_local",
+    database: "10subdene",
     port: "5432",
     password: "279157",
 
@@ -90,6 +90,9 @@ const get_activities_distinct_withCount = (request, response) => {
     qry = qry.substring(0, qry.length - 3);
     console.log(qry);
 
+    qry = qry.concat('ORDER BY date LIMIT 24')
+
+    console.log(qry)
     
     pool.query(qry, (error, results) => {
         
@@ -130,12 +133,23 @@ const get_prices_of_act = (request, response) => {
     });
 }
 
-const get_instances = (request, response) => {
+const get_instances = (request, response) => {  // Tarih'te değişikli yapılacaktır
     var today = new Date();
     var start = `${today.getFullYear()}-${today.getMonth() + 1}-${today.getDate()-3}`;
-    var qry = `SELECT * FROM instance JOIN event ON (instance.event = event.event_id) WHERE date >= '${start}'::date AND event.event_id = '${request.params.event_id}' ORDER BY date`;
+    var qry = `SELECT *
+	FROM event,instance 
+	WHERE event = event_id AND name IN
+(SELECT name
+	FROM event,instance
+	WHERE event = event_id AND event_id = '${request.params.event_id}' AND type = 'Sinema' AND date >= '2020-2-11')
+UNION
+SELECT *
+	FROM event,instance
+    WHERE event = event_id AND event_id = '${request.params.event_id}' AND date >= '2020-2-11' 
+    ORDER BY date;`;
 
-    
+    console.log(qry)
+
     pool.query(qry, (error, results) =>{
         if(error){
             console.log(error);
