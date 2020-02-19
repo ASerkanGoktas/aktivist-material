@@ -6,12 +6,12 @@ const pool = new Pool( {/*
     database: "d9bblfnn09vkg7",
     port: "5432",
     password: "8257debded76d2a2b1cdf810cfb28939b450e88616b9778ee18b70308922501a"
-}  */{
-    user: "seko",
+}  */
+    user: "postgres",
     host: "localhost",
     database: "10subdene",
     port: "5432",
-    password: "279157",
+    password: "1998684952",
 
 })
 
@@ -218,7 +218,7 @@ const liveSearch = (request, response) => {
 
 const search_name = (request, response) => {
 
-    qry = `SELECT DISTINCT ON(place) * FROM instance JOIN event ON (event.event_id = instance.event) WHERE LOWER(name) LIKE LOWER('%${request.params.text}%')`
+    qry = `SELECT DISTINCT ON(date) place, * FROM instance JOIN event ON (event.event_id = instance.event) WHERE LOWER(name) LIKE LOWER('%${request.params.text}%') ORDER BY date ASC`
 
     pool.query(qry, (error, results) => {
         if(error){
