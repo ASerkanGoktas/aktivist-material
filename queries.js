@@ -7,11 +7,11 @@ const pool = new Pool(/*  {
     port: "5432",
     password: "8257debded76d2a2b1cdf810cfb28939b450e88616b9778ee18b70308922501a"
 }  */{
-    user: "seko",
+    user: "postgres",
     host: "localhost",
     database: "aktivist_local",
     port: "5432",
-    password: "279157",
+    password: "1998684952",
 
 })
 
@@ -88,8 +88,8 @@ const get_activities_distinct_withCount = (request, response) => {
 
     //To remove last AND
     qry = qry.substring(0, qry.length - 3);
-    
 
+    console.log(qry)
     
     pool.query(qry, (error, results) => {
         
@@ -133,7 +133,16 @@ const get_prices_of_act = (request, response) => {
 const get_instances = (request, response) => {
     var today = new Date();
     var start = `${today.getFullYear()}-${today.getMonth() + 1}-${today.getDate()-3}`;
-    var qry = `SELECT * FROM instance JOIN event ON (instance.event = event.event_id) WHERE date >= '${start}'::date AND event.event_id = '${request.params.event_id}' ORDER BY date`;
+    var qry = `SELECT *
+	FROM event,instance 
+	WHERE event = event_id AND name IN
+(SELECT name
+	FROM event,instance
+	WHERE event = event_id AND event_id = '${request.params.event_id}' AND type = 'Sinema' AND date >= '${start}')
+UNION
+SELECT *
+	FROM event,instance
+	WHERE event = event_id AND event_id = '${request.params.event_id}' AND date >= '${start}'::date	`;
 
     
     pool.query(qry, (error, results) =>{
@@ -204,7 +213,7 @@ const liveSearch = (request, response) => {
 
 const search_name = (request, response) => {
 
-    qry = `SELECT DISTINCT ON(place) place, * FROM instance JOIN event ON (event.event_id = instance.event) WHERE LOWER(name) LIKE LOWER('%${request.params.text}%')`
+    qry = `SELECT DISTINCT ON(date) place, * FROM instance JOIN event ON (event.event_id = instance.event) WHERE LOWER(name) LIKE LOWER('%${request.params.text}%') ORDER BY date ASC`
 
     pool.query(qry, (error, results) => {
         if(error){
