@@ -31,9 +31,9 @@ angular.module('aktivist', [greetModule, navbarModule, maincontentmodule, detail
                         return `<main-content type='${params.type}' subtype = '${params.subtype}' search-text = '${params.searchText}'></main-content>`
                     }
                 }).
-                when("/etkinlik/:event_id/:place", {
+                when("/etkinlik/:event_id/:date/:place", {
                     template: params => {
-                        return `<act-details event_id='${params.event_id}' place='${params.place}'></act-details>`;
+                        return `<act-details event_id='${params.event_id}' date='${params.date}' place = '${params.place}'></act-details>`;
                     }
                 }).otherwise({
                     redirectTo: "/"

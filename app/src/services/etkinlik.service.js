@@ -4,7 +4,7 @@ class EtkinlikService {
     constructor($http) {
         this.http = $http;
         this.loadedActs = [];
-        
+
     }
 
     getEvent(event_id) {
@@ -26,7 +26,7 @@ class EtkinlikService {
             const day = dateFirst.getDate();
 
             query = query.concat(year, "-", month, "-", day, "/");
-        }else{
+        } else {
             query = query.concat(NONE, "/");
         }
 
@@ -36,14 +36,14 @@ class EtkinlikService {
             const day = dateSecond.getDate();
 
             query = query.concat(year, "-", month, "-", day, "/");
-        }else{
+        } else {
             query = query.concat(NONE, "/");
         }
 
 
-        if(city != null){
+        if (city != null) {
             query = query.concat(city);
-        }else{
+        } else {
             query = query.concat(NONE);
         }
 
@@ -53,17 +53,17 @@ class EtkinlikService {
         return this.http.get(query);
     }
 
-    liveSearch(actName){
+    liveSearch(actName) {
         return this.http.get("/livesearch/".concat(actName));
     }
 
-    getActivitiesDistinctWithCount(start, end, type, subtype){
+    getActivitiesDistinctWithCount(start, end, type, subtype) {
         const base = "/get_activities_distinct_withCount";
         const NONE = "NONE";
 
-        if(start == null){
+        if (start == null) {
             start = NONE;
-        }else{
+        } else {
             const year = start.getFullYear()
             const month = parseInt(start.getMonth()) + 1;
             const day = start.getDate();
@@ -71,9 +71,9 @@ class EtkinlikService {
             start = `${year}-${month}-${day}`;
         }
 
-        if(end == null){
+        if (end == null) {
             end = NONE;
-        }else{
+        } else {
             const year = end.getFullYear()
             const month = parseInt(end.getMonth()) + 1;
             const day = end.getDate();
@@ -81,30 +81,46 @@ class EtkinlikService {
             end = `${year}-${month}-${day}`;
         }
 
-        if(type == null)
+        if (type == null)
             type = NONE
-        if(subtype == null)
+        if (subtype == null)
             subtype = NONE
 
         const qry = `${base}/${start}/${end}/${type}/${subtype}`;
         return this.http.get(qry);
     }
 
-    get_instances(event_id){
+    get_instances(event_id) {
         return this.http.get(`/get_instances/${event_id}`);
     }
-    
 
-    get_places(type){
+
+    get_places(type) {
         return this.http.get(`/get_places/${type}`);
     }
 
-    get_moviesByplace(place){
+    get_moviesByplace(place) {
         return this.http.get(`/get_moviesByplace/${place}`);
     }
 
-    search_name(text){
+    search_name(text) {
         return this.http.get(`/search_name/${text}`);
+    }
+
+    get_instances_date(event_id, date){
+        var date_formatted = this.format_date(date);
+
+        return this.http.get(`/get_instances_date/${event_id}/${date_formatted}`);
+    }
+
+    format_date(date) {
+        date = new Date(date);
+        const year = date.getFullYear()
+        const month = parseInt(date.getMonth()) + 1;
+        const day = date.getDate();
+
+        var result = `${year}-${month}-${day}`;
+        return result;
     }
 
 }

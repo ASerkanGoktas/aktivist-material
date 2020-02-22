@@ -7,11 +7,11 @@ const pool = new Pool( {/*
     port: "5432",
     password: "8257debded76d2a2b1cdf810cfb28939b450e88616b9778ee18b70308922501a"
 }  */
-    user: "postgres",
+    user: "seko",
     host: "localhost",
-    database: "10subdene",
+    database: "aktivist_local",
     port: "5432",
-    password: "1998684952",
+    password: "279157",
 
 })
 
@@ -20,7 +20,7 @@ const get_moviesByPlace = (request, response) => {
     var today = new Date();
 
         //yy mm dd
-    today= `${today.getFullYear()}-${today.getMonth() + 1}-${today.getDate() - 3}`;
+    today= `${today.getFullYear()}-${today.getMonth() + 1}-${today.getDate() - 10}`;
 
     var qry = `SELECT DISTINCT ON (event_id) * FROM event JOIN instance ON (event.event_id = instance.event) WHERE
                     instance.place LIKE '${request.params.place}' and date >= '${today}'::date`
@@ -249,23 +249,23 @@ const filter_types = (request, response) => {
     });
 }
 
-const kerem = () => {
+const get_instances_date = (request, response) => {
      var date = request.params.date
      var event_id = request.params.event_id
 
      var qry = `SELECT *
      FROM event,instance
-     WHERE event = event_id AND name IN
+     WHERE event = event_id AND date = '${request.params.date}'::date AND name IN
  (SELECT name
      FROM event,instance
-     WHERE event = event_id AND event_id = '${request.params.event_id}' AND date = '${request.params.date}' AND type = 'Sinema')
+     WHERE event = event_id AND event_id = '${request.params.event_id}' AND type = 'Sinema')
  UNION
  SELECT *
      FROM event,instance
-     WHERE event = event_id AND event_id = '${request.params.event_id}'  AND date = '${request.params.date}';`
+     WHERE event = event_id AND event_id = '${request.params.event_id}'  AND date = '${request.params.date}'::date;`
 
-
-     console.log(qry)
+    console.log(qry)
+   
 
      pool.query(qry, (error, results) =>{
          if(error){
@@ -278,7 +278,7 @@ const kerem = () => {
      });
  }
 
-}
+
 
 module.exports = {
     get_instances,
@@ -290,5 +290,6 @@ module.exports = {
     get_activities_distinct_withCount,
     get_places,
     get_moviesByPlace,
-    search_name
+    search_name,
+    get_instances_date
 };

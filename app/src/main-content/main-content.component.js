@@ -86,13 +86,12 @@ class MainContentController {
     }
 
     get_subtitle(act){
-        if(!act.place)
-            return ""
+        var day = this.get_gunSayi(act.date);
+        var month = this.get_ay(act.date);
 
-        if(act.event_count == 1)
-            return act.place
-        else
-            return `${act.event_count} Farklı mekan`
+        var day_name = this.get_gun(act.date);
+
+        return `${day} ${month} ${day_name}`;
     }
 
     get_gun(datestr){

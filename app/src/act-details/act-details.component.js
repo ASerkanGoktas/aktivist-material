@@ -16,20 +16,36 @@ class ActDetailsController{
         this.timeFiltetered = [];
 
         this.$onInit = () => {
-            this.et.get_instances(this.eventId).then(response => {
-                this.place = this.place.replace(/[+]/g, " ");
-                this.instances = response.data;
-                if(this.place != "NONE"){
-                    this.instances = this.instances.filter(instance => instance.place == this.place);
-                    this.selectedPlace = this.place;
-                }
-                if(this.instances.length == 1){
-                    this.preset = true;
-                }
-            });
+            if(this.date == "NONE"){
+                this.et.get_instances(this.eventId).then(response => {
+                    this.place = this.place.replace(/[+]/g, " ");
+                    this.instances = response.data;
+                    if(this.place != "NONE"){
+                        this.instances = this.instances.filter(instance => instance.place == this.place);
+                        this.selectedPlace = this.place;
+                    }
+                    if(this.instances.length == 1){
+                        this.preset = true;
+                    }
+                });
+            }else{
+                this.et.get_instances_date(this.eventId, this.date).then(response => {
+                    this.place = this.place.replace(/[+]/g, " ");
+                    this.instances = response.data;
+                    if(this.place != "NONE"){
+                        this.instances = this.instances.filter(instance => instance.place == this.place);
+                        this.selectedPlace = this.place;
+                    }
+                    if(this.instances.length == 1){
+                        this.preset = true;
+                    }
+                });
+            }
+            
 
             this.et.getEvent(this.eventId).then(response => {
                 this.event = response.data;
+                this.event.name = this.event.name.replace(/[~]/g, "'");
             });
         }
 
@@ -153,5 +169,5 @@ class ActDetailsController{
 export default {
     template : tpl,
     controller : ActDetailsController,
-    bindings : {eventId : '<', place : '@'}
+    bindings : {eventId : '<', date : '@', place: "@"}
 }
