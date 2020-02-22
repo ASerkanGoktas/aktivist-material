@@ -249,6 +249,23 @@ const filter_types = (request, response) => {
     });
 }
 
+const kerem = () => {
+     var date = request.params.date
+     var event_id = request.params.event_id
+
+     var qry = `SELECT *
+     FROM event,instance
+     WHERE event = event_id AND name IN
+ (SELECT name
+     FROM event,instance
+     WHERE event = event_id AND event_id = '${request.params.event_id}' AND date = '${request.params.date}' AND type = 'Sinema')
+ UNION
+ SELECT *
+     FROM event,instance
+     WHERE event = event_id AND event_id = '${request.params.event_id}'  AND date = '${request.params.date}';`
+
+}
+
 module.exports = {
     get_instances,
     get_event,
