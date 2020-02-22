@@ -264,6 +264,20 @@ const kerem = () => {
      FROM event,instance
      WHERE event = event_id AND event_id = '${request.params.event_id}'  AND date = '${request.params.date}';`
 
+
+     console.log(qry)
+
+     pool.query(qry, (error, results) =>{
+         if(error){
+             console.log(error);
+         }
+         else{
+             
+             response.status(200).json(results.rows);
+         }
+     });
+ }
+
 }
 
 module.exports = {
