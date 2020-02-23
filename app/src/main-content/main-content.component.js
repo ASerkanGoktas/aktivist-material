@@ -11,7 +11,8 @@ class MainContentController {
         this.etc = EtkinlikService;
         this.scope = $scope;
         this.showPlaces = false;
-
+        this.pages = []
+        this.selectedPage = 1;
 
         this.gunler = {
             0 : "Pazar",
@@ -48,9 +49,16 @@ class MainContentController {
                         this.showPlaces = true;
                     });
                 }else{
-                    this.etc.getActivitiesDistinctWithCount(null, null, this.type, this.subtype).then(response => {
-                        this.acts = response.data;
+                    this.etc.getActivitiesDistinctWithCount(null, null, this.type, this.subtype, 1).then(response => {
+                        this.acts = response.data.rows;
+                        this.row_num = response.data.count;
                         this.showPlaces = false;
+                        
+                        for(var i = 1; i<this.row_num / 15; i++){
+                            this.pages.push(i);
+                        }
+
+                        this.pages.push(i + 1);
                     });
                 }
             }else{
@@ -60,6 +68,14 @@ class MainContentController {
             }
         };
 
+    }
+
+    select_page(pg_num){
+        this.etc.getActivitiesDistinctWithCount(null, null, this.type, this.subtype, parseInt(pg_num)).then(response => {
+            this.acts = response.data.rows;
+            this.row_num = response.data.count;
+            this.showPlaces = false;
+        });
     }
 
     isLandscape(){
@@ -106,6 +122,14 @@ class MainContentController {
         else{
             this.selectedIndex = index;
             this.get_moviesByplace(place)
+        }
+    }
+
+    get_page(page_num){
+        this.selectedPage = page_num;
+
+        if(this.row_num > 10){
+
         }
     }
 

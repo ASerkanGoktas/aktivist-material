@@ -55,6 +55,8 @@ const get_activities_distinct_withCount = (request, response) => {
     
     const NONE = "NONE";
 
+    var card_num = 18;
+    var page_num = parseInt(request.params.page_num);
     var start = request.params.start;
     var end = request.params.end; 
     var type = request.params.type;
@@ -88,19 +90,22 @@ const get_activities_distinct_withCount = (request, response) => {
 
     //To remove last AND
     qry = qry.substring(0, qry.length - 3);
-    console.log(qry);
 
-    qry = qry.concat('ORDER BY date LIMIT 24')
-
-    console.log(qry)
+    qry = qry.concat('ORDER BY date')
+    
     
     pool.query(qry, (error, results) => {
         
         if(error){
-
+        
         }else{
             
-            response.status(200).json(results.rows);
+            var start = card_num*(page_num)
+            var end = card_num*(page_num + 1)
+            var res = results.rows.slice(start, end)
+  
+
+            response.status(200).json({rows: res, count: results.rows.length});
         }
     });
 };
