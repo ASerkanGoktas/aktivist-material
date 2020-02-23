@@ -22,8 +22,8 @@
                 <div>
                     <md-input-container>
                         <md-select ng-model="$ctrl.selectedDate" ng-change="$ctrl.filter_dates()">
-                            <md-option ng-repeat="ins in $ctrl.instances | unique: 'date'" value="{{ins.date}}"
-                                ng-selected="$ctrl.preset">
+                            <md-option data-ng-repeat="ins in uniqueDates = ($ctrl.instances | unique: 'date')" value="{{ins.date}}"
+                                ng-selected="$ctrl.preset || uniqueDates.length == 1">
                                 {{$ctrl.date_aygun(ins.date)}}
                             </md-option>
                         </md-select>
