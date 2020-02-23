@@ -100,8 +100,8 @@ const get_activities_distinct_withCount = (request, response) => {
         
         }else{
             
-            var start = card_num*(page_num)
-            var end = card_num*(page_num + 1)
+            var start = card_num*(page_num - 1)
+            var end = card_num*(page_num)
             var res = results.rows.slice(start, end)
   
 
