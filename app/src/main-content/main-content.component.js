@@ -54,11 +54,11 @@ class MainContentController {
                         this.row_num = response.data.count;
                         this.showPlaces = false;
                         
-                        for(var i = 1; i<this.row_num / 15; i++){
+                        for(var i = 1; i<(this.row_num / 18); i++){
                             this.pages.push(i);
                         }
 
-                        this.pages.push(i + 1);
+                        this.pages.push(i);
                     });
                 }
             }else{
