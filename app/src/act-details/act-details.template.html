@@ -30,8 +30,8 @@
                     </md-input-container>
                     <md-input-container>
                         <md-select ng-model="$ctrl.selectedPlace" ng-change="$ctrl.filter_place()">
-                            <md-option ng-repeat="ins in $ctrl.dayFiltered | unique: 'place'" value="{{ins.place}}"
-                                ng-selected="$ctrl.preset">
+                            <md-option ng-repeat="ins in uniqueDays = ($ctrl.dayFiltered | unique: 'place')" value="{{ins.place}}"
+                                ng-selected="$ctrl.preset || uniqueDays.length == 1">
                                 {{ins.place}}
                             </md-option>
                         </md-select>
