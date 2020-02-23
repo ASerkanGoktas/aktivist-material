@@ -5,7 +5,7 @@ class MainContentController {
 
     constructor($mdMedia, EtkinlikService, $scope, $rootScope, $location, $route) {
 
-        
+
         this.mdMedia = $mdMedia;
         this.searchText = "";
         this.rootScope = $rootScope;
@@ -73,8 +73,12 @@ class MainContentController {
                     });
                 }
             } else {
-                this.etc.search_name(this.searchText).then(response => {
-                    this.acts = response.data;
+                this.etc.search_name(this.searchText, this.selectedPage).then(response => {
+                    this.acts = response.data.rows;
+                    this.row_num = response.data.count;
+                    this.showPlaces = false;
+
+                    this.set_pagenums(this.row_num);
                 });
             }
         };
@@ -90,11 +94,21 @@ class MainContentController {
     }
 
     select_page(pg_num) {
-        this.etc.getActivitiesDistinctWithCount(null, null, this.type, this.subtype, parseInt(pg_num)).then(response => {
-            this.acts = response.data.rows;
-            this.row_num = response.data.count;
-            this.showPlaces = false;
-        });
+
+        if (this.searchText == 'NONE') {
+            this.etc.getActivitiesDistinctWithCount(null, null, this.type, this.subtype, parseInt(pg_num)).then(response => {
+                this.acts = response.data.rows;
+                this.row_num = response.data.count;
+                this.showPlaces = false;
+            });
+        } else {
+            this.etc.search_name(this.searchText, parseInt(pg_num)).then(response => {
+                this.acts = response.data.rows;
+                this.row_num = response.data.count;
+                this.showPlaces = false;
+            })
+        }
+
 
 
         this.location.path(`/arama/${this.type}/${this.subtype}/${this.searchText}/page_num/${this.selectedPage}`, false)

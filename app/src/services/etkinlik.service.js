@@ -103,8 +103,8 @@ class EtkinlikService {
         return this.http.get(`/get_moviesByplace/${place}`);
     }
 
-    search_name(text) {
-        return this.http.get(`/search_name/${text}`);
+    search_name(text, page_num) {
+        return this.http.get(`/search_name/${text}/${page_num}`);
     }
 
     get_instances_date(event_id, date){

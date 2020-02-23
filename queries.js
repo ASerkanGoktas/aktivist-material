@@ -224,12 +224,20 @@ const liveSearch = (request, response) => {
 const search_name = (request, response) => {
 
     qry = `SELECT DISTINCT ON(date) place, * FROM instance JOIN event ON (event.event_id = instance.event) WHERE LOWER(name) LIKE LOWER('%${request.params.text}%') ORDER BY date ASC`
-
+    let card_num = 18;
+    let page_num = parseInt(request.params.page_num);
     pool.query(qry, (error, results) => {
         if(error){
             console.log(error);
         }else{
-            response.status(200).json(results.rows);
+            
+            var start = card_num*(page_num - 1)
+            var end = card_num*(page_num)
+            var res = results.rows.slice(start, end)
+  
+
+            response.status(200).json({rows: res, count: results.rows.length});
+
         }
     });
 }
