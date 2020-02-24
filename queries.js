@@ -207,7 +207,7 @@ const filter_activities_date = (request, response) => {
 
 const liveSearch = (request, response) => {
     qry = "SELECT DISTINCT ON(name) name, * FROM instance JOIN event ON (event.event_id = instance.event) WHERE";
-    qry = qry.concat(" LOWER(event.name) LIKE LOWER('", request.params.actname, "%')");
+    qry = qry.concat(" LOWER(event.name) LIKE LOWER('%", request.params.actname, "%')");
     qry = qry.concat(" LIMIT 5");
 
     
