@@ -6,14 +6,15 @@ const pool = new Pool( {/*
     database: "d9bblfnn09vkg7",
     port: "5432",
     password: "8257debded76d2a2b1cdf810cfb28939b450e88616b9778ee18b70308922501a"
-}  */
-    user: "seko",
+} */
+    user: "postgres",
     host: "localhost",
-    database: "aktivist_local",
+    database: "10subdene",
     port: "5432",
-    password: "279157",
+    password: "1998684952",
 
 })
+
 
 const get_moviesByPlace = (request, response) => {
 
@@ -38,8 +39,11 @@ const get_moviesByPlace = (request, response) => {
 
 const get_places = (request, response) => {
 
-    var qry = `SELECT DISTINCT place FROM event JOIN instance ON (event.event_id = instance.event) WHERE 
-                event.type = '${request.params.type}'`
+    var qry = `SELECT DISTINCT ON (instance.place) instance.place, place.city 
+	FROM event, instance, place
+			WHERE event.event_id = instance.event AND instance.place = place.place AND event.type = '${request.params.type}' AND place.city = '${request.params.city}';`
+
+    console.log(qry)
 
     pool.query(qry, (error, results) => {
         if(error){
