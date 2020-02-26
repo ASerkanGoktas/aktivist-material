@@ -61,8 +61,11 @@ const get_activities_distinct_withCount = (request, response) => {
     var end = request.params.end; 
     var type = request.params.type;
     var subtype = request.params.subtype;
+    var city = request.params.city;
 
-    var qry = `SELECT * FROM (SELECT event, COUNT(event) AS event_count, MIN(date) AS date FROM instance GROUP BY event, date) AS foo JOIN event ON (event.event_id = foo.event) WHERE`;
+    var qry = `SELECT * FROM (SELECT DISTINCT ON(event,date) event, date, instance.place, city
+    FROM instance,place WHERE instance.place = place.place) AS foo 
+       JOIN event ON (event.event_id = foo.event) WHERE`;
 
     if(start != NONE){
         var start = new Date(start);
@@ -88,11 +91,17 @@ const get_activities_distinct_withCount = (request, response) => {
         qry = qry.concat(` subtype = '${subtype}' AND`);
     }
 
+    if(city != NONE){
+        qry = qry.concat(` city = '${city}' AND`);
+    }
+
+    
     //To remove last AND
     qry = qry.substring(0, qry.length - 3);
 
     qry = qry.concat('ORDER BY date')
     
+    console.log(qry)
     
     pool.query(qry, (error, results) => {
         

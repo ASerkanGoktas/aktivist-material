@@ -14,6 +14,7 @@ import ngaria from "angular-aria";
 import "../../node_modules/angular-material/angular-material.css"
 import IconService from "./services/icon.service";
 import EtkinlikService from "./services/etkinlik.service";
+import FilterService from "./services/filter.service"
 import moment from "moment";
 
 
@@ -26,9 +27,10 @@ angular.module('aktivist', [greetModule, navbarModule, maincontentmodule, detail
                 when("/", {
                     template: "<greet></greet><homepage></homepage>"
                 }).
-                when("/arama/:type/:subtype/:searchText/page_num/:page_num", {
+                when("/arama/:type/:subtype/:searchText/city/:city/page_num/:page_num", {
                     template: params => {
-                        return `<main-content type='${params.type}' subtype = '${params.subtype}' search-text = '${params.searchText}' selected-page = '${params.page_num}'></main-content>`
+                        return `<main-content type='${params.type}' subtype = '${params.subtype}' 
+                        search-text = '${params.searchText}' selected-page = '${params.page_num}' city = '${params.city}'></main-content>`
                     }
                 }).
                 when("/etkinlik/:event_id/:date/:place", {
@@ -48,6 +50,8 @@ angular.module('aktivist', [greetModule, navbarModule, maincontentmodule, detail
         return new IconService();
     }]).factory(
         "EtkinlikService", ["$http", "$rootScope", ($http, $rootScope) => new EtkinlikService($http, $rootScope)]
+    ).factory(
+        "FilterService", [() => new FilterService()]
     )
     .config(function($mdThemingProvider) {
         $mdThemingProvider.theme('default')

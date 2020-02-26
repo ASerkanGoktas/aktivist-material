@@ -1,7 +1,7 @@
 import tpl from "./navbar.template.html"
 
 class NavbarController {
-    constructor($mdSidenav, $mdMedia, $document, SidenavService, IconService, EtkinlikService, $rootScope) {
+    constructor($mdSidenav, $mdMedia, $document, SidenavService, IconService, EtkinlikService, $rootScope, FilterService, $location) {
 
         this.rootScope = $rootScope;
         this.doc = $document;
@@ -11,6 +11,8 @@ class NavbarController {
         this.isLarge = false;
         this.resizeicon = IconService.buyult;
         this.etc = EtkinlikService;
+        this.filterserv = FilterService;
+        this.location = $location;
 
         this.types = [
             {
@@ -95,34 +97,24 @@ class NavbarController {
     }
 
     search(text){
-        this.searchText = text;
-        this.etc.search_name(text).then(response => {
-            this.rootScope.$broadcast("sendData", response.data);
-        });
+        this.filterserv.set_searchText(text);
+        var url = this.filterserv.buildpath(false, false, true, false);
+
+        this.location.path(url);
     }
 
     filter_types(type, subtype){
-        if(type == "Sinema"){
-            this.etc.get_places(type).then(response => {
-                this.places = response.data;
-                this.rootScope.$broadcast("sendPlaces", this.places);
-                this.rootScope.$broadcast("catSelected", {"type": type, "sub": subtype});
-            });
-        }else{
-            this.etc.getActivitiesDistinctWithCount(null, null, type, subtype).then(response => {
-
-                this.rootScope.$broadcast("sendData", response.data);
-                this.rootScope.$broadcast("catSelected", {"type": type, "sub": subtype});
-            });
-        }
-
+        this.filterserv.set_typensubtype(type, subtype);
+        var url = this.filterserv.buildpath(true, subtype != null, false, true);
         
+        this.location.path(url);
     }
 
 
 }
 
-NavbarController.$inject = ["$mdSidenav", "$mdMedia", "$document", "SidenavService", "IconService", "EtkinlikService", "$rootScope"];
+NavbarController.$inject = ["$mdSidenav", "$mdMedia", "$document", "SidenavService", 
+"IconService", "EtkinlikService", "$rootScope", "FilterService", "$location"];
 
 
 export default {

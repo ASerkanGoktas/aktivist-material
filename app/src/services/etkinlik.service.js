@@ -57,7 +57,7 @@ class EtkinlikService {
         return this.http.get("/livesearch/".concat(actName));
     }
 
-    getActivitiesDistinctWithCount(start, end, type, subtype, page_num) {
+    getActivitiesDistinctWithCount(start, end, type, subtype, city, page_num) {
         const base = "/get_activities_distinct_withCount";
         const NONE = "NONE";
 
@@ -86,7 +86,7 @@ class EtkinlikService {
         if (subtype == null)
             subtype = NONE
 
-        const qry = `${base}/${start}/${end}/${type}/${subtype}/${page_num}`;
+        const qry = `${base}/${start}/${end}/${type}/${subtype}/${city}/${page_num}`;
         return this.http.get(qry);
     }
 

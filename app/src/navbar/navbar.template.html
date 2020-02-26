@@ -30,11 +30,11 @@
           </div>
 
           <div class=" self-center bg-indigo-200">
-            <a href="#!/arama/{{'NONE'}}/{{'NONE'}}/{{$ctrl.searchText}}/page_num/1">
-              <md-button class="md-icon-button" ng-click="null">
+            
+              <md-button class="md-icon-button" ng-click="$ctrl.search($ctrl.searchText)">
                 <i class="material-icons">search</i>
               </md-button>
-            </a>
+            
           </div>
         </md-content>
 
@@ -43,15 +43,15 @@
           <md-list flex layout="column">
 
             <div ng-repeat="result in $ctrl.searchResults">
-              <a href="#!/arama/{{'NONE'}}/{{'NONE'}}/{{result.name}}/page_num/1">
-                <md-list-item class="md-2-line" ng-click="null">
+              
+                <md-list-item class="md-2-line" ng-click="$ctrl.search(result.name)">
 
                   <div class="md-list-item-text" layout="column">
                     <h3>{{result.name}}</h3>
                     <p>{{result.city}}</p>
                   </div>
                 </md-list-item>
-              </a>
+              
 
 
             </div>
@@ -206,24 +206,24 @@
         <div ng-repeat="type in $ctrl.types">
           <div class="h-px bg-gray-500 mb-1"></div>
           <div class="w-full text-center self-center mr-4 p-1">
-            <a href="#!/arama/{{type.name}}/{{'NONE'}}/{{'NONE'}}/page_num/1">
+            
               <md-button class="md-button flex flex-row" 
-                style="display: flex !important; width: 100% !important; margin: auto !important">
+                style="display: flex !important; width: 100% !important; margin: auto !important" ng-click = "$ctrl.filter_types(type.name, null)">
                 <md-icon md-svg-icon="{{type.icon}}" style="margin: 0px !important;"></md-icon>
                 <p class="self-center ml-8">{{type.name}}</p>
               </md-button>
-            </a>
+            
           </div>
 
           <div ng-if="type.subtypes" class="h-px bg-gray-500 mb-1"></div>
           <div ng-repeat="subtype in type.subtypes">
             <div class="w-full text-center self-center mr-4 p-1">
-              <a href="#!/arama/{{type.name}}/{{subtype.name}}/{{'NONE'}}/page_num/1">
+              
                 <md-button class="md-button flex flex-row"
-                  style="display: flex !important; width: 80% !important; margin: auto !important">
+                  style="display: flex !important; width: 80% !important; margin: auto !important" ng-click = "$ctrl.filter_types(type.name, subtype.name)">
                   <p class="self-center ml-8">{{subtype.name}}</p>
                 </md-button>
-              </a>
+              
 
 
             </div>

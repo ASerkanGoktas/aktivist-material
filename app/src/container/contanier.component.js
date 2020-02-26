@@ -2,7 +2,7 @@ import tpl from "./container.template.html"
 import "angular";
 
 class ContainerController {
-    constructor(SidenavService, IconService, $mdMedia, $document, EtkinlikService, $rootScope) {
+    constructor(SidenavService, IconService, $mdMedia, $document, EtkinlikService, $rootScope, FilterService, $location) {
         this.doc = $document;
         this.position = 0;
         this.icon = IconService;
@@ -11,6 +11,8 @@ class ContainerController {
         this.isNav = true;
         this.et = EtkinlikService;
         this.rootScope = $rootScope;
+        this.filtersrv = FilterService;
+        this.location = $location;
 
         this.cats = [
             {type: "Müzik", icon: this.icon.concert},
@@ -28,29 +30,19 @@ class ContainerController {
         return this.mdMedia("max-width: " + brkpoint);
     }
 
-    filter_types(type, subtype){
-        if(type == "Sinema"){
-            this.et.get_places(type).then(response => {
-                this.places = response.data;
-                this.rootScope.$broadcast("sendPlaces", this.places);
-                this.rootScope.$broadcast("catSelected", {"type": type, "sub": subtype});
-            });
-        }else{
-            this.et.getActivitiesDistinctWithCount(null, null, type, subtype).then(response => {
+    filter_types(type){
+        this.filtersrv.set_typensubtype(type, null);
+        var url = this.filtersrv.buildpath(true, false, false, true);
 
-                this.rootScope.$broadcast("sendData", response.data);
-                this.rootScope.$broadcast("catSelected", {"type": type, "sub": subtype});
-            });
-        }
+        this.location.path(url);
 
-        
     }
 
     
 
 }
 
-ContainerController.$inject = ["SidenavService", "IconService", "$mdMedia", "$document", "EtkinlikService", "$rootScope"];
+ContainerController.$inject = ["SidenavService", "IconService", "$mdMedia", "$document", "EtkinlikService", "$rootScope", "FilterService", "$location"];
 export default {
     template: tpl,
     controller: ContainerController

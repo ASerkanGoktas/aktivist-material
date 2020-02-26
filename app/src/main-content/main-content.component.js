@@ -64,7 +64,7 @@ class MainContentController {
                         this.showPlaces = true;
                     });
                 } else {
-                    this.etc.getActivitiesDistinctWithCount(null, null, this.type, this.subtype, this.selectedPage).then(response => {
+                    this.etc.getActivitiesDistinctWithCount(null, null, this.type, this.subtype, this.city, this.selectedPage).then(response => {
                         this.acts = response.data.rows;
                         this.row_num = response.data.count;
                         this.showPlaces = false;
@@ -96,7 +96,7 @@ class MainContentController {
     select_page(pg_num) {
 
         if (this.searchText == 'NONE') {
-            this.etc.getActivitiesDistinctWithCount(null, null, this.type, this.subtype, parseInt(pg_num)).then(response => {
+            this.etc.getActivitiesDistinctWithCount(null, null, this.type, this.subtype, this.city, parseInt(pg_num)).then(response => {
                 this.acts = response.data.rows;
                 this.row_num = response.data.count;
                 this.showPlaces = false;
@@ -111,7 +111,7 @@ class MainContentController {
 
 
 
-        this.location.path(`/arama/${this.type}/${this.subtype}/${this.searchText}/page_num/${this.selectedPage}`, false)
+        this.location.path(`/arama/${this.type}/${this.subtype}/${this.searchText}/city/${this.city}/page_num/${this.selectedPage}`, false)
     }
 
     isLandscape() {
@@ -204,5 +204,5 @@ MainContentController.$inject = ["$mdMedia", "EtkinlikService", "$scope", "$root
 export default {
     template: tpl,
     controller: MainContentController,
-    bindings: { type: "@", subtype: "@", searchText: "@", selectedPage: "<" }
+    bindings: { type: "@", subtype: "@", searchText: "@", selectedPage: "<", city: "@"}
 }
