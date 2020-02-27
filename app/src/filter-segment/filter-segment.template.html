@@ -23,14 +23,6 @@
             <md-datepicker ng-if = "$ctrl.isBitis" ng-model="$ctrl.myDateEnd" md-placeholder="Tarih seçin"></md-datepicker>
         </md-content>
 
-        <md-input-container class="py-1">
-            <md-select ng-model = "$ctrl.selectedPlace">
-                <md-option ng-value = "{{place}}" ng-repeat = "place in $ctrl.places">
-                    {{place.place}}
-                </md-option>
-            </md-select>
-        </md-input-container>
-
 
         <md-input-container class="py-1">
             <label>Şehir Seç</label>
@@ -41,6 +33,7 @@
                         </md-select-header>
                     </div>
                         <md-optgroup >
+                            <md-option ng-value = "'NONE'">Tüm şehirler</md-option>
                             <md-option ng-value="city" ng-repeat="city in $ctrl.cities |
                                 filter:$ctrl.cityInput">{{city}}</md-option>
                         </md-optgroup>

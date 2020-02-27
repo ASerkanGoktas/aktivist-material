@@ -49,15 +49,15 @@
                 <div layout="column">
                     <div layout="row" class="my-1">
                         <md-icon md-svg-icon="{{$ctrl.icon.mekan}}" style="margin: 0px !important;"></md-icon>
-                        <p class="text-sm my-auto"> : {{$ctrl.selectedInstance.place}}</p>
+                        <p class="text-sm my-auto"> : {{$ctrl.selectedPlace}}</p>
                     </div>
                     <div layout="row" class="my-1">
                         <md-icon md-svg-icon="{{$ctrl.icon.takvim}}" style="margin: 0px !important;"></md-icon>
-                        <p class="text-sm my-auto"> : {{$ctrl.date_aygun($ctrl.selectedInstance.date)}}</p>
+                        <p class="text-sm my-auto"> : {{$ctrl.date_aygun($ctrl.selectedDate)}}</p>
                     </div>
                     <div layout="row" class="my-1">
                         <md-icon md-svg-icon="{{$ctrl.icon.saat}}" style="margin: 0px !important;"></md-icon>
-                        <p class="text-sm my-auto"> : {{$ctrl.time_saat($ctrl.selectedInstance.time)}}</p>
+                        <p class="text-sm my-auto"> : {{$ctrl.time_saat($ctrl.selectedTime)}}</p>
                     </div>
                 </div>
             </md-card-content>

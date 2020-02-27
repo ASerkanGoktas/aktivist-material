@@ -39,13 +39,17 @@ const get_moviesByPlace = (request, response) => {
 
 const get_places = (request, response) => {
 
+    var type = request.params.type;
+    var city = request.params.city;
+
     var qry = `SELECT DISTINCT ON (instance.place) instance.place, place.city 
 	FROM event, instance, place
-			WHERE event.event_id = instance.event AND instance.place = place.place AND event.type = '${request.params.type}' AND place.city = '${request.params.city}';`
+			WHERE event.event_id = instance.event AND instance.place = place.place AND event.type = '${type}'`
 
-    console.log("hii")
-    console.log(qry)
-    console.log(" ")
+    if(city != "NONE"){
+        qry = qry.concat(` AND place.city = '${city}';`);
+    }
+
 
     pool.query(qry, (error, results) => {
         if(error){

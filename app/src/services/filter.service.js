@@ -15,10 +15,14 @@ class FilterService {
     set_typensubtype(type, subtype) {
         this.filters.type = type;
         this.filters.subtype = subtype;
+        this.searchText = null;
     }
 
     set_searchText(text){
         this.filters.searchText = text;
+        this.filters.type = null;
+        this.filters.subtype = null;
+        this.filters.city = null;
     }
 
     set_city(city){
