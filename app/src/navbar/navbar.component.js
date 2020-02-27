@@ -52,6 +52,10 @@ class NavbarController {
             
         ]
 
+        this.$scope.$on("clearSearch", (evt, data) => {
+            this.searchText = "";
+        });
+
         console.log(SidenavService);
 
         this.buildToggler = componentId => {

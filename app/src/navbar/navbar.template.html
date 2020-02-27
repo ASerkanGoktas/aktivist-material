@@ -44,7 +44,7 @@
 
             <div ng-repeat="result in $ctrl.searchResults">
               
-                <md-list-item class="md-2-line" ng-click="$ctrl.search(result.name)">
+                <md-list-item class="md-2-line" ng-click="$ctrl.search(result.name); $ctrl.searchText = result.name">
 
                   <div class="md-list-item-text" layout="column">
                     <h3>{{result.name}}</h3>
