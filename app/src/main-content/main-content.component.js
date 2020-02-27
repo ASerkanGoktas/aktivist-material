@@ -3,7 +3,7 @@ import tpl from './main-content.template.html'
 class MainContentController {
 
 
-    constructor($mdMedia, EtkinlikService, $scope, $rootScope, $location, $route) {
+    constructor($mdMedia, EtkinlikService, $scope, $rootScope, $location, $route, FilterService) {
 
 
         this.mdMedia = $mdMedia;
@@ -13,6 +13,7 @@ class MainContentController {
         this.scope = $scope;
         this.showPlaces = false;
         this.pages = []
+        this.filtersrv = FilterService;
 
         var original = $location.path;
         $location.path = (path, reload) => {
@@ -56,6 +57,7 @@ class MainContentController {
         this.$onInit = () => {
             var NONE = "NONE";
 
+            this.sync_filters();
             this.selectedPage = parseInt(this.selectedPage);
             if (this.searchText == NONE) {
                 if (this.type == "Sinema") {
@@ -146,6 +148,11 @@ class MainContentController {
         return `${day} ${month} ${day_name}`;
     }
 
+    sync_filters(){
+        
+        this.filtersrv.filters.city = this.city
+    }
+
     get_gun(datestr) {
         var temp_date = new Date(datestr);
 
@@ -199,7 +206,7 @@ class MainContentController {
     }
 }
 
-MainContentController.$inject = ["$mdMedia", "EtkinlikService", "$scope", "$rootScope", "$location", "$route"];
+MainContentController.$inject = ["$mdMedia", "EtkinlikService", "$scope", "$rootScope", "$location", "$route", "FilterService"];
 
 export default {
     template: tpl,
