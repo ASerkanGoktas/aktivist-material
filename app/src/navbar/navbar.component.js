@@ -1,7 +1,7 @@
 import tpl from "./navbar.template.html"
 
 class NavbarController {
-    constructor($mdSidenav, $mdMedia, $document, SidenavService, IconService, EtkinlikService, $rootScope, FilterService, $location) {
+    constructor($mdSidenav, $mdMedia, $document, SidenavService, IconService, EtkinlikService, $rootScope, FilterService, $location, $scope) {
 
         this.rootScope = $rootScope;
         this.doc = $document;
@@ -52,7 +52,7 @@ class NavbarController {
             
         ]
 
-        this.$scope.$on("clearSearch", (evt, data) => {
+        $scope.$on("clearSearch", (evt, data) => {
             this.searchText = "";
         });
 
@@ -118,7 +118,7 @@ class NavbarController {
 }
 
 NavbarController.$inject = ["$mdSidenav", "$mdMedia", "$document", "SidenavService", 
-"IconService", "EtkinlikService", "$rootScope", "FilterService", "$location"];
+"IconService", "EtkinlikService", "$rootScope", "FilterService", "$location", "$scope"];
 
 
 export default {
