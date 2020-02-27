@@ -59,7 +59,7 @@ class MainContentController {
             this.selectedPage = parseInt(this.selectedPage);
             if (this.searchText == NONE) {
                 if (this.type == "Sinema") {
-                    this.etc.get_places(this.type).then(response => {
+                    this.etc.get_places(this.type, this.city).then(response => {
                         this.places = response.data;
                         this.showPlaces = true;
                     });

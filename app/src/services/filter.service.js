@@ -38,6 +38,7 @@ class FilterService {
 
         var base = "/arama";
 
+
         if(isType && this.filters.type != null){
             type = this.filters.type;
         }

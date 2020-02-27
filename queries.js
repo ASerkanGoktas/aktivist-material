@@ -7,11 +7,11 @@ const pool = new Pool( {/*
     port: "5432",
     password: "8257debded76d2a2b1cdf810cfb28939b450e88616b9778ee18b70308922501a"
 } */
-    user: "postgres",
+    user: "seko",
     host: "localhost",
-    database: "10subdene",
+    database: "aktivist_local",
     port: "5432",
-    password: "1998684952",
+    password: "279157",
 
 })
 
@@ -43,7 +43,9 @@ const get_places = (request, response) => {
 	FROM event, instance, place
 			WHERE event.event_id = instance.event AND instance.place = place.place AND event.type = '${request.params.type}' AND place.city = '${request.params.city}';`
 
+    console.log("hii")
     console.log(qry)
+    console.log(" ")
 
     pool.query(qry, (error, results) => {
         if(error){
