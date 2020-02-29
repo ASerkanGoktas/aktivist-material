@@ -169,5 +169,5 @@ class ActDetailsController{
 export default {
     template : tpl,
     controller : ActDetailsController,
-    bindings : {eventId : '<', date : '@', place: "@"}
+    bindings : {eventId : '<', date : '@', place: "@", city: "@"}
 }

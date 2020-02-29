@@ -28,10 +28,10 @@
                             </md-option>
                         </md-select>
                     </md-input-container>
-                    <md-input-container>
+                    <md-input-container ng-hide = "true">
                         <md-select ng-model="$ctrl.selectedPlace" ng-change="$ctrl.filter_place()">
                             <md-option ng-repeat="ins in uniqueDays = ($ctrl.dayFiltered | unique: 'place')" value="{{ins.place}}"
-                                ng-selected="$ctrl.preset || uniqueDays.length == 1">
+                                ng-selected="$ctrl.preset || uniqueDays.length == 1" ng-hide= "uniqueDays.length == 1">
                                 {{ins.place}}
                             </md-option>
                         </md-select>

@@ -16,5 +16,5 @@ export default{
     template: tpl,
     controller: actCardController,
     bindings: {title: "<", subtitle: "@", dayOfMonth: "@", month: "@",
-     eventId: "@", imageUrl: "@", date: "@", showTopLeft : "<", place: "@"}
+     eventId: "@", imageUrl: "@", date: "@", showTopLeft : "<", place: "@", city: "@"}
 }

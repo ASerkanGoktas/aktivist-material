@@ -17,7 +17,7 @@
                 <div class="w-4/5 xs:w-9/12 mx-auto sm:w-1/2 sm:mx-0 md:h-58 md:w-58 lg:h-64 lg:w-64 xxl:h-64 xxl:w-64 xxxl:w-72 xxxl:w-72 mb-3"  ng-repeat="act in $ctrl.acts">
                     <act-card title = "$ctrl.trim_name(act.name)" subtitle = "{{$ctrl.get_subtitle(act)}}" day-of-month = "{{$ctrl.get_gunSayi(act.date)}}" 
                     month = "{{$ctrl.get_ay(act.date)}}" event-id = "{{act.event_id}}" image-url = "{{act.image_url}}" 
-                    date = "{{act.date}}" show-top-left= "false" place = "NONE"></act-card>
+                    date = "{{act.date}}" show-top-left= "false" place = "NONE" city = "{{$ctrl.filtersrv.filters.city}}"></act-card>
                 </div>
             </div>
             <ul ng-if = "$ctrl.showPlaces">
@@ -30,7 +30,7 @@
                         <div ng-repeat="act in $ctrl.acts">
                             <act-card title = "$ctrl.trim_name(act.name)" subtitle = "" day-of-month = "{{$ctrl.get_gunSayi(act.first_date)}}"
                              month = "{{$ctrl.get_ay(act.first_date)}}" event-id = "{{act.event_id}}" image-url = "{{act.image_url}}" date = "NONE"
-                             place = "{{$ctrl.bitistir(place.place)}}" show-top-left= "false"></act-card>
+                             place = "{{$ctrl.bitistir(place.place)}}" show-top-left= "false" city = "{{$ctrl.filtersrv.filters.city}}"></act-card>
                         </div>
                       </div> 
                 </li>

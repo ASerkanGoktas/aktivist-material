@@ -1,7 +1,7 @@
 import tpl from "./homepage.template.html"
 
 class HomepageController{
-    constructor(EtkinlikService){
+    constructor(EtkinlikService, $rootScope){
         this.acts = []
         this.et = EtkinlikService;
 
@@ -10,6 +10,8 @@ class HomepageController{
             this.acts = response.data;
             
         });
+
+        $rootScope.$broadcast("clearSearch", null);
     }
 }
 
@@ -18,4 +20,4 @@ export default {
     controller: HomepageController
 }
 
-HomepageController.$inject = ["EtkinlikService"];
+HomepageController.$inject = ["EtkinlikService", "$rootScope"];

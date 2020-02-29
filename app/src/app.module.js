@@ -33,9 +33,9 @@ angular.module('aktivist', [greetModule, navbarModule, maincontentmodule, detail
                         search-text = '${params.searchText}' selected-page = '${params.page_num}' city = '${params.city}'></main-content>`
                     }
                 }).
-                when("/etkinlik/:event_id/:date/:place", {
+                when("/etkinlik/:event_id/:date/:place/:city", {
                     template: params => {
-                        return `<act-details event_id='${params.event_id}' date='${params.date}' place = '${params.place}'></act-details>`;
+                        return `<act-details event_id='${params.event_id}' date='${params.date}' place = '${params.place}' city = '${params.city}'></act-details>`;
                     }
                 }).otherwise({
                     redirectTo: "/"
