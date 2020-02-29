@@ -111,7 +111,7 @@ const get_activities_distinct_withCount = (request, response) => {
 
     qry = qry.concat('ORDER BY date')
     
-    console.log("alsdflkjasdfasjkli");
+    console.log("ben robot beybi boob obbbb");
     console.log(qry)
     
     pool.query(qry, (error, results) => {
@@ -315,7 +315,6 @@ const get_instances_date = (request, response) => {
      FROM event,instance
      WHERE event = event_id AND event_id = '${request.params.event_id}'  AND date = '${request.params.date}'::date;`
 
-    console.log(qry)
    
 
      pool.query(qry, (error, results) =>{
@@ -327,6 +326,11 @@ const get_instances_date = (request, response) => {
              response.status(200).json(results.rows);
          }
      });
+ }
+
+ const get_propertiesOfplace = (request, response) => {
+
+    
  }
 
 
