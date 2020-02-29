@@ -22,7 +22,6 @@ class FilterService {
         this.filters.searchText = text;
         this.filters.type = null;
         this.filters.subtype = null;
-        this.filters.city = null;
     }
 
     set_city(city){

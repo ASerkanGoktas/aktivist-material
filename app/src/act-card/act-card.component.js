@@ -6,6 +6,7 @@ class actCardController{
             
             this.title = this.title.replace(/[~]/g, "'");
             this.subtitle = "hi"
+            this.linkToDetails = `#!/etkinlik/${this.eventId}/${this.date}/${this.place}/${this.city}`
         }
     }
 

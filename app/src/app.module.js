@@ -1,6 +1,7 @@
 import "./tailwind.css"
 import angular from 'angular'
 import angularRoute from "angular-route"
+import ngclipboard from "../../node_modules/ng-clipboard/dist/ng-clipboard.js"
 import greetModule from './greet/greet.module';
 import navbarModule from "./navbar/navbar.module";
 import maincontentmodule from "./main-content/main-content.module";
@@ -19,7 +20,7 @@ import moment from "moment";
 
 
 
-angular.module('aktivist', [greetModule, navbarModule, maincontentmodule, detailsmodule, actCardModule, ngaria, filtersegmentmodule, angularRoute,
+angular.module('aktivist', [greetModule, navbarModule, ngclipboard, maincontentmodule, detailsmodule, actCardModule, ngaria, filtersegmentmodule, angularRoute,
     homepagemodule, containermodule]).
     config(
         ["$routeProvider", function config($routeProvider) {

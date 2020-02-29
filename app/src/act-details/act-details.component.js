@@ -9,7 +9,7 @@ class ActDetailsController{
         this.option;
         this.selectedInstance = {time: null, date: null, place: null};
         this.propertiesOfplace = null;
-    
+        this.hidePlaces = false;
 
         this.event = {};
         this.instances = [];
@@ -17,6 +17,8 @@ class ActDetailsController{
         this.timeFiltetered = [];
 
         this.$onInit = () => {
+
+
             if(this.date == "NONE"){
                 this.et.get_instances(this.eventId).then(response => {
                     this.place = this.place.replace(/[+]/g, " ");
@@ -30,7 +32,7 @@ class ActDetailsController{
                     }
                 });
             }else{
-                this.et.get_instances_date(this.eventId, this.date).then(response => {
+                this.et.get_instances_date(this.eventId, this.date, this.city).then(response => {
                     this.place = this.place.replace(/[+]/g, " ");
                     this.instances = response.data;
                     if(this.place != "NONE"){

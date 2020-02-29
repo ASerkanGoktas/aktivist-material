@@ -110,10 +110,14 @@ class EtkinlikService {
         return this.http.get(`/search_name/${text}/${page_num}/${city}`);
     }
 
-    get_instances_date(event_id, date){
+    get_instances_date(event_id, date, city){
+        if(city == "Tüm Şehirler"){
+            city = "NONE";
+        }
+
         var date_formatted = this.format_date(date);
 
-        return this.http.get(`/get_instances_date/${event_id}/${date_formatted}`);
+        return this.http.get(`/get_instances_date/${event_id}/${date_formatted}/${city}`);
     }
 
     format_date(date) {

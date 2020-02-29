@@ -111,8 +111,7 @@ const get_activities_distinct_withCount = (request, response) => {
 
     qry = qry.concat('ORDER BY date')
     
-    console.log("ben robot beybi boob obbbb");
-    console.log(qry)
+    
     
     pool.query(qry, (error, results) => {
         
@@ -173,8 +172,7 @@ SELECT *
     WHERE event = event_id AND event_id = '${request.params.event_id}' AND date >= '2020-2-11' 
     ORDER BY date;`;
 
-    console.log("ogliiiiim");
-    console.log(qry)
+    
 
     pool.query(qry, (error, results) =>{
         if(error){
@@ -263,7 +261,7 @@ const search_name = (request, response) => {
     let card_num = 18;
     let page_num = parseInt(request.params.page_num);
     
-    console.log(qry);
+   
     pool.query(qry, (error, results) => {
         if(error){
             console.log(error);
@@ -303,8 +301,11 @@ const filter_types = (request, response) => {
 const get_instances_date = (request, response) => {
      var date = request.params.date
      var event_id = request.params.event_id
+     var city = request.params.city;
 
-     var qry = `SELECT *
+     var qry = "";
+     if(city == "NONE"){
+        qry = `SELECT *
      FROM event,instance
      WHERE event = event_id AND date = '${request.params.date}'::date AND name IN
  (SELECT name
@@ -314,6 +315,21 @@ const get_instances_date = (request, response) => {
  SELECT *
      FROM event,instance
      WHERE event = event_id AND event_id = '${request.params.event_id}'  AND date = '${request.params.date}'::date;`
+
+     }else{
+        
+        qry = `SELECT *
+        FROM event,instance,place
+        WHERE event = event_id AND instance.place = place.place AND city ='${city}' AND date = '${request.params.date}'::date AND name IN
+    (SELECT name
+        FROM event,instance
+        WHERE event = event_id AND event_id = '${request.params.event_id}' AND type = 'Sinema')
+    UNION
+    SELECT *
+        FROM event,instance,place
+        WHERE event = event_id AND instance.place = place.place AND event_id = '${request.params.event_id}' AND city ='${city}' AND date = '${request.params.date}'::date;`
+     }
+     
 
    
 
