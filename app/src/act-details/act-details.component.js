@@ -8,6 +8,7 @@ class ActDetailsController{
         this.icon = IconService;
         this.option;
         this.selectedInstance = {time: null, date: null, place: null};
+        this.propertiesOfplace = null;
     
 
         this.event = {};
@@ -119,6 +120,10 @@ class ActDetailsController{
     filter_place(){
         this.selectedTime = null
         this.placeFiltered = this.dayFiltered.filter(instance => instance.place == this.selectedPlace)
+
+        this.et.get_propertiesOfplace(this.selectedPlace).then(response => {
+            this.propertiesOfplace = response.data;
+        });
     }
 
     filter_times(){

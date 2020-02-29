@@ -339,7 +339,7 @@ const get_instances_date = (request, response) => {
          }
          else{
              
-             response.status(200).json(results.rows);
+             response.status(200).json(results.rows[0]);
          }
      });
  }
@@ -357,5 +357,6 @@ module.exports = {
     get_places,
     get_moviesByPlace,
     search_name,
-    get_instances_date
+    get_instances_date,
+    get_propertiesOfplace
 };

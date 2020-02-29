@@ -126,6 +126,11 @@ class EtkinlikService {
         return result;
     }
 
+    get_propertiesOfplace(place){
+        
+        return this.http.get(`/get_propertiesOfplace/${place}`);
+    }
+
 }
 
 export default EtkinlikService;
