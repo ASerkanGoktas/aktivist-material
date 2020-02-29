@@ -329,8 +329,19 @@ const get_instances_date = (request, response) => {
  }
 
  const get_propertiesOfplace = (request, response) => {
+    var qry = `SELECT DISTINCT ON(place.place) *
+	            FROM place,instance
+                    WHERE instance.place = place.place AND instance.place ='${request.params.place}'`
 
-    
+     pool.query(qry, (error, results) =>{
+         if(error){
+             console.log(error);
+         }
+         else{
+             
+             response.status(200).json(results.rows);
+         }
+     });
  }
 
 
