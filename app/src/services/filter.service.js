@@ -15,7 +15,7 @@ class FilterService {
     set_typensubtype(type, subtype) {
         this.filters.type = type;
         this.filters.subtype = subtype;
-        this.searchText = null;
+        this.filters.searchText = null;
     }
 
     set_searchText(text){

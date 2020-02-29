@@ -75,7 +75,7 @@ class MainContentController {
                     });
                 }
             } else {
-                this.etc.search_name(this.searchText, this.selectedPage).then(response => {
+                this.etc.search_name(this.searchText, this.selectedPage, this.city).then(response => {
                     this.acts = response.data.rows;
                     this.row_num = response.data.count;
                     this.showPlaces = false;
@@ -104,7 +104,7 @@ class MainContentController {
                 this.showPlaces = false;
             });
         } else {
-            this.etc.search_name(this.searchText, parseInt(pg_num)).then(response => {
+            this.etc.search_name(this.searchText, parseInt(pg_num), this.city).then(response => {
                 this.acts = response.data.rows;
                 this.row_num = response.data.count;
                 this.showPlaces = false;

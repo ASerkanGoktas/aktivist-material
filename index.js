@@ -16,7 +16,7 @@ app.get('/get_activities_distinct_withCount/:start/:end/:type/:subtype/:city/:pa
 app.get('/get_instances/:event_id', db.get_instances);
 app.get('/get_places/:type/:city', db.get_places);
 app.get('/get_moviesByplace/:place', db.get_moviesByPlace);
-app.get('/search_name/:text/:page_num', db.search_name);
+app.get('/search_name/:text/:page_num/:city', db.search_name);
 app.get('/get_instances_date/:event_id/:date', db.get_instances_date);
 
 server.listen(PORT, () => {

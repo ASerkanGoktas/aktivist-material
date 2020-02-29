@@ -111,6 +111,7 @@ class NavbarController {
         this.filterserv.set_typensubtype(type, subtype);
         var url = this.filterserv.buildpath(true, subtype != null, false, true);
         
+        this.rootScope.$broadcast("clearSearch", null);
         this.location.path(url);
     }
 

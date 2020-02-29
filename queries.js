@@ -244,11 +244,21 @@ const liveSearch = (request, response) => {
 
 const search_name = (request, response) => {
 
-    qry = `SELECT DISTINCT ON(date) * 
+    var city = request.params.city;
+    var qry = "";
+    if(city == "NONE"){
+        qry = `SELECT DISTINCT ON(date) * 
+        FROM instance,event,place 
+            WHERE event.event_id = instance.event AND instance.place = place.place AND LOWER(name) LIKE LOWER('%${request.params.text}%') 
+                    ORDER BY date ASC`;
+    }else{
+        qry = `SELECT DISTINCT ON(date) * 
 	        FROM instance,event,place 
 		        WHERE event.event_id = instance.event AND instance.place = place.place AND
-			        city = '${request.params.city}' LOWER(name) LIKE LOWER('%${request.params.text}%') 
+			        city = '${request.params.city}' AND LOWER(name) LIKE LOWER('%${request.params.text}%') 
                         ORDER BY date ASC`
+    }
+    
                         
     let card_num = 18;
     let page_num = parseInt(request.params.page_num);
