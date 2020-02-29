@@ -134,6 +134,29 @@ class MainContentController {
         return land == phone;
     }
 
+    get_searchName(){
+
+        var result = "";
+
+        if(this.type != "NONE"){
+            result = `${this.type} `
+            if(this.subtype != "NONE"){
+                result = result.concat(" - ", this.subtype)
+            }
+        }else{
+            result = `'${this.searchText}'`
+        }
+
+        var city = "";
+
+        if(this.city != "NONE"){
+            city = this.city;
+            result = result.concat(" / ", city);
+        }
+        result = result.concat(" için sonuçlar");
+        return result;
+    }
+
     trim_name(name) {
         name = name.replace(/=/, "'");
         return ((name.length < 60) ? name : name.slice(0, 56) + "...")

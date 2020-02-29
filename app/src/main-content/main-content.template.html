@@ -1,41 +1,56 @@
-<div class = "container mx-auto">
+<div class="container mx-auto">
     <div layout="row" layout-sm="column" layout-xs="column" class="w-full">
-        <div flex="30" flex-lg="30" flex-md = "40" flex-xl="20" flex-sm="100" flex-xs="100" class="">
+        <div flex="30" flex-lg="30" flex-md="40" flex-xl="20" flex-sm="100" flex-xs="100" class="">
             <filter-segment></filter-segment>
         </div>
-        <div flex="70" flex-lg="70" flex-md = "60" flex-xl="80" flex-sm="100" flex-xs="100" class="min-h-screen xl:pr-16 h-auto">
-            <div class = "flex flex-row bg-gray-200 h-16" ng-if = "!($ctrl.type == 'Sinema')">
-                <md-input-container>
-                    <md-select ng-model = "$ctrl.selectedPage" ng-change = "$ctrl.select_page($ctrl.selectedPage)">
-                        <md-option ng-repeat = "page_num in $ctrl.pages" value = "{{page_num}}">
-                            {{page_num}}
-                        </md-option>
-                    </md-select>
-                </md-input-container>
+        <div flex="70" flex-lg="70" flex-md="60" flex-xl="80" flex-sm="100" flex-xs="100"
+            class="min-h-screen xl:pr-16 h-auto">
+            <div class="flex flex-row h-16 justify-between" ng-if="!($ctrl.type == 'Sinema')">
+
+                <h2 class="my-auto font-bold text-xl">
+                    {{$ctrl.get_searchName()}}
+                </h2>
+                <span>
+                    <span>Sayfalar: </span>
+                    <md-input-container>
+                        <md-select ng-model="$ctrl.selectedPage" ng-change="$ctrl.select_page($ctrl.selectedPage)">
+                            <md-option ng-repeat="page_num in $ctrl.pages" value="{{page_num}}">
+                                {{page_num}}
+                            </md-option>
+                        </md-select>
+                    </md-input-container>
+                </span>
+                
             </div>
-            <div class="flex flex-wrap" ng-if = "!$ctrl.showPlaces">
-                <div class="w-4/5 xs:w-9/12 mx-auto sm:w-1/2 sm:mx-0 md:h-58 md:w-58 lg:h-64 lg:w-64 xxl:h-64 xxl:w-64 xxxl:w-72 xxxl:w-72 mb-3"  ng-repeat="act in $ctrl.acts">
-                    <act-card title = "$ctrl.trim_name(act.name)" subtitle = "{{$ctrl.get_subtitle(act)}}" day-of-month = "{{$ctrl.get_gunSayi(act.date)}}" 
-                    month = "{{$ctrl.get_ay(act.date)}}" event-id = "{{act.event_id}}" image-url = "{{act.image_url}}" 
-                    date = "{{act.date}}" show-top-left= "false" place = "NONE" city = "{{$ctrl.filtersrv.filters.city}}"></act-card>
+            <div class="flex flex-wrap" ng-if="!$ctrl.showPlaces">
+                <div class="w-4/5 xs:w-9/12 mx-auto sm:w-1/2 sm:mx-0 md:h-58 md:w-58 lg:h-64 lg:w-64 xxl:h-64 xxl:w-64 xxxl:w-72 xxxl:w-72 mb-3"
+                    ng-repeat="act in $ctrl.acts">
+                    <act-card title="$ctrl.trim_name(act.name)" subtitle="{{$ctrl.get_subtitle(act)}}"
+                        day-of-month="{{$ctrl.get_gunSayi(act.date)}}" month="{{$ctrl.get_ay(act.date)}}"
+                        event-id="{{act.event_id}}" image-url="{{act.image_url}}" date="{{act.date}}"
+                        show-top-left="false" place="NONE" city="{{$ctrl.filtersrv.filters.city}}"></act-card>
                 </div>
             </div>
-            <ul ng-if = "$ctrl.showPlaces">
-                <li ng-repeat = "place in $ctrl.places" class = "md-2-line border-black rounded-lg my-3 text-white font-bold" layout = "column">
-                    <div class="md-list-item-text p-2" ng-click = "$ctrl.toggle_actsOfplace($index, place.place)" style = "background-color: rgb(33,150,243);">
+            <ul ng-if="$ctrl.showPlaces">
+                <li ng-repeat="place in $ctrl.places"
+                    class="md-2-line border-black rounded-lg my-3 text-white font-bold" layout="column">
+                    <div class="md-list-item-text p-2" ng-click="$ctrl.toggle_actsOfplace($index, place.place)"
+                        style="background-color: rgb(33,150,243);">
                         <h3>{{ place.place }}</h3>
                         <h4>{{place.subcity}}</h4>
-                      </div>
-                      <div class = "flex flex-row w-full bg-white overflow-y-scroll" ng-if = "$index === $ctrl.selectedIndex">
+                    </div>
+                    <div class="flex flex-row w-full bg-white overflow-y-scroll" ng-if="$index === $ctrl.selectedIndex">
                         <div ng-repeat="act in $ctrl.acts">
-                            <act-card title = "$ctrl.trim_name(act.name)" subtitle = "" day-of-month = "{{$ctrl.get_gunSayi(act.first_date)}}"
-                             month = "{{$ctrl.get_ay(act.first_date)}}" event-id = "{{act.event_id}}" image-url = "{{act.image_url}}" date = "NONE"
-                             place = "{{$ctrl.bitistir(place.place)}}" show-top-left= "false" city = "{{$ctrl.filtersrv.filters.city}}"></act-card>
+                            <act-card title="$ctrl.trim_name(act.name)" subtitle=""
+                                day-of-month="{{$ctrl.get_gunSayi(act.first_date)}}"
+                                month="{{$ctrl.get_ay(act.first_date)}}" event-id="{{act.event_id}}"
+                                image-url="{{act.image_url}}" date="NONE" place="{{$ctrl.bitistir(place.place)}}"
+                                show-top-left="false" city="{{$ctrl.filtersrv.filters.city}}"></act-card>
                         </div>
-                      </div> 
+                    </div>
                 </li>
             </ul>
-            
+
         </div>
     </div>
 </div>

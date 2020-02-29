@@ -111,6 +111,7 @@ const get_activities_distinct_withCount = (request, response) => {
 
     qry = qry.concat('ORDER BY date')
     
+    console.log("alsdflkjasdfasjkli");
     console.log(qry)
     
     pool.query(qry, (error, results) => {
@@ -172,6 +173,7 @@ SELECT *
     WHERE event = event_id AND event_id = '${request.params.event_id}' AND date >= '2020-2-11' 
     ORDER BY date;`;
 
+    console.log("ogliiiiim");
     console.log(qry)
 
     pool.query(qry, (error, results) =>{
