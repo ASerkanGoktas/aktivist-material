@@ -80,7 +80,7 @@
                         <div layout="column " layout-gt-sm="row" layout-align="start none"
                             layout-align-gt-sm="start center">
                             <div>
-                                <md-input-container class="my-1">
+                                <md-input-container class="my-3 w-24">
                                     <label>Kategori: </label>
                                     <md-select ng-model="selectedOption">
                                         <md-option ng-repeat="fiyat in $ctrl.fiyatlar | unique: 'category'"
@@ -90,7 +90,7 @@
                                 </md-input-container>
                             </div>
                             <div>
-                                <md-input-container class="my-1">
+                                <md-input-container class="my-3 w-24">
                                     <label>Alt kategori: </label>
                                     <md-select ng-model="selectedOption5">
                                         <md-option ng-repeat="fiyat in $ctrl.fiyatlar"
