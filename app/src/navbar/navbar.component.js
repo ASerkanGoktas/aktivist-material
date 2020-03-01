@@ -102,7 +102,7 @@ class NavbarController {
 
     search(text){
         this.filterserv.set_searchText(text);
-        var url = this.filterserv.buildpath(false, false, true, true);
+        var url = this.filterserv.buildpath(false, false, true, false);
 
         this.location.path(url);
     }

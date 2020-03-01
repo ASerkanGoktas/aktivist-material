@@ -1,7 +1,6 @@
 import "./tailwind.css"
 import angular from 'angular'
 import angularRoute from "angular-route"
-import ngclipboard from "../../node_modules/ng-clipboard/dist/ng-clipboard.js"
 import greetModule from './greet/greet.module';
 import navbarModule from "./navbar/navbar.module";
 import maincontentmodule from "./main-content/main-content.module";
@@ -11,6 +10,7 @@ import actCardModule from "./act-card/act-card.module";
 import homepagemodule from "./homepage/homepage.module";
 import SidenavService from "./services/sidenav.service";
 import containermodule from "./container/container.module";
+import footerModule from "./footer/footer.module";
 import ngaria from "angular-aria";
 import "../../node_modules/angular-material/angular-material.css"
 import IconService from "./services/icon.service";
@@ -20,7 +20,7 @@ import moment from "moment";
 
 
 
-angular.module('aktivist', [greetModule, navbarModule, ngclipboard, maincontentmodule, detailsmodule, actCardModule, ngaria, filtersegmentmodule, angularRoute,
+angular.module('aktivist', [greetModule, navbarModule, maincontentmodule, footerModule, detailsmodule, actCardModule, ngaria, filtersegmentmodule, angularRoute,
     homepagemodule, containermodule]).
     config(
         ["$routeProvider", function config($routeProvider) {
