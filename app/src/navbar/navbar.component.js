@@ -99,7 +99,7 @@ class NavbarController {
             this.searchResults = [];
         });
     }
-
+////
     search(text){
         this.filterserv.set_searchText(text);
         var url = this.filterserv.buildpath(false, false, true, false);
