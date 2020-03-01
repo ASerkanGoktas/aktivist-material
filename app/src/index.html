@@ -46,15 +46,22 @@
     let targetElement = evt.target; // clicked element
 
     do {
+        debugger;
         if (targetElement == results_large|| targetElement == searchlarge || targetElement == searchsmall || targetElement == results_small) {
             // This is a click inside. Do nothing, just return.
-
-            if(isClosed(results_small) || isClosed(results_large)){
-                open_display(results_small);
+            
+            if(isClosed(results_large)){
                 open_display(results_large);
-                
-            }else{
-                //Stay same
+            }
+
+            if(isClosed(results_small)){
+                open_display(results_small);
+            }
+
+            if(targetElement == results_large || targetElement == results_small){
+                    close_display(results_small);
+                    close_display(results_large);
+                    
             }
             console.log("içeri tıklandı");
             return;
