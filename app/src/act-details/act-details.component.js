@@ -10,6 +10,7 @@ class ActDetailsController{
         this.selectedInstance = {time: null, date: null, place: null};
         this.propertiesOfplace = null;
         this.hidePlaces = false;
+        this.hideAllSelections = false;
 
         this.event = {};
         this.instances = [];
@@ -29,6 +30,7 @@ class ActDetailsController{
                     }
                     if(this.instances.length == 1){
                         this.preset = true;
+                        this.hideAllSelections = true;
                     }
                 });
             }else{
@@ -41,6 +43,7 @@ class ActDetailsController{
                     }
                     if(this.instances.length == 1){
                         this.preset = true;
+                        this.hideAllSelections = true;
                     }
                 });
             }

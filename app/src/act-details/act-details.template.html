@@ -1,5 +1,5 @@
 <div class="p-4 lg:w-10/12 mx-auto" layout="row" layout-sm="column" layout-wrap>
-    <div class="bg-gray-500 container" flex="66" flex-sm="100" flex-xs="100">
+    <div class="container" flex="66" flex-sm="100" flex-xs="100">
         <md-card>
             <div class="h-56 md:h-72 xl:h-96 bg-gray-800"
                 ng-style="{'background-image': 'url('+ $ctrl.event.image_url +')', 'background-repeat': 'no-repeat', 'background-position': 'center center', 'background-size': 'cover'}">
@@ -11,7 +11,7 @@
                     <span class="md-headline">{{$ctrl.event.name}}</span>
                     <div layout="row">
                         <md-icon md-svg-icon="{{$ctrl.icon.sehir}}" style="margin: 0px !important;"></md-icon>
-                        <p class="text-sm my-auto"> : {{$ctrl.propertiesOfplace.city}}</p>
+                        <p class="text-sm my-auto font-semibold"> : {{$ctrl.propertiesOfplace.city}}</p>
                     </div>
 
                 </md-card-title-text>
@@ -19,8 +19,9 @@
             </md-card-title>
             <div class="h-px bg-gray-400 w-full my-2"></div>
             <md-card-content>
-                <div>
+                <div ng-hide = "$ctrl.hideAllSelections">
                     <md-input-container>
+                        <label>Tarih: </label>
                         <md-select ng-model="$ctrl.selectedDate" ng-change="$ctrl.filter_dates()">
                             <md-option data-ng-repeat="ins in uniqueDates = ($ctrl.instances | unique: 'date')" value="{{ins.date}}"
                                 ng-selected="$ctrl.preset || uniqueDates.length == 1">
@@ -29,6 +30,7 @@
                         </md-select>
                     </md-input-container>
                     <md-input-container>
+                        <label>Mekan: </label>
                         <md-select ng-model="$ctrl.selectedPlace" ng-change="$ctrl.filter_place()">
                             <md-option ng-repeat="ins in uniqueDays = ($ctrl.dayFiltered | unique: 'place')" value="{{ins.place}}"
                                 ng-selected="$ctrl.preset || uniqueDays.length == 1">
@@ -37,6 +39,7 @@
                         </md-select>
                     </md-input-container>
                     <md-input-container>
+                        <label>Zaman: </label>
                         <md-select ng-model="$ctrl.selectedTime" ng-change="$ctrl.filter_times()">
                             <md-option ng-repeat="ins in uniqueTimes = ($ctrl.placeFiltered | unique: 'time')" value="{{ins.time}}"
                                 ng-selected="$ctrl.preset || uniqueTimes.length == 1">
@@ -46,18 +49,18 @@
                     </md-input-container>
                 </div>
 
-                <div layout="column">
-                    <div layout="row" class="my-1">
+                <div layout="row" layout-align = "start center">
+                    <div layout="row" class="mr-2 font-semibold" ng-class = "{{}}">
                         <md-icon md-svg-icon="{{$ctrl.icon.mekan}}" style="margin: 0px !important;"></md-icon>
-                        <p class="text-sm my-auto"> : {{$ctrl.selectedPlace}}</p>
+                        <p class="text-sm my-auto"> : {{$ctrl.selectedPlace ? $ctrl.selectedPlace : "Mekan seçiniz"}}</p>
                     </div>
-                    <div layout="row" class="my-1">
+                    <div layout="row" class="mr-2 font-semibold">
                         <md-icon md-svg-icon="{{$ctrl.icon.takvim}}" style="margin: 0px !important;"></md-icon>
-                        <p class="text-sm my-auto"> : {{$ctrl.date_aygun($ctrl.selectedDate)}}</p>
+                        <p class="text-sm my-auto"> : {{$ctrl.selectedDate ? $ctrl.date_aygun($ctrl.selectedDate) : "Tarih seçiniz"}}</p>
                     </div>
-                    <div layout="row" class="my-1">
+                    <div layout="row" class="mr-2 font-semibold">
                         <md-icon md-svg-icon="{{$ctrl.icon.saat}}" style="margin: 0px !important;"></md-icon>
-                        <p class="text-sm my-auto"> : {{$ctrl.time_saat($ctrl.selectedTime)}}</p>
+                        <p class="text-sm my-auto"> : {{$ctrl.selectedTime ? $ctrl.time_saat($ctrl.selectedTime) : "Zaman seçiniz"}}</p>
                     </div>
                 </div>
             </md-card-content>
@@ -69,11 +72,12 @@
             <md-card-content>
                 <div layout="column">
                     <div flex="0" class="pt-1">
-                        <h2 class="text-xl font-bold">Fiyatlar:</h2>
+                        <h2 class="text-xl font-bold mb-3">Fiyatlar:</h2>
                         <div layout="column " layout-gt-sm="row" layout-align="start none"
                             layout-align-gt-sm="start center">
                             <div>
                                 <md-input-container class="my-1">
+                                    <label>Kategori: </label>
                                     <md-select ng-model="selectedOption">
                                         <md-option ng-repeat="fiyat in $ctrl.fiyatlar | unique: 'category'"
                                             ng-selected="fiyat.campaign == null" ng-value="{{fiyat}}"
@@ -83,6 +87,7 @@
                             </div>
                             <div>
                                 <md-input-container class="my-1">
+                                    <label>Alt kategori: </label>
                                     <md-select ng-model="selectedOption5">
                                         <md-option ng-repeat="fiyat in $ctrl.fiyatlar"
                                             ng-selected="fiyat.campaign == null && fiyat.category == selectedOption.category"
@@ -106,9 +111,9 @@
                             <md-input-container class="my-1">
                                 <md-select ng-model="selectedOption2">
                                     <md-option
-                                        ng-repeat="fiyat2 in $ctrl.fiyatlar | filter:{campaign: ''} | unique: 'campaign' | orderBy:'campaign'"
-                                        ng-selected="true" ng-value="{{fiyat2}}" ng-show="fiyat2.campaign != null">
-                                        {{fiyat2.campaign}}</md-option>
+                                        ng-repeat="fiyat2 in $ctrl.fiyatlar | filter:{price_discount: ''} | unique: 'price_discount' | orderBy:'price_discount'"
+                                        ng-selected="true" ng-value="{{fiyat2}}" ng-show="fiyat2.price_discount != null">
+                                        {{fiyat2.price_discount}}</md-option>
                                 </md-select>
                             </md-input-container>
                         </div>
@@ -116,7 +121,7 @@
                             <md-input-container class="my-1">
                                 <md-select ng-model="selectedOption3">
                                     <md-option class="no-anime"
-                                        ng-repeat="fiyat3 in $ctrl.fiyatlar | filter:{campaign: selectedOption2.campaign} | unique: 'category'"
+                                        ng-repeat="fiyat3 in $ctrl.fiyatlar | filter:{price_discount: selectedOption2.price_discount} | unique: 'category'"
                                         ng-selected="true" ng-value="{{fiyat3}}">{{fiyat3.category}}</md-option>
                                 </md-select>
                             </md-input-container>
@@ -126,7 +131,7 @@
                                 <md-input-container class="my-1">
                                     <md-select ng-model="selectedOption4">
                                         <md-option class="no-anime"
-                                            ng-repeat="fiyat4 in $ctrl.fiyatlar | filter:{campaign: selectedOption2.campaign, category: selectedOption3.category} "
+                                            ng-repeat="fiyat4 in $ctrl.fiyatlar | filter:{price_discount: selectedOption2.price_discount, category: selectedOption3.category} "
                                             ng-selected="true" ng-value="{{fiyat4}}">{{fiyat4.name}}</md-option>
                                     </md-select>
                                 </md-input-container>
@@ -157,7 +162,7 @@
             </md-card-actions>
         </md-card>
     </div>
-    <div class="bg-gray-400" flex="33" flex-sm="100" flex-xs="100">
+    <div class="" flex="33" flex-sm="100" flex-xs="100">
         <md-card>
             <img ng-src="{{$ctrl.act.url}}" class="md-card-image" alt="Washed Out">
 
