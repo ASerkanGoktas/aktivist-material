@@ -11,6 +11,7 @@ class ActDetailsController{
         this.propertiesOfplace = null;
         this.hidePlaces = false;
         this.hideAllSelections = false;
+        this.isAciklamaOpen = false;
 
         this.event = {};
         this.instances = [];
@@ -171,6 +172,10 @@ class ActDetailsController{
     
         console.log("selected time: " + this.selectedTime + " a: " + time + " c : " + c);
         return c
+    }
+
+    toggle_aciklama(){
+        this.isAciklamaOpen = !this.isAciklamaOpen;
     }
 }
 

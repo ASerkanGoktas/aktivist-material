@@ -66,7 +66,11 @@
             </md-card-content>
             <div class="h-px bg-gray-400 w-full my-2"></div>
             <md-card-content>
-                <div style="white-space: pre-line">{{$ctrl.event.details}}</div>
+                <h2 class = "text-xl font-medium" ><span ng-click = "$ctrl.toggle_aciklama()">Açıklama</span></h2>
+                <div ng-if = "$ctrl.isAciklamaOpen" style="white-space: pre-line">
+                    <div class="h-px bg-gray-400 w-full my-2"></div>
+                    {{$ctrl.event.details}}
+                </div>
             </md-card-content>
             <div class="h-px bg-gray-400 w-full my-2"></div>
             <md-card-content>
