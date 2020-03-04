@@ -9,7 +9,7 @@ const pool = new Pool( {/*
 } */
     user: "postgres",
     host: "localhost",
-    database: "0sekoluk",
+    database: "0000c",
     port: "5432",
     password: "1998684952",
 
@@ -24,9 +24,9 @@ const get_moviesByPlace = (request, response) => {
     today= `${today.getFullYear()}-${today.getMonth() + 1}-${today.getDate() - 10}`;
 
     var qry = `SELECT DISTINCT ON (event_id) * FROM event JOIN instance ON (event.event_id = instance.event) WHERE
-                    instance.place LIKE '${request.params.place}' and date >= '${today}'::date`
+                    instance.place = ${request.params.place} and date >= '${today}'::date`
 
-
+    console.log(qry)
     pool.query(qry, (error, results) => {
         if(error){
             console.log(error)
@@ -41,7 +41,7 @@ const get_places = (request, response) => {
     var type = request.params.type;
     var city = request.params.city;
 
-    var qry = `SELECT DISTINCT ON (instance.place) instance.place, place.city, place.subcity
+    var qry = `SELECT DISTINCT ON (instance.place) place.place, instance.place, place.city, place.subcity
 	FROM event, instance, place
 			WHERE event.event_id = instance.event AND instance.place = place.place_id AND event.type = '${type}'`
 
@@ -49,6 +49,7 @@ const get_places = (request, response) => {
         qry = qry.concat(` AND place.city = '${city}';`);
     }
 
+    console.log(qry)
 
     pool.query(qry, (error, results) => {
         if(error){
