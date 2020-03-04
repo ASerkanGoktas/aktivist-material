@@ -1,17 +1,17 @@
 const Pool = require('pg').Pool
 
-const pool = new Pool( {
+const pool = new Pool( {/*
     user: "kqddeaplbhelix",
     host: "ec2-46-137-113-157.eu-west-1.compute.amazonaws.com",
     database: "d9bblfnn09vkg7",
     port: "5432",
     password: "8257debded76d2a2b1cdf810cfb28939b450e88616b9778ee18b70308922501a"
-/*} 
-    user: "seko",
+} */
+    user: "postgres",
     host: "localhost",
-    database: "aktivist_local",
+    database: "0sekoluk",
     port: "5432",
-    password: "279157",*/
+    password: "1998684952",
 
 })
 
@@ -26,7 +26,6 @@ const get_moviesByPlace = (request, response) => {
     var qry = `SELECT DISTINCT ON (event_id) * FROM event JOIN instance ON (event.event_id = instance.event) WHERE
                     instance.place LIKE '${request.params.place}' and date >= '${today}'::date`
 
-    
 
     pool.query(qry, (error, results) => {
         if(error){
@@ -44,7 +43,7 @@ const get_places = (request, response) => {
 
     var qry = `SELECT DISTINCT ON (instance.place) instance.place, place.city, place.subcity
 	FROM event, instance, place
-			WHERE event.event_id = instance.event AND instance.place = place.place AND event.type = '${type}'`
+			WHERE event.event_id = instance.event AND instance.place = place.place_id AND event.type = '${type}'`
 
     if(city != "NONE"){
         qry = qry.concat(` AND place.city = '${city}';`);
@@ -74,7 +73,7 @@ const get_activities_distinct_withCount = (request, response) => {
     var city = request.params.city;
 
     var qry = `SELECT * FROM (SELECT DISTINCT ON(event,date) event, date, instance.place, city
-    FROM instance,place WHERE instance.place = place.place) AS foo 
+    FROM instance,place WHERE instance.place = place.place_id) AS foo 
        JOIN event ON (event.event_id = foo.event) WHERE`;
 
     if(start != NONE){
@@ -111,8 +110,6 @@ const get_activities_distinct_withCount = (request, response) => {
 
     qry = qry.concat('ORDER BY date')
     
-    
-    
     pool.query(qry, (error, results) => {
         
         if(error){
@@ -142,11 +139,11 @@ const get_event = (request, response) => {
             response.status(200).json(results.rows[0]);
         }
     });
+    
 }
 
 const get_prices_of_act = (request, response) => {
     pool.query('SELECT * FROM price WHERE instance = ' + request.params.id, (error, results) => {
-        
         if(error){
             console.log(error)
         }
@@ -171,8 +168,6 @@ SELECT *
 	FROM event,instance
     WHERE event = event_id AND event_id = '${request.params.event_id}' AND date >= '2020-2-11' 
     ORDER BY date;`;
-
-    
 
     pool.query(qry, (error, results) =>{
         if(error){
@@ -208,7 +203,6 @@ const filter_activities_date = (request, response) => {
 
     //To remove last AND
     qry = qry.substring(0, qry.length - 3);
-    
     pool.query(qry, (error, results) => {
         
         
@@ -229,7 +223,6 @@ const liveSearch = (request, response) => {
     qry = qry.concat(" LOWER(event.name) LIKE LOWER('%", request.params.actname, "%')");
     qry = qry.concat(" LIMIT 5");
 
-    
     pool.query(qry, (error, results) => {
         if(error){
             
@@ -261,7 +254,6 @@ const search_name = (request, response) => {
     let card_num = 18;
     let page_num = parseInt(request.params.page_num);
     
-   
     pool.query(qry, (error, results) => {
         if(error){
             console.log(error);
@@ -286,7 +278,6 @@ const filter_types = (request, response) => {
     if(subtype != 'null'){
         qry = qry.concat(" AND event.subtype ='", subtype, "'")
     }
-        
 
     
     pool.query(qry, (error, results) => {
@@ -320,18 +311,16 @@ const get_instances_date = (request, response) => {
         
         qry = `SELECT *
         FROM event,instance,place
-        WHERE event = event_id AND instance.place = place.place AND city ='${city}' AND date = '${request.params.date}'::date AND name IN
+        WHERE event = event_id AND instance.place = place.place_id AND city ='${city}' AND date = '${request.params.date}'::date AND name IN
     (SELECT name
         FROM event,instance
         WHERE event = event_id AND event_id = '${request.params.event_id}' AND type = 'Sinema')
     UNION
     SELECT *
         FROM event,instance,place
-        WHERE event = event_id AND instance.place = place.place AND event_id = '${request.params.event_id}' AND city ='${city}' AND date = '${request.params.date}'::date;`
+        WHERE event = event_id AND instance.place = place.place_id AND event_id = '${request.params.event_id}' AND city ='${city}' AND date = '${request.params.date}'::date;`
      }
-     
-
-   
+  
 
      pool.query(qry, (error, results) =>{
          if(error){
@@ -347,8 +336,7 @@ const get_instances_date = (request, response) => {
  const get_propertiesOfplace = (request, response) => {
     var qry = `SELECT DISTINCT ON(place.place) *
 	            FROM place,instance
-                    WHERE instance.place = place.place AND instance.place ='${request.params.place}'`
-
+                    WHERE instance.place = place.place_id AND place.place ='${request.params.place}'`
      pool.query(qry, (error, results) =>{
          if(error){
              console.log(error);
