@@ -1,19 +1,19 @@
 const Pool = require('pg').Pool
 
-const pool = new Pool( {/*
+const pool = new Pool( {
     user: "kqddeaplbhelix",
     host: "ec2-46-137-113-157.eu-west-1.compute.amazonaws.com",
     database: "d9bblfnn09vkg7",
     port: "5432",
     password: "8257debded76d2a2b1cdf810cfb28939b450e88616b9778ee18b70308922501a"
-} */
+} /*
     user: "postgres",
     host: "localhost",
     database: "0000c",
     port: "5432",
     password: "1998684952",
 
-})
+}*/)
 
 
 const get_moviesByPlace = (request, response) => {
