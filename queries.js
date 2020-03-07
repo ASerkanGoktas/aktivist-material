@@ -8,11 +8,11 @@ const pool = new Pool( /* {
     password: "8257debded76d2a2b1cdf810cfb28939b450e88616b9778ee18b70308922501a"
 }*/ 
 {
-    user: "seko",
+    user: "postgres",
     host: "localhost",
-    database: "aktivist_local",
+    database: "0000c",
     port: "5432",
-    password: "279157",
+    password: "1998684952",
 
 })
 
@@ -42,14 +42,16 @@ const get_places = (request, response) => {
     var type = request.params.type;
     var city = request.params.city;
 
-    var qry = `SELECT DISTINCT ON (instance.place) place.place, instance.place AS place_id, place.city, place.subcity
+    var qry = `SELECT DISTINCT ON (instance.place,place.subcity) place.place_name, instance.place AS place_id, place.city, place.subcity
 	FROM event, instance, place
 			WHERE event.event_id = instance.event AND instance.place = place.place_id AND event.type = '${type}'`
 
     if(city != "NONE"){
-        qry = qry.concat(` AND place.city = '${city}';`);
+        qry = qry.concat(` AND place.city = '${city}'`);
     }
 
+    qry = qry.concat(` ORDER BY place.subcity,instance.place;`);
+    
     console.log(qry)
 
     pool.query(qry, (error, results) => {
@@ -160,17 +162,18 @@ const get_instances = (request, response) => {  // Tarih'te değişikli yapılac
     var today = new Date();
     var start = `${today.getFullYear()}-${today.getMonth() + 1}-${today.getDate()-3}`;
     var qry = `SELECT *
-	FROM event,instance 
-	WHERE event = event_id AND name IN
+	FROM event,instance,place 
+	WHERE event = event_id AND place.place_id = instance.place AND name IN
 (SELECT name
 	FROM event,instance
-	WHERE event = event_id AND event_id = '${request.params.event_id}' AND type = 'Sinema' AND date >= '2020-2-11')
+	WHERE event = event_id AND place.place_id = instance.place AND event_id = '${request.params.event_id}' AND type = 'Sinema' AND date >= '2020-2-11')
 UNION
 SELECT *
-	FROM event,instance
-    WHERE event = event_id AND event_id = '${request.params.event_id}' AND date >= '2020-2-11' 
-    ORDER BY date;`;
+	FROM event,instance,place
+    WHERE event = event_id  AND place.place_id = instance.place AND place.place_id = instance.place AND event_id = '${request.params.event_id}' AND date >= '2020-2-11' 
+    ORDER BY date,time;`;
 
+    console.log(qry)
     pool.query(qry, (error, results) =>{
         if(error){
             console.log(error);
@@ -242,12 +245,12 @@ const search_name = (request, response) => {
     if(city == "NONE"){
         qry = `SELECT DISTINCT ON(date) * 
         FROM instance,event,place 
-            WHERE event.event_id = instance.event AND instance.place = place.place AND LOWER(name) LIKE LOWER('%${request.params.text}%') 
+            WHERE event.event_id = instance.event AND instance.place = place.place_name AND LOWER(name) LIKE LOWER('%${request.params.text}%') 
                     ORDER BY date ASC`;
     }else{
         qry = `SELECT DISTINCT ON(date) * 
 	        FROM instance,event,place 
-		        WHERE event.event_id = instance.event AND instance.place = place.place AND
+		        WHERE event.event_id = instance.event AND instance.place = place.place_name AND
 			        city = '${request.params.city}' AND LOWER(name) LIKE LOWER('%${request.params.text}%') 
                         ORDER BY date ASC`
     }
@@ -307,7 +310,7 @@ const get_instances_date = (request, response) => {
  UNION
  SELECT *
      FROM event,instance
-     WHERE event = event_id AND event_id = '${request.params.event_id}'  AND date = '${request.params.date}'::date;`
+     WHERE event = event_id AND event_id = '${request.params.event_id}'  AND date = '${request.params.date}'::date`
 
      }else{
         
@@ -320,9 +323,11 @@ const get_instances_date = (request, response) => {
     UNION
     SELECT *
         FROM event,instance,place
-        WHERE event = event_id AND instance.place = place.place_id AND event_id = '${request.params.event_id}' AND city ='${city}' AND date = '${request.params.date}'::date;`
+        WHERE event = event_id AND instance.place = place.place_id AND event_id = '${request.params.event_id}' AND city ='${city}' AND date = '${request.params.date}'::date`
      }
-  
+     
+     qry = qry.concat(" ORDER BY time;")
+     console.log(qry)
 
      pool.query(qry, (error, results) =>{
          if(error){
@@ -336,9 +341,9 @@ const get_instances_date = (request, response) => {
  }
 
  const get_propertiesOfplace = (request, response) => {
-    var qry = `SELECT DISTINCT ON(place.place) *
+    var qry = `SELECT DISTINCT ON(place.place_id) *
 	            FROM place,instance
-                    WHERE instance.place = place.place_id AND place.place ='${request.params.place}'`
+                    WHERE instance.place = place.place_id AND place.place_id ='${request.params.place}'`
      pool.query(qry, (error, results) =>{
          if(error){
              console.log(error);

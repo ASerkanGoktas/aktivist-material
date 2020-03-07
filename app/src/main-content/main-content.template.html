@@ -36,7 +36,7 @@
                     class="md-2-line border-black rounded-lg my-3 text-white font-bold" layout="column">
                     <div class="md-list-item-text p-2" ng-click="$ctrl.toggle_actsOfplace($index, place.place_id)"
                         style="background-color: rgb(33,150,243);">
-                        <h3>{{ place.place }}</h3>
+                        <h3>{{ place.place_name }}</h3>
                         <h4>{{place.subcity}}</h4>
                     </div>
                     <div class="flex flex-row w-full bg-white overflow-y-scroll" ng-if="$index === $ctrl.selectedIndex">
