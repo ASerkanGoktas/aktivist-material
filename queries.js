@@ -42,7 +42,7 @@ const get_places = (request, response) => {
     var type = request.params.type;
     var city = request.params.city;
 
-    var qry = `SELECT DISTINCT ON (instance.place) place.place, place.city, place.subcity
+    var qry = `SELECT DISTINCT ON (instance.place) place.place, instance.place AS place_id, place.city, place.subcity
 	FROM event, instance, place
 			WHERE event.event_id = instance.event AND instance.place = place.place_id AND event.type = '${type}'`
 
