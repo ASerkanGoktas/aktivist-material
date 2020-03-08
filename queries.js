@@ -245,12 +245,12 @@ const search_name = (request, response) => {
     if(city == "NONE"){
         qry = `SELECT DISTINCT ON(date) * 
         FROM instance,event,place 
-            WHERE event.event_id = instance.event AND instance.place = place.place_name AND LOWER(name) LIKE LOWER('%${request.params.text}%') 
+            WHERE event.event_id = instance.event AND instance.place = place.place_id AND LOWER(name) LIKE LOWER('%${request.params.text}%') 
                     ORDER BY date ASC`;
     }else{
         qry = `SELECT DISTINCT ON(date) * 
 	        FROM instance,event,place 
-		        WHERE event.event_id = instance.event AND instance.place = place.place_name AND
+		        WHERE event.event_id = instance.event AND instance.place = place.place_id AND
 			        city = '${request.params.city}' AND LOWER(name) LIKE LOWER('%${request.params.text}%') 
                         ORDER BY date ASC`
     }
