@@ -8,11 +8,11 @@ const pool = new Pool( /* {
     password: "8257debded76d2a2b1cdf810cfb28939b450e88616b9778ee18b70308922501a"
 }*/ 
 {
-    user: "postgres",
+    user: "seko",
     host: "localhost",
-    database: "0000c",
+    database: "aktivist_local",
     port: "5432",
-    password: "1998684952",
+    password: "279157",
 
 })
 
@@ -167,14 +167,22 @@ const get_prices_of_act = (request, response) => {
 
 const get_instances = (request, response) => {  // Tarih'te değişikli yapılacaktır
     
+    var place_condition = "";
+    var place = request.params.place_id
+    
+    if(place == "NONE")
+        place_condition = "True"
+    else
+        place_condition = `place = ${place}`
+
     var qry = `SELECT *
 	FROM event,instance,place 
-	WHERE event = event_id AND place.place_id = instance.place AND place = ${request.params.place} AND name IN
+	WHERE event = event_id AND place.place_id = instance.place AND ${place_condition} AND name IN
 (SELECT name
 	FROM event,instance
 	WHERE event = event_id AND place.place_id = instance.place AND event_id = '${request.params.event_id}' AND type = 'Sinema' AND date >= '${get_today()}')
 UNION
-SELECT * FROM event,instance,place WHERE event = event_id  AND place.place_id = instance.place AND place.place_id = instance.place AND place = ${request.params.place} AND event_id = '${request.params.event_id}' AND date >= '${get_today()}' ORDER BY date,time;`;
+SELECT * FROM event,instance,place WHERE event = event_id  AND place.place_id = instance.place AND place.place_id = instance.place AND ${place_condition} AND event_id = '${request.params.event_id}' AND date >= '${get_today()}' ORDER BY date,time;`;
 
     console.log(qry)
     

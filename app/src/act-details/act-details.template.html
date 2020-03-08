@@ -82,68 +82,39 @@
                             <div>
                                 <md-input-container class="my-3 w-24">
                                     <label>Kategori: </label>
-                                    <md-select ng-model="selectedOption">
-                                        <md-option ng-repeat="fiyat in $ctrl.fiyatlar | unique: 'category'"
-                                            ng-selected="fiyat.campaign == null" ng-value="{{fiyat}}"
-                                            ng-show="fiyat.campaign == null">{{fiyat.category}}</md-option>
+                                    <md-select ng-model="$ctrl.price_cat" ng-change = "$ctrl.filter_cat()">
+                                        <md-option ng-repeat="fiyat in uniqueCats = ($ctrl.fiyatlar | unique: 'category')"
+                                         ng-value="fiyat.category" ng-selected = "uniqueCats.length == 1">{{fiyat.category}}</md-option>
+                                    </md-select>
+                                </md-input-container>
+                            </div>
+                            <div ng-hide = "$ctrl.checkNull()">
+                                <md-input-container>
+                                    <label>Kampanya: </label>
+                                    <md-select ng-model = "$ctrl.price_disc" ng-change = "$ctrl.filter_disc()">
+                                        <md-option ng-repeat = "fiyat in uniqueDics = ($ctrl.cat_filtered | unique: 'price_discount')" 
+                                        ng-selected = "uniqueDics.length == 1"
+                                        ng-value = "fiyat.price_discount">
+                                            {{fiyat.price_discount}}
+                                        </md-option>
                                     </md-select>
                                 </md-input-container>
                             </div>
                             <div>
                                 <md-input-container class="my-3 w-24">
                                     <label>Alt kategori: </label>
-                                    <md-select ng-model="selectedOption5">
-                                        <md-option ng-repeat="fiyat in $ctrl.fiyatlar"
-                                            ng-selected="fiyat.campaign == null && fiyat.category == selectedOption.category"
-                                            ng-value="{{fiyat}}"
-                                            ng-show="fiyat.campaign == null && fiyat.category == selectedOption.category">
+                                    <md-select ng-model="$ctrl.price_subcat" ng-change = "$ctrl.filter_subcat()">
+                                        <md-option ng-repeat="fiyat in uniqueSubcats = ($ctrl.cat_filtered | unique: 'subcategory')"
+                                            ng-selected = "uniqueSubcats.length == 1"
+                                            ng-value="fiyat.subcategory">
                                             {{fiyat.subcategory}}</md-option>
                                     </md-select>
                                 </md-input-container>
                             </div>
                         </div>
                         <div>
-                            <p class="text-xl px-1">{{$ctrl.get_pricestr(selectedOption5)}}</p>
+                            <p class="text-xl px-1">{{$ctrl.get_pricestr($ctrl.selectedPrice)}}</p>
                         </div>
-                    </div>
-                </div>
-                <div flex="50" class="pt-2" ng-hide="$ctrl.checkNull()">
-                    <h2 class="text-xl font-bold">Kampanyalar:</h2>
-                    <div layout="column " layout-gt-sm="row" layout-align="start none"
-                        layout-align-gt-sm="start center">
-                        <div>
-                            <md-input-container class="my-1">
-                                <md-select ng-model="selectedOption2">
-                                    <md-option
-                                        ng-repeat="fiyat2 in $ctrl.fiyatlar | filter:{price_discount: ''} | unique: 'price_discount' | orderBy:'price_discount'"
-                                        ng-selected="true" ng-value="{{fiyat2}}" ng-show="fiyat2.price_discount != null">
-                                        {{fiyat2.price_discount}}</md-option>
-                                </md-select>
-                            </md-input-container>
-                        </div>
-                        <div>
-                            <md-input-container class="my-1">
-                                <md-select ng-model="selectedOption3">
-                                    <md-option class="no-anime"
-                                        ng-repeat="fiyat3 in $ctrl.fiyatlar | filter:{price_discount: selectedOption2.price_discount} | unique: 'category'"
-                                        ng-selected="true" ng-value="{{fiyat3}}">{{fiyat3.category}}</md-option>
-                                </md-select>
-                            </md-input-container>
-                        </div>
-                        <div flex="grow" layout="row" layout-align="start center">
-                            <div>
-                                <md-input-container class="my-1">
-                                    <md-select ng-model="selectedOption4">
-                                        <md-option class="no-anime"
-                                            ng-repeat="fiyat4 in $ctrl.fiyatlar | filter:{price_discount: selectedOption2.price_discount, category: selectedOption3.category} "
-                                            ng-selected="true" ng-value="{{fiyat4}}">{{fiyat4.name}}</md-option>
-                                    </md-select>
-                                </md-input-container>
-                            </div>
-                        </div>
-                    </div>
-                    <div>
-                        <p class="text-xl px-1">{{selectedOption4.price}} ₺</p>
                     </div>
                 </div>
             </md-card-content>

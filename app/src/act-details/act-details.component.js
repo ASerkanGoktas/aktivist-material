@@ -22,13 +22,9 @@ class ActDetailsController{
 
 
             if(this.date == "NONE"){
-                this.et.get_instances(this.eventId).then(response => {
+                this.et.get_instances(this.eventId, this.place).then(response => {
                     this.place = this.place.replace(/[+]/g, " ");
                     this.instances = response.data;
-                    if(this.place != "NONE"){
-                        this.instances = this.instances.filter(instance => instance.place == this.place);
-                        this.selectedPlace = this.place;
-                    }
                     if(this.instances.length == 1){
                         this.preset = true;
                         this.hideAllSelections = true;
@@ -101,7 +97,7 @@ class ActDetailsController{
     }
     checkNull(){
         for(var i = 0; i < this.fiyatlar.length; i++) {
-            if(this.fiyatlar[i].campaign != null)
+            if(this.fiyatlar[i].price_discount != "Yok")
             return 0;
         }
         return 1;
@@ -117,6 +113,8 @@ class ActDetailsController{
         return datestr
     }
 
+
+    
     filter_dates(){
         this.selectedTime = null;
         this.selectedPlace = null;
@@ -161,6 +159,23 @@ class ActDetailsController{
     
         console.log("selected date: " + this.selectedDate + " a: " + insdate + " c : " + c);
         return c
+    }
+
+    filter_cat(){
+        this.price_disc = null;
+        this.price_subcat = null;
+        this.cat_filtered = this.fiyatlar.filter(fiyat => fiyat.category == this.price_cat);
+    }
+
+    filter_dis(){
+        this.price_subcat = null;
+        this.cat_filtered = this.cat_filtered.filter(fiyat => fiyat.price_discount == this.price_disc)
+    }
+
+    filter_subcat(){
+        this.selectedPrice = this.cat_filtered.filter(fiyat => fiyat.subcategory == this.price_subcat)[0];
+
+
     }
 
     checkTime(time){

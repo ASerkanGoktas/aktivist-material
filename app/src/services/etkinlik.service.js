@@ -90,8 +90,8 @@ class EtkinlikService {
         return this.http.get(qry);
     }
 
-    get_instances(event_id) {
-        return this.http.get(`/get_instances/${event_id}`);
+    get_instances(event_id, place_id) {
+        return this.http.get(`/get_instances/${event_id}/${place_id}`);
     }
 
 

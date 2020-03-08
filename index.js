@@ -13,7 +13,7 @@ app.get('/filter_activities_date/:datefirst/:datesecond/:city', db.filter_activi
 app.get('/livesearch/:actname', db.liveSearch);
 app.get('/filter_types/:type/:subtype', db.filter_types);
 app.get('/get_activities_distinct_withCount/:start/:end/:type/:subtype/:city/:page_num', db.get_activities_distinct_withCount);
-app.get('/get_instances/:event_id', db.get_instances);
+app.get('/get_instances/:event_id/:place_id', db.get_instances);
 app.get('/get_places/:type/:city', db.get_places);
 app.get('/get_moviesByplace/:place', db.get_moviesByPlace);
 app.get('/search_name/:text/:page_num/:city', db.search_name);
