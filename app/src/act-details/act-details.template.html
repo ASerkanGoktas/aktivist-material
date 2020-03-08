@@ -32,9 +32,9 @@
                     <md-input-container>
                         <label>Mekan: </label>
                         <md-select ng-model="$ctrl.selectedPlace" ng-change="$ctrl.filter_place()">
-                            <md-option ng-repeat="ins in uniqueDays = ($ctrl.dayFiltered | unique: 'place')" value="{{ins.place}}"
+                            <md-option ng-repeat="ins in uniqueDays = ($ctrl.dayFiltered | unique: 'place')" ng-value="{id: ins.place, name: ins.place_name}"
                                 ng-selected="$ctrl.preset || uniqueDays.length == 1">
-                                {{ins.place}}
+                                {{ins.place_name}}
                             </md-option>
                         </md-select>
                     </md-input-container>
@@ -52,7 +52,7 @@
                 <div layout="row" layout-align = "start center">
                     <div layout="row" class="mr-2 font-semibold" ng-class = "{{}}">
                         <md-icon md-svg-icon="{{$ctrl.icon.mekan}}" style="margin: 0px !important;"></md-icon>
-                        <p class="text-sm my-auto"> : {{$ctrl.selectedPlace ? $ctrl.selectedPlace : "Mekan seçiniz"}}</p>
+                        <p class="text-sm my-auto"> : {{$ctrl.selectedPlace ? $ctrl.selectedPlace.name : "Mekan seçiniz"}}</p>
                     </div>
                     <div layout="row" class="mr-2 font-semibold">
                         <md-icon md-svg-icon="{{$ctrl.icon.takvim}}" style="margin: 0px !important;"></md-icon>

@@ -125,9 +125,9 @@ class ActDetailsController{
 
     filter_place(){
         this.selectedTime = null
-        this.placeFiltered = this.dayFiltered.filter(instance => instance.place == this.selectedPlace)
+        this.placeFiltered = this.dayFiltered.filter(instance => instance.place == this.selectedPlace.id)
 
-        this.et.get_propertiesOfplace(this.selectedPlace).then(response => {
+        this.et.get_propertiesOfplace(this.selectedPlace.id).then(response => {
             this.propertiesOfplace = response.data;
         });
     }

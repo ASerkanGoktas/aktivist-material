@@ -166,27 +166,25 @@ const get_prices_of_act = (request, response) => {
 }
 
 const get_instances = (request, response) => {  // Tarih'te değişikli yapılacaktır
-    var today = new Date();
-    var start = `${today.getFullYear()}-${today.getMonth() + 1}-${today.getDate()-3}`;
+    
     var qry = `SELECT *
 	FROM event,instance,place 
 	WHERE event = event_id AND place.place_id = instance.place AND name IN
 (SELECT name
 	FROM event,instance
-	WHERE event = event_id AND place.place_id = instance.place AND event_id = '${request.params.event_id}' AND type = 'Sinema' AND date >= '2020-2-11')
+	WHERE event = event_id AND place.place_id = instance.place AND event_id = '${request.params.event_id}' AND type = 'Sinema' AND date >= '${get_today()}')
 UNION
-SELECT *
-	FROM event,instance,place
-    WHERE event = event_id  AND place.place_id = instance.place AND place.place_id = instance.place AND event_id = '${request.params.event_id}' AND date >= '2020-2-11' 
-    ORDER BY date,time;`;
+SELECT * FROM event,instance,place WHERE event = event_id  AND place.place_id = instance.place AND place.place_id = instance.place AND event_id = '${request.params.event_id}' AND date >= '${get_today()}' ORDER BY date,time;`;
 
     console.log(qry)
+    
     pool.query(qry, (error, results) =>{
         if(error){
+            console.log("hello")
             console.log(error);
         }
         else{
-            
+            console.log("hello")
             response.status(200).json(results.rows);
         }
     });
