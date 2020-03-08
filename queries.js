@@ -309,7 +309,7 @@ const get_instances_date = (request, response) => {
      WHERE event = event_id AND event_id = '${request.params.event_id}' AND type = 'Sinema')
  UNION
  SELECT *
-     FROM event,instance
+     FROM event,instance,place
      WHERE event = event_id AND instance.place = place.place_id AND  event_id = '${request.params.event_id}'  AND date = '${request.params.date}'::date`
 
      }else{
