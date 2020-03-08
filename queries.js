@@ -8,13 +8,20 @@ const pool = new Pool( /* {
     password: "8257debded76d2a2b1cdf810cfb28939b450e88616b9778ee18b70308922501a"
 }*/ 
 {
-    user: "postgres",
+    user: "seko",
     host: "localhost",
-    database: "0000c",
+    database: "aktivist_local",
     port: "5432",
-    password: "1998684952",
+    password: "279157",
 
 })
+
+const get_today = () => {
+    var today = new Date();
+
+    today= `${today.getFullYear()}-${today.getMonth() + 1}-${today.getDate()}`;
+    return today;
+}
 
 
 const get_moviesByPlace = (request, response) => {
@@ -224,10 +231,13 @@ const filter_activities_date = (request, response) => {
 
 
 const liveSearch = (request, response) => {
+    
+
     qry = "SELECT DISTINCT ON(name) name, * FROM instance JOIN event ON (event.event_id = instance.event) WHERE";
     qry = qry.concat(" LOWER(event.name) LIKE LOWER('%", request.params.actname, "%')");
-    qry = qry.concat(" LIMIT 5");
+    qry = qry.concat(` AND date >= '${get_today()}' LIMIT 5 `);
 
+    console.log(qry);
     pool.query(qry, (error, results) => {
         if(error){
             
