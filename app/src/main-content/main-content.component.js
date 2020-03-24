@@ -66,7 +66,7 @@ class MainContentController {
                         this.showPlaces = true;
                     });
                 } else {
-                    this.etc.getActivitiesDistinctWithCount(null, null, this.type, this.subtype, this.city, this.selectedPage).then(response => {
+                    this.etc.getActivitiesDistinctWithCount(null, null, this.type, this.subtype, this.city, this.selectedPage, this.discount).then(response => {
                         this.acts = response.data.rows;
                         this.row_num = response.data.count;
                         this.showPlaces = false;
@@ -75,7 +75,7 @@ class MainContentController {
                     });
                 }
             } else {
-                this.etc.search_name(this.searchText, this.selectedPage, this.city).then(response => {
+                this.etc.search_name(this.searchText, this.selectedPage, this.city, this.discount).then(response => {
                     this.acts = response.data.rows;
                     this.row_num = response.data.count;
                     this.showPlaces = false;
@@ -98,13 +98,13 @@ class MainContentController {
     select_page(pg_num) {
 
         if (this.searchText == 'NONE') {
-            this.etc.getActivitiesDistinctWithCount(null, null, this.type, this.subtype, this.city, parseInt(pg_num)).then(response => {
+            this.etc.getActivitiesDistinctWithCount(null, null, this.type, this.subtype, this.city, parseInt(pg_num), this.discount).then(response => {
                 this.acts = response.data.rows;
                 this.row_num = response.data.count;
                 this.showPlaces = false;
             });
         } else {
-            this.etc.search_name(this.searchText, parseInt(pg_num), this.city).then(response => {
+            this.etc.search_name(this.searchText, parseInt(pg_num), this.city, this.discount).then(response => {
                 this.acts = response.data.rows;
                 this.row_num = response.data.count;
                 this.showPlaces = false;
@@ -172,8 +172,11 @@ class MainContentController {
     }
 
     sync_filters(){
-        
+        this.filtersrv.filters.type = this.type
+        this.filtersrv.filters.subtype = this.subtype
+        this.filtersrv.filters.searchText = this.searchText;
         this.filtersrv.filters.city = this.city
+        this.filtersrv.filters.discount = this.discount;
     }
 
     get_gun(datestr) {
@@ -234,5 +237,5 @@ MainContentController.$inject = ["$mdMedia", "EtkinlikService", "$scope", "$root
 export default {
     template: tpl,
     controller: MainContentController,
-    bindings: { type: "@", subtype: "@", searchText: "@", selectedPage: "<", city: "@"}
+    bindings: { type: "@", subtype: "@", searchText: "@", selectedPage: "<", city: "@", discount: "@"}
 }

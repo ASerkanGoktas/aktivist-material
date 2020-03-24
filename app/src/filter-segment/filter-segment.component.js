@@ -13,6 +13,7 @@ class FilterSegmentController {
     this.cities = iller;
     this.cityInput = "";
     this.cityState = FilterService.filters.city;
+    this.selectedDiscount = FilterService.filters.discount;
     this.filtersrv = FilterService;
     this.location = $location;
 
@@ -49,7 +50,9 @@ class FilterSegmentController {
   }
 
   filter() {
+    console.log(`filter segment: type = ${this.filtersrv.filters.type}`)
     this.filtersrv.set_city(this.cityState);
+    this.filtersrv.set_discount(this.selectedDiscount);
     var url = this.filtersrv.buildpath(true, true, true, true);
 
     this.location.path(url);

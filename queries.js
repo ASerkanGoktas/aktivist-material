@@ -8,11 +8,11 @@ const pool = new Pool( /* {
     password: "8257debded76d2a2b1cdf810cfb28939b450e88616b9778ee18b70308922501a"
 }*/ 
 {
-    user: "postgres",
+    user: "seko",
     host: "localhost",
-    database: "0000c",
+    database: "aktivist_local",
     port: "5432",
-    password: "1998684952",
+    password: "279157",
 
 })
 
@@ -82,6 +82,7 @@ const get_activities_distinct_withCount = (request, response) => {
     var type = request.params.type;
     var subtype = request.params.subtype;
     var city = request.params.city;
+    var selected_discount = request.params.selected_discount;
 
     var qry = `SELECT * FROM 
                 (SELECT DISTINCT ON(event,date) event, date, instance.place, city
@@ -116,7 +117,7 @@ const get_activities_distinct_withCount = (request, response) => {
         qry = qry.concat(` city = '${city}' AND`);
     }
     //  selected_discount = '%hopi%' OR '%lale%' OR '%1alana1bedava%' OR  '%TAV%'
-/*
+
     if(selected_discount != NONE){
         qry = qry.concat(` event IN(
             (SELECT event FROM public.instance
@@ -124,7 +125,7 @@ const get_activities_distinct_withCount = (request, response) => {
                (SELECT instance
                    FROM public.price WHERE price_discount ILIKE '${selected_discount}'))) AND`);
     }
-*/
+
     //To remove last AND
     qry = qry.substring(0, qry.length - 3);
 
@@ -264,10 +265,11 @@ const liveSearch = (request, response) => {
 }
 
 const search_name = (request, response) => {
-
+    var NONE = "NONE"
     var city = request.params.city;
+    var selected_discount = request.params.selected_discount;
     var qry = "";
-    if(city == "NONE"){
+    if(city == NONE){
         qry = `SELECT DISTINCT ON(date) * 
         FROM instance,event,place 
             WHERE event.event_id = instance.event AND instance.place = place.place_id AND LOWER(name) LIKE LOWER('%${request.params.text}%') 
@@ -280,15 +282,15 @@ const search_name = (request, response) => {
                         `
     }
     //  selected_discount = '%hopi%' OR '%lale%' OR '%1alana1bedava%' OR  '%TAV%'
-    /*
+    
     if(selected_discount != NONE){
         qry = qry.concat(` AND event IN(
             (SELECT event FROM public.instance
                WHERE instance_id IN
                (SELECT instance
-                   FROM public.price WHERE price_discount ILIKE '${request.params.text}')))`);
+                   FROM public.price WHERE price_discount ILIKE '${request.selected_discount}')))`);
     }
-    */
+    
     qry = qry.concat('ORDER BY date ASC')
 
     let card_num = 18;

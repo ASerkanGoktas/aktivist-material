@@ -4,8 +4,8 @@ class FilterService {
             type: null,
             subtype: null,
             searchText: null,
-            city: "İstanbul"
-
+            city: "İstanbul",
+            discount: "NONE"
         };
 
         
@@ -26,6 +26,10 @@ class FilterService {
 
     set_city(city){
         this.filters.city = city;
+    }
+
+    set_discount(discount){
+        this.filters.discount = discount;
     }
 
     get_filters(){
@@ -59,7 +63,7 @@ class FilterService {
         }
 
         
-        var result = `${base}/${type}/${subtype}/${searchText}/city/${city}/page_num/1`
+        var result = `${base}/${type}/${subtype}/${searchText}/city/${city}/page_num/1/${this.filters.discount ? this.filters.discount : "NONE"}`
 
         return result;
     }

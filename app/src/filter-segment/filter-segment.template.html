@@ -1,4 +1,4 @@
-<div class="h-auto lg:float-right w-3/5  mx-auto md:sticky md:top-0">
+<div class="h-auto lg:float-right w-3/5  mx-auto md:sticky md:top-0" ng-cloak>
     <md-card class="md-padding">
         <md-content class="bg-white">
             <div>
@@ -22,7 +22,16 @@
 
             <md-datepicker ng-if = "$ctrl.isBitis" ng-model="$ctrl.myDateEnd" md-placeholder="Tarih seçin"></md-datepicker>
         </md-content>
-
+        <md-input-container>
+            <label>Kampanya seç</label>
+            <md-select ng-model = "$ctrl.selectedDiscount">
+                <md-option value = "NONE" ng-selected = "$ctrl.selectedDiscount == 'NONE'">Farketmez</md-option>
+                <md-option value = "tav" ng-selected = "$ctrl.selectedDiscount == 'tav'">TAV kart</md-option>
+                <md-option value = "lale" ng-selected = "$ctrl.selectedDiscount == 'lale'">LALE kart</md-option>
+                <md-option value = "1alana1bedava" ng-selected = "$ctrl.selectedDiscount == '1alana1bedava'">1 Alana 1 Bedava</md-option>
+                <md-option value = "hopi" ng-selected = "$ctrl.selectedDiscount == 'hopi'">Hopi</md-option>
+            </md-select>
+        </md-input-container>
 
         <md-input-container class="py-1">
             <label>Şehir Seç</label>
@@ -37,7 +46,7 @@
                             <md-option ng-value="city" ng-repeat="city in $ctrl.cities |
                                 filter:$ctrl.cityInput">{{city}}</md-option>
                         </md-optgroup>
-                    </md-select>
+                </md-select>
             <div class = "text-center">
                 <md-button class = "md-button md-primary" ng-click = "$ctrl.filter()">
                     uygula
