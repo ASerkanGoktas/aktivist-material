@@ -56,7 +56,10 @@ const get_places = (request, response) => {
     if(city != "NONE"){
         qry = qry.concat(` AND place.city = '${city}'`);
     }
-
+    // Biri %Cinemapink% , Digeri %Cinemaximum%
+    if(selected_zincir != "NONE"){
+        qry = qry.concat(` AND place.place_name ILIKE '${selected_zincir}'`);
+    }
     qry = qry.concat(` ORDER BY place.subcity,instance.place;`);
     
     console.log(qry)
