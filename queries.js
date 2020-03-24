@@ -48,6 +48,7 @@ const get_places = (request, response) => {
 
     var type = request.params.type;
     var city = request.params.city;
+    var selected_zincir = request.params.selected_zincir;
 
     var qry = `SELECT DISTINCT ON (instance.place,place.subcity) place.place_name, instance.place AS place_id, place.city, place.subcity
 	FROM event, instance, place
@@ -58,7 +59,7 @@ const get_places = (request, response) => {
     }
     // Biri %Cinemapink% , Digeri %Cinemaximum%
     if(selected_zincir != "NONE"){
-        qry = qry.concat(` AND place.place_name ILIKE '${selected_zincir}'`);
+        qry = qry.concat(` AND place.place_name ILIKE '%${selected_zincir}%'`);
     }
     qry = qry.concat(` ORDER BY place.subcity,instance.place;`);
     

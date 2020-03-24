@@ -14,6 +14,7 @@ class FilterSegmentController {
     this.cityInput = "";
     this.cityState = FilterService.filters.city;
     this.selectedDiscount = FilterService.filters.discount;
+    this.selectedZincir= FilterService.filters.selectedZincir;
     this.filtersrv = FilterService;
     this.location = $location;
 
@@ -22,6 +23,7 @@ class FilterSegmentController {
     this.isBitis = false
     this.isBasla = false
 
+    this.isSinema = FilterService.filters.type == "Sinema"
 
   }
   clearSearchTerm() {
@@ -53,6 +55,7 @@ class FilterSegmentController {
     console.log(`filter segment: type = ${this.filtersrv.filters.type}`)
     this.filtersrv.set_city(this.cityState);
     this.filtersrv.set_discount(this.selectedDiscount);
+    this.filtersrv.set_zincir(this.selectedZincir)
     var url = this.filtersrv.buildpath(true, true, true, true);
 
     this.location.path(url);

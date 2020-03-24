@@ -28,10 +28,10 @@ angular.module('aktivist', [greetModule, navbarModule, maincontentmodule, footer
                 when("/", {
                     template: "<greet></greet><homepage></homepage>"
                 }).
-                when("/arama/:type/:subtype/:searchText/city/:city/page_num/:page_num/:discount", {
+                when("/arama/:type/:subtype/:searchText/city/:city/page_num/:page_num/:discount/:selected_zincir", {
                     template: params => {
                         return `<main-content type='${params.type}' subtype = '${params.subtype}' 
-                        search-text = '${params.searchText}' selected-page = '${params.page_num}' city = '${params.city}' discount = '${params.discount}'></main-content>`
+                        search-text = '${params.searchText}' selected-page = '${params.page_num}' city = '${params.city}' discount = '${params.discount}' selected-zincir = '${params.selected_zincir}'></main-content>`
                     }
                 }).
                 when("/etkinlik/:event_id/:date/:place/:city", {

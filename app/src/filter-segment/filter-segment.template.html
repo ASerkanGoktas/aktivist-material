@@ -1,12 +1,6 @@
 <div class="h-auto lg:float-right w-3/5  mx-auto md:sticky md:top-0" ng-cloak>
     <md-card class="md-padding">
         <md-content class="bg-white">
-            <div>
-            <md-input-container>
-                <input ng-model = "$ctrl.filter_query" placeholder="{{$ctrl.searchMessage}}" type = "text"/>
-            </md-input-container>
-                
-            </div>
             
             <div class="flex flex-row py-1">
                 <md-checkbox name = "baslangic" ng-model = "$ctrl.isBasla" aria-label = "checkbox-date-start"></md-checkbox>
@@ -32,6 +26,20 @@
                 <md-option value = "hopi" ng-selected = "$ctrl.selectedDiscount == 'hopi'">Hopi</md-option>
             </md-select>
         </md-input-container>
+
+        <div ng-if = "$ctrl.isSinema">
+            <md-input-container style = "width: 100%">
+                <label>Sinema zinciri</label>
+                <md-select ng-model = "$ctrl.selectedZincir">
+                    
+                    <md-option value = "NONE" ng-selected = "$ctrl.selectedZincir == 'NONE'">Farketmez</md-option>
+                    <md-option value = "Cinemaximum" ng-selected = "$ctrl.selectedZincir == 'Cinemaximum'">Cinemaximum</md-option>
+                    <md-option value = "Cinemapink" ng-selected = "$ctrl.selectedZincir == 'Cinemapink'">Cinemapink</md-option>
+                </md-select>
+            </md-input-container>
+            
+        </div>
+        
 
         <md-input-container class="py-1">
             <label>Şehir Seç</label>

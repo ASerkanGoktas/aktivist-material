@@ -99,8 +99,8 @@ class EtkinlikService {
     }
 
 
-    get_places(type, city) {
-        return this.http.get(`/get_places/${type}/${city}`);
+    get_places(type, city, zincir) {
+        return this.http.get(`/get_places/${type}/${city}/${zincir}`);
     }
 
     get_moviesByplace(place) {

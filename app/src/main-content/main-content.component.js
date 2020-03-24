@@ -61,7 +61,7 @@ class MainContentController {
             this.selectedPage = parseInt(this.selectedPage);
             if (this.searchText == NONE) {
                 if (this.type == "Sinema") {
-                    this.etc.get_places(this.type, this.city).then(response => {
+                    this.etc.get_places(this.type, this.city, this.selectedZincir).then(response => {
                         this.places = response.data;
                         this.showPlaces = true;
                     });
@@ -237,5 +237,5 @@ MainContentController.$inject = ["$mdMedia", "EtkinlikService", "$scope", "$root
 export default {
     template: tpl,
     controller: MainContentController,
-    bindings: { type: "@", subtype: "@", searchText: "@", selectedPage: "<", city: "@", discount: "@"}
+    bindings: { type: "@", subtype: "@", searchText: "@", selectedPage: "<", city: "@", discount: "@", selectedZincir: "@"}
 }
