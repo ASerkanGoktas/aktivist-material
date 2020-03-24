@@ -83,9 +83,10 @@ const get_activities_distinct_withCount = (request, response) => {
     var subtype = request.params.subtype;
     var city = request.params.city;
 
-    var qry = `SELECT * FROM (SELECT DISTINCT ON(event,date) event, date, instance.place, city
-    FROM instance,place WHERE instance.place = place.place_id) AS foo 
-       JOIN event ON (event.event_id = foo.event) WHERE`;
+    var qry = `SELECT * FROM 
+                (SELECT DISTINCT ON(event,date) event, date, instance.place, city
+                FROM instance,place WHERE instance.place = place.place_id) AS foo 
+                    JOIN event ON (event.event_id = foo.event) WHERE`;
 
     if(start != NONE){
         var start = new Date(start);
@@ -114,13 +115,21 @@ const get_activities_distinct_withCount = (request, response) => {
     if(city != NONE){
         qry = qry.concat(` city = '${city}' AND`);
     }
-
-    
+    //  selected_discount = '%hopi%' OR '%lale%' OR '%1alana1bedava%' OR  '%TAV%'
+/*
+    if(selected_discount != NONE){
+        qry = qry.concat(` event IN(
+            (SELECT event FROM public.instance
+               WHERE instance_id IN
+               (SELECT instance
+                   FROM public.price WHERE price_discount ILIKE '${selected_discount}'))) AND`);
+    }
+*/
     //To remove last AND
     qry = qry.substring(0, qry.length - 3);
 
     qry = qry.concat('ORDER BY date')
-    
+    console.log(qry)
     pool.query(qry, (error, results) => {
         
         if(error){
@@ -262,19 +271,29 @@ const search_name = (request, response) => {
         qry = `SELECT DISTINCT ON(date) * 
         FROM instance,event,place 
             WHERE event.event_id = instance.event AND instance.place = place.place_id AND LOWER(name) LIKE LOWER('%${request.params.text}%') 
-                    ORDER BY date ASC`;
+                    `;
     }else{
         qry = `SELECT DISTINCT ON(date) * 
 	        FROM instance,event,place 
 		        WHERE event.event_id = instance.event AND instance.place = place.place_id AND
 			        city = '${request.params.city}' AND LOWER(name) LIKE LOWER('%${request.params.text}%') 
-                        ORDER BY date ASC`
+                        `
     }
-    
-                        
+    //  selected_discount = '%hopi%' OR '%lale%' OR '%1alana1bedava%' OR  '%TAV%'
+    /*
+    if(selected_discount != NONE){
+        qry = qry.concat(` AND event IN(
+            (SELECT event FROM public.instance
+               WHERE instance_id IN
+               (SELECT instance
+                   FROM public.price WHERE price_discount ILIKE '${request.params.text}')))`);
+    }
+    */
+    qry = qry.concat('ORDER BY date ASC')
+
     let card_num = 18;
     let page_num = parseInt(request.params.page_num);
-    
+    console.log(qry)
     pool.query(qry, (error, results) => {
         if(error){
             console.log(error);
