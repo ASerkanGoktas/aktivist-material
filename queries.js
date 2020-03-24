@@ -278,7 +278,7 @@ const search_name = (request, response) => {
         qry = `SELECT DISTINCT ON(date) * 
 	        FROM instance,event,place 
 		        WHERE event.event_id = instance.event AND instance.place = place.place_id AND
-			        city = '${request.params.city}' AND LOWER(name) LIKE LOWER('%${request.params.text}%') 
+			        city = '${request.params.city}' AND LOWER(name) LIKE LOWER('%${selected_discount}%') 
                         `
     }
     //  selected_discount = '%hopi%' OR '%lale%' OR '%1alana1bedava%' OR  '%TAV%'
@@ -288,7 +288,7 @@ const search_name = (request, response) => {
             (SELECT event FROM public.instance
                WHERE instance_id IN
                (SELECT instance
-                   FROM public.price WHERE price_discount ILIKE '${request.selected_discount}')))`);
+                   FROM public.price WHERE price_discount ILIKE '${selected_discount}')))`);
     }
     
     qry = qry.concat('ORDER BY date ASC')
