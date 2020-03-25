@@ -13,6 +13,7 @@ import sahne from "../assets/icons/sahne.svg";
 import aile from "../assets/icons/aile.svg";
 import egitim from "../assets/icons/egitim.svg";
 import spor from "../assets/icons/spor.svg";
+import logo from "../assets/icons/drawsing.png"
 
 class IconService{
     constructor(){
@@ -31,6 +32,7 @@ class IconService{
         this.aile = aile;
         this.egitim = egitim;
         this.spor = spor;
+        this.logo = logo;
     }
 }
 

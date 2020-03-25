@@ -4,9 +4,9 @@ import bg from "../assets/images/konser1920.jpg";
 class GreetController {
 
 
-    constructor() {
+    constructor(iconService) {
       
-        
+        this.icons = iconService;
 
         this.bgimage = bg;
         this.bgstyle = `height: 50%; min-height: 500px; z-index: 10; background-image : url('` +
@@ -22,3 +22,5 @@ export default {
     template: tpl,
     controller: GreetController
 }
+
+GreetController.$inject = ["IconService"]
