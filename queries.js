@@ -8,11 +8,11 @@ const pool = new Pool( /* {
     password: "8257debded76d2a2b1cdf810cfb28939b450e88616b9778ee18b70308922501a"
 }*/ 
 {
-    user: "postgres",
+    user: "seko",
     host: "localhost",
-    database: "0000c",
+    database: "aktivist_local",
     port: "5432",
-    password: "1998684952",
+    password: "279157",
 
 })
 
@@ -433,7 +433,7 @@ const get_todays_movies = (request, response) => {
          }
          else{
              
-             response.status(200).json(results.rows[0]);
+             response.status(200).json(results.rows);
          }
      });
  }
@@ -471,5 +471,6 @@ module.exports = {
     get_moviesByPlace,
     search_name,
     get_instances_date,
-    get_propertiesOfplace
+    get_propertiesOfplace,
+    get_todays_movies
 };

@@ -4,11 +4,8 @@ class HomepageController{
     constructor(EtkinlikService, $rootScope){
         this.acts = []
         this.et = EtkinlikService;
-
-        EtkinlikService.getAllTemporary().then(response => {
-            console.log(response);
-            this.acts = response.data;
-            
+        this.et.get_todays_movies("İstanbul").then(response => {
+            this.todays_movies = response.data;
         });
 
         $rootScope.$broadcast("clearSearch", null);

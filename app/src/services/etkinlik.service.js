@@ -143,6 +143,10 @@ class EtkinlikService {
         return this.http.get(`/get_propertiesOfplace/${place}`);
     }
 
+    get_todays_movies(city){
+        return this.http.get(`/get_todays_movies/${city}`)
+    }
+
 }
 
 export default EtkinlikService;

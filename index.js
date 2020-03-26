@@ -19,6 +19,7 @@ app.get('/get_moviesByplace/:place', db.get_moviesByPlace);
 app.get('/search_name/:text/:page_num/:city/:selected_discount', db.search_name);
 app.get('/get_instances_date/:event_id/:date/:city', db.get_instances_date);
 app.get('/get_propertiesOfplace/:place', db.get_propertiesOfplace)
+app.get('/get_todays_movies/:city', db.get_todays_movies)
 
 server.listen(PORT, () => {
     console.log("hey")
