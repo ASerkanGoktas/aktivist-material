@@ -57,7 +57,7 @@ class FilterSegmentController {
     this.filtersrv.set_city(this.cityState);
     this.filtersrv.set_discount(this.selectedDiscount);
     this.filtersrv.set_zincir(this.selectedZincir);
-    this.filtersrv.set_price(this.selectedPrice);
+    this.filtersrv.set_price(this.isFiyat ? this.selectedPrice : "NONE");
     var url = this.filtersrv.buildpath(true, true, true, true);
 
     this.location.path(url);

@@ -16,7 +16,7 @@ app.get('/get_activities_distinct_withCount/:start/:end/:type/:subtype/:city/:pa
 app.get('/get_instances/:event_id/:place_id', db.get_instances);
 app.get('/get_places/:type/:city/:selected_zincir', db.get_places);
 app.get('/get_moviesByplace/:place', db.get_moviesByPlace);
-app.get('/search_name/:text/:page_num/:city/:selected_discount', db.search_name);
+app.get('/search_name/:text/:page_num/:city/:selected_discount/:price_bar', db.search_name);
 app.get('/get_instances_date/:event_id/:date/:city', db.get_instances_date);
 app.get('/get_propertiesOfplace/:place', db.get_propertiesOfplace)
 app.get('/get_todays_movies/:city', db.get_todays_movies)

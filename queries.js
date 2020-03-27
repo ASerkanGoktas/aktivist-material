@@ -34,7 +34,7 @@ const get_moviesByPlace = (request, response) => {
     var qry = `SELECT DISTINCT ON (event_id) * FROM event JOIN instance ON (event.event_id = instance.event) WHERE
                     instance.place = ${request.params.place} and date >= '${today}'::date`
 
-    console.log(qry)
+    
     pool.query(qry, (error, results) => {
         if(error){
             console.log(error)
@@ -63,7 +63,7 @@ const get_places = (request, response) => {
     }
     qry = qry.concat(` ORDER BY place.subcity,instance.place;`);
     
-    console.log(qry)
+    
 
     pool.query(qry, (error, results) => {
         if(error){
@@ -145,7 +145,7 @@ const get_activities_distinct_withCount = (request, response) => {
     qry = qry.substring(0, qry.length - 3);
 
     qry = qry.concat('ORDER BY date')
-    console.log(qry)
+    
     pool.query(qry, (error, results) => {
         
         if(error){
@@ -209,7 +209,7 @@ const get_instances = (request, response) => {  // Tarih'te değişikli yapılac
 UNION
 SELECT * FROM event,instance,place WHERE event = event_id  AND place.place_id = instance.place AND place.place_id = instance.place AND ${place_condition} AND event_id = '${request.params.event_id}' AND date >= '${get_today()}' ORDER BY date,time;`;
 
-    console.log(qry)
+   
     
     pool.query(qry, (error, results) =>{
         if(error){
@@ -268,7 +268,7 @@ const liveSearch = (request, response) => {
     qry = qry.concat(" LOWER(event.name) LIKE LOWER('%", request.params.actname, "%')");
     qry = qry.concat(` AND date >= '${get_today()}' LIMIT 5 `);
 
-    console.log(qry);
+    
     pool.query(qry, (error, results) => {
         if(error){
             
@@ -315,12 +315,16 @@ const search_name = (request, response) => {
                    (SELECT instance
                        FROM public.price WHERE price < ${price_bar}))) `);
     }
+
+
     
     qry = qry.concat('ORDER BY date ASC')
 
     let card_num = 18;
     let page_num = parseInt(request.params.page_num);
+
     console.log(qry)
+    
     pool.query(qry, (error, results) => {
         if(error){
             console.log(error);
@@ -389,7 +393,7 @@ const get_instances_date = (request, response) => {
      }
      
      qry = qry.concat(" ORDER BY time;")
-     console.log(qry)
+     
 
      pool.query(qry, (error, results) =>{
          if(error){
