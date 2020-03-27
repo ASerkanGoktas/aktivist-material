@@ -29,7 +29,7 @@ const get_moviesByPlace = (request, response) => {
     var today = new Date();
 
         //yy mm dd
-    today= `${today.getFullYear()}-${today.getMonth() + 1}-${today.getDate() - 10}`;
+    today= get_today();
 
     var qry = `SELECT DISTINCT ON (event_id) * FROM event JOIN instance ON (event.event_id = instance.event) WHERE
                     instance.place = ${request.params.place} and date >= '${today}'::date`

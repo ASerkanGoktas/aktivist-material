@@ -3,7 +3,7 @@ import tpl from './main-content.template.html'
 class MainContentController {
 
 
-    constructor($mdMedia, EtkinlikService, $scope, $rootScope, $location, $route, FilterService) {
+    constructor($mdMedia, EtkinlikService, $scope, $rootScope, $location, $route, FilterService, $document) {
 
 
         this.mdMedia = $mdMedia;
@@ -14,6 +14,7 @@ class MainContentController {
         this.showPlaces = false;
         this.pages = []
         this.filtersrv = FilterService;
+        this.document = $document;
 
         var original = $location.path;
         $location.path = (path, reload) => {
@@ -230,9 +231,35 @@ class MainContentController {
     bitistir(str) {
         return str.replace(/ /g, "+");
     }
+
+    scroll_right(id){
+        var list = this.document[0].getElementById(id)
+
+        var scrollAmount = 0
+        var slideTimer = setInterval(function(){
+            list.scrollLeft += 60;
+            scrollAmount += 10;
+            if(scrollAmount >= 100){
+                window.clearInterval(slideTimer);
+            }
+        }, 25);
+    }
+
+    scroll_left(id){
+        var list = this.document[0].getElementById(id)
+
+        var scrollAmount = 0
+        var slideTimer = setInterval(function(){
+            list.scrollLeft -= 60;
+            scrollAmount += 10;
+            if(scrollAmount >= 100){
+                window.clearInterval(slideTimer);
+            }
+        }, 25);
+    }
 }
 
-MainContentController.$inject = ["$mdMedia", "EtkinlikService", "$scope", "$rootScope", "$location", "$route", "FilterService"];
+MainContentController.$inject = ["$mdMedia", "EtkinlikService", "$scope", "$rootScope", "$location", "$route", "FilterService", "$document"];
 
 export default {
     template: tpl,

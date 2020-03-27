@@ -20,7 +20,7 @@
                         </md-select>
                     </md-input-container>
                 </span>
-                
+
             </div>
             <div class="flex flex-wrap" ng-if="!$ctrl.showPlaces">
                 <div class="w-4/5 xs:w-9/12 mx-auto sm:w-1/2 sm:mx-0 md:h-58 md:w-58 lg:h-64 lg:w-64 xxl:h-64 xxl:w-64 xxxl:w-72 xxxl:w-72 mb-3"
@@ -39,15 +39,26 @@
                         <h3>{{ place.place_name }}</h3>
                         <h4>{{place.subcity}}</h4>
                     </div>
-                    <div class="flex flex-row w-full bg-white overflow-y-scroll" ng-if="$index === $ctrl.selectedIndex">
-                        <div ng-repeat="act in $ctrl.acts">
-                            <act-card title="$ctrl.trim_name(act.name)" subtitle=""
+                    <div class = "relative w-full" ng-if="$index === $ctrl.selectedIndex && $ctrl.acts.length != 0" ng-cloak>
+                        <div id = "{{'row-' + $index }}" class="flex flex-row w-full bg-white overflow-y-scroll">
+                            <act-card ng-repeat="act in $ctrl.acts" title="$ctrl.trim_name(act.name)" subtitle=""
                                 day-of-month="{{$ctrl.get_gunSayi(act.first_date)}}"
                                 month="{{$ctrl.get_ay(act.first_date)}}" event-id="{{act.event_id}}"
                                 image-url="{{act.image_url}}" date="NONE" place="{{$ctrl.bitistir(place.place_id)}}"
                                 show-top-left="false" city="{{$ctrl.filtersrv.filters.city}}"></act-card>
                         </div>
+                        <md-button ng-click = "$ctrl.scroll_left('row-' + $index )" class = "absolute md-fab" style = "top: 6rem; left: 1rem; background-color: rgba(50, 50, 50, 0.73); position: absolute">
+                            <div><i class="absolute material-icons text-white mx-auto" 
+                                style="font-size:36px; top: 50%; transform: translateY(-50%); right: 20%">keyboard_arrow_left</i>
+                            </div>
+                        </md-button>
+                        <md-button ng-click = "$ctrl.scroll_right('row-' + $index )" class = "absolute md-fab" style = "top: 6rem; right: 1rem; background-color: rgba(50, 50, 50, 0.73); position: absolute">
+                            <div><i class="absolute material-icons text-white mx-auto" 
+                                style="font-size:36px; top: 50%; transform: translateY(-50%); left: 20%">keyboard_arrow_right</i>
+                            </div>
+                        </md-button>
                     </div>
+
                 </li>
             </ul>
 
