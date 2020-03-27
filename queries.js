@@ -283,6 +283,7 @@ const search_name = (request, response) => {
     var NONE = "NONE"
     var city = request.params.city;
     var selected_discount = request.params.selected_discount;
+    var price_bar = request.params.price_bar;
     var qry = "";
     if(city == NONE){
         qry = `SELECT DISTINCT ON(date) * 
@@ -303,7 +304,16 @@ const search_name = (request, response) => {
             (SELECT event FROM public.instance
                WHERE instance_id IN
                (SELECT instance
-                   FROM public.price WHERE price_discount ILIKE '${selected_discount}')))`);
+                   FROM public.price WHERE price_discount ILIKE '${selected_discount}'))) `);
+    }
+
+    if(price_bar != NONE){
+        price_bar = price_bar * 100 // KURUS HESABI ICIN CARPILDI
+        qry = qry.concat(`AND event IN(
+                (SELECT event FROM public.instance
+                   WHERE instance_id IN
+                   (SELECT instance
+                       FROM public.price WHERE price < ${price_bar}))) `);
     }
     
     qry = qry.concat('ORDER BY date ASC')
