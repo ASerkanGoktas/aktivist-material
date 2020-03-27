@@ -72,7 +72,7 @@ class MainContentController {
                         this.isContentLoaded = true;
                     });
                 } else {
-                    this.etc.getActivitiesDistinctWithCount(null, null, this.type, this.subtype, this.city, this.selectedPage, this.discount).then(response => {
+                    this.etc.getActivitiesDistinctWithCount(null, null, this.type, this.subtype, this.city, this.selectedPage, this.discount, this.price).then(response => {
                         this.acts = response.data.rows;
                         this.row_num = response.data.count;
                         this.showPlaces = false;
@@ -82,7 +82,7 @@ class MainContentController {
                     });
                 }
             } else {
-                this.etc.search_name(this.searchText, this.selectedPage, this.city, this.discount).then(response => {
+                this.etc.search_name(this.searchText, this.selectedPage, this.city, this.discount, this.price).then(response => {
                     this.acts = response.data.rows;
                     this.row_num = response.data.count;
                     this.showPlaces = false;
@@ -107,7 +107,7 @@ class MainContentController {
 
         this.isContentLoaded = false;
         if (this.searchText == 'NONE') {
-            this.etc.getActivitiesDistinctWithCount(null, null, this.type, this.subtype, this.city, parseInt(pg_num), this.discount).then(response => {
+            this.etc.getActivitiesDistinctWithCount(null, null, this.type, this.subtype, this.city, parseInt(pg_num), this.discount, this.price).then(response => {
                 this.acts = response.data.rows;
                 this.row_num = response.data.count;
                 this.showPlaces = false;
@@ -115,7 +115,7 @@ class MainContentController {
                 this.isContentLoaded = true;
             });
         } else {
-            this.etc.search_name(this.searchText, parseInt(pg_num), this.city, this.discount).then(response => {
+            this.etc.search_name(this.searchText, parseInt(pg_num), this.city, this.discount, this.price).then(response => {
                 this.acts = response.data.rows;
                 this.row_num = response.data.count;
                 this.showPlaces = false;
@@ -276,5 +276,5 @@ MainContentController.$inject = ["$mdMedia", "EtkinlikService", "$scope", "$root
 export default {
     template: tpl,
     controller: MainContentController,
-    bindings: { type: "@", subtype: "@", searchText: "@", selectedPage: "<", city: "@", discount: "@", selectedZincir: "@"}
+    bindings: { type: "@", subtype: "@", searchText: "@", selectedPage: "<", city: "@", discount: "@", selectedZincir: "@", price: "@"}
 }

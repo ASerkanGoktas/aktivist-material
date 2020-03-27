@@ -87,8 +87,8 @@ const get_activities_distinct_withCount = (request, response) => {
     var subtype = request.params.subtype;
     var city = request.params.city;
     var selected_discount = request.params.selected_discount;
-    var price_bar = request.params.price_bar;
-
+    var price_bar = request.params.price_bar
+    console.log("price: " + price_bar)
     var qry = `SELECT * FROM 
                 (SELECT DISTINCT ON(event,date) event, date, instance.place, city
                 FROM instance,place WHERE instance.place = place.place_id) AS foo 

@@ -23,6 +23,7 @@ class FilterSegmentController {
     this.isBitis = false
     this.isBasla = false
 
+    this.selectedPrice = FilterService.filters.price;
     this.isSinema = FilterService.filters.type == "Sinema"
 
   }
@@ -55,7 +56,8 @@ class FilterSegmentController {
     console.log(`filter segment: type = ${this.filtersrv.filters.type}`)
     this.filtersrv.set_city(this.cityState);
     this.filtersrv.set_discount(this.selectedDiscount);
-    this.filtersrv.set_zincir(this.selectedZincir)
+    this.filtersrv.set_zincir(this.selectedZincir);
+    this.filtersrv.set_price(this.selectedPrice);
     var url = this.filtersrv.buildpath(true, true, true, true);
 
     this.location.path(url);

@@ -6,7 +6,8 @@ class FilterService {
             searchText: null,
             city: "İstanbul",
             discount: "NONE",
-            selectedZincir: "NONE"
+            selectedZincir: "NONE",
+            price: "NONE"
         };
 
         
@@ -35,6 +36,10 @@ class FilterService {
 
     set_zincir(zincir){
         this.filters.selectedZincir = zincir;
+    }
+
+    set_price(price){
+        this.filters.price = price;
     }
 
     get_filters(){
@@ -68,7 +73,7 @@ class FilterService {
         }
 
         
-        var result = `${base}/${type}/${subtype}/${searchText}/city/${city}/page_num/1/${this.filters.discount ? this.filters.discount : "NONE"}/${this.filters.selectedZincir ? this.filters.selectedZincir : "NONE"}`
+        var result = `${base}/${type}/${subtype}/${searchText}/city/${city}/page_num/1/${this.filters.discount ? this.filters.discount : "NONE"}/${this.filters.selectedZincir ? this.filters.selectedZincir : "NONE"}/${this.filters.price}`
 
         return result;
     }

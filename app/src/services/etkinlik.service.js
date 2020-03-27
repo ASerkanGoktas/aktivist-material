@@ -57,7 +57,7 @@ class EtkinlikService {
         return this.http.get("/livesearch/".concat(actName));
     }
 
-    getActivitiesDistinctWithCount(start, end, type, subtype, city, page_num, discount) {
+    getActivitiesDistinctWithCount(start, end, type, subtype, city, page_num, discount, price) {
         const base = "/get_activities_distinct_withCount";
         const NONE = "NONE";
 
@@ -90,7 +90,7 @@ class EtkinlikService {
         if (subtype == null)
             subtype = NONE
 
-        const qry = `${base}/${start}/${end}/${type}/${subtype}/${city}/${page_num}/${discount}`;
+        const qry = `${base}/${start}/${end}/${type}/${subtype}/${city}/${page_num}/${discount}/${price}`;
         return this.http.get(qry);
     }
 
@@ -107,7 +107,7 @@ class EtkinlikService {
         return this.http.get(`/get_moviesByplace/${place}`);
     }
 
-    search_name(text, page_num, city, discount) {
+    search_name(text, page_num, city, discount, price) {
         if(city == null){
             city = "NONE"
         }
@@ -115,7 +115,7 @@ class EtkinlikService {
         if(discount == null){
             discount = "NONE"
         }
-        return this.http.get(`/search_name/${text}/${page_num}/${city}/${discount}`);
+        return this.http.get(`/search_name/${text}/${page_num}/${city}/${discount}/${price}`);
     }
 
     get_instances_date(event_id, date, city){
