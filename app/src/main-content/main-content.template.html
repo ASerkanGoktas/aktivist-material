@@ -7,9 +7,13 @@
             class="min-h-screen xl:pr-16 h-auto">
             <div class="flex flex-row h-16 justify-between" ng-if="!($ctrl.type == 'Sinema')">
 
-                <h2 class="my-auto font-bold text-xl">
-                    {{$ctrl.get_searchName()}}
-                </h2>
+                <div class = "flex flex-row">
+                    <h2 class="my-auto font-bold text-xl">
+                        {{$ctrl.get_searchName()}}
+                    </h2>
+                    <md-progress-circular md-mode="indeterminate" ng-disabled = "$ctrl.isContentLoaded" class = "md-accent my-auto ml-3"></md-progress-circular>
+                </div>
+                
                 <span>
                     <span>Sayfalar: </span>
                     <md-input-container>
