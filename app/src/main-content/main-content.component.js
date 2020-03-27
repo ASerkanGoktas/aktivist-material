@@ -126,7 +126,7 @@ class MainContentController {
 
 
 
-        this.location.path(`/arama/${this.type}/${this.subtype}/${this.searchText}/city/${this.city}/page_num/${this.selectedPage}`, false)
+        this.location.path(`/arama/${this.type}/${this.subtype}/${this.searchText}/city/${this.city}/page_num/${this.selectedPage}/${this.discount}/${this.selectedZincir}/${this.price}`, false)
     }
 
     isLandscape() {
