@@ -47,12 +47,12 @@
                                 image-url="{{act.image_url}}" date="NONE" place="{{$ctrl.bitistir(place.place_id)}}"
                                 show-top-left="false" city="{{$ctrl.filtersrv.filters.city}}"></act-card>
                         </div>
-                        <md-button ng-click = "$ctrl.scroll_left('row-' + $index )" class = "absolute md-fab" style = "top: 6rem; left: 1rem; background-color: rgba(50, 50, 50, 0.73); position: absolute">
+                        <md-button ng-click = "$ctrl.scroll_left('row-' + $index )" class = "absolute md-fab invisible xl:visible" style = "top: 6rem; left: 1rem; background-color: rgba(50, 50, 50, 0.73); position: absolute">
                             <div><i class="absolute material-icons text-white mx-auto" 
                                 style="font-size:36px; top: 50%; transform: translateY(-50%); right: 20%">keyboard_arrow_left</i>
                             </div>
                         </md-button>
-                        <md-button ng-click = "$ctrl.scroll_right('row-' + $index )" class = "absolute md-fab" style = "top: 6rem; right: 1rem; background-color: rgba(50, 50, 50, 0.73); position: absolute">
+                        <md-button ng-click = "$ctrl.scroll_right('row-' + $index )" class = "absolute md-fab invisible xl:visible" style = "top: 6rem; right: 1rem; background-color: rgba(50, 50, 50, 0.73); position: absolute">
                             <div><i class="absolute material-icons text-white mx-auto" 
                                 style="font-size:36px; top: 50%; transform: translateY(-50%); left: 20%">keyboard_arrow_right</i>
                             </div>

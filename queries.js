@@ -19,7 +19,7 @@ const pool = new Pool( /* {
 const get_today = () => {
     var today = new Date();
 
-    today= `${today.getFullYear()}-${today.getMonth() + 1}-${today.getDate() - 15}`;
+    today= `${today.getFullYear()}-${today.getMonth() + 1}-${today.getDate() -16}`;
     return today;
 }
 
