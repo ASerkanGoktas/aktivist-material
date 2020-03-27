@@ -1,35 +1,29 @@
 <div class="w-full h-full flex flex-col flex-wrap justify-start">
-    <h3 class="text-3xl p-3">Kategori: </h3>
-    <div class="w-full flex flew-row overflow-hidden content-center overflow-x-scroll justify-between mb-8">
-        <div class="h-64 w-64 flex-none  m-3" ng-repeat="act in $ctrl.acts">
-            <md-card>
-                <div class="h-32 bg-gray-800"
-                    ng-style="{'background-image': 'url('+ act.image +')', 'background-repeat': 'no-repeat', 'background-position': 'center center', 'background-size': 'cover'}">
-                </div>
-                <div class="flex flex-col p-2">
-                    
-
-                    <span class="font-bold text-sm overflow-hidden"
-                        style="white-space: normal; -webkit-line-clamp: 3; max-height: 2.5rem; text-overflow: ellipsis;">{{act.name}}</span>
-                    <span class="text-xs mt-1">{{act.date}}</span>
-
-                </div>
-                <div class="flex flex-row justify-between float-right">
-                    <a href="#!/etkinlik/{{act.instance_id}}">
-                        <md-button class="md-button">DETAY</md-button>
-                    </a>
-                    <md-button class="md-icon-button h-1 w-1 self-center">
-                        <i class="material-icons">share</i>
-                    </md-button>
-
-                </div>
-            </md-card>
+    <h3 class="text-3xl p-3">Bugünkü filmler: </h3>
+    <div class = "relative w-full">
+        <div id = "todays_movies" class="w-full flex flew-row overflow-hidden content-center overflow-x-scroll justify-start mb-8">
+       
+            <act-card ng-repeat="movie in $ctrl.todays_movies" title="$ctrl.trim_name(movie.name)" subtitle="{{movie.subtype}}"
+                day-of-month="{{$ctrl.get_gunSayi($ctrl.today)}}" month="{{$ctrl.get_ay($ctrl.today)}}"
+                event-id="{{movie.event_id}}" image-url="{{movie.image_url}}" date="{{$ctrl.today}}"
+                show-top-left="false" place="NONE" city="{{$ctrl.filtersrv.filters.city}}" width = "16rem"></act-card>
         </div>
+        <md-button ng-click = "$ctrl.scroll_left('todays_movies')" class = "absolute md-fab" style = "top: 6rem; left: 1rem; background-color: rgba(50, 50, 50, 0.73); position: absolute">
+            <div><i class="absolute material-icons text-white mx-auto" 
+                style="font-size:36px; top: 50%; transform: translateY(-50%); right: 20%">keyboard_arrow_left</i>
+            </div>
+        </md-button>
+        <md-button ng-click = "$ctrl.scroll_right('todays_movies')" class = "absolute md-fab" style = "top: 6rem; right: 1rem; background-color: rgba(50, 50, 50, 0.73); position: absolute">
+            <div><i class="absolute material-icons text-white mx-auto" 
+                style="font-size:36px; top: 50%; transform: translateY(-50%); left: 20%">keyboard_arrow_right</i>
+            </div>
+        </md-button>
     </div>
-    <div class="h-px w-full bg-gray-500"></div>
+    
+    
     <h3 class="text-3xl p-2 ">Kategori: </h3>
     <div class="w-full flex flew-row overflow-hidden overflow-x-scroll justify-between mb-8">
-        <act-card ng-repeat = "movie in $ctrl.todays_movies" ></act-card>
+        
     </div>
     <div class="h-px w-full bg-gray-500"></div>
     <h3 class="text-3xl p-2">Kategori: </h3>

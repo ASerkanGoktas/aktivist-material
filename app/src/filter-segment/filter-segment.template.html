@@ -16,7 +16,7 @@
 
             <md-datepicker ng-if = "$ctrl.isBitis" ng-model="$ctrl.myDateEnd" md-placeholder="Tarih seçin"></md-datepicker>
         </md-content>
-        <md-input-container>
+        <md-input-container ng-if = "!$ctrl.isSinema">
             <label>Kampanya seç</label>
             <md-select ng-model = "$ctrl.selectedDiscount">
                 <md-option value = "NONE" ng-selected = "$ctrl.selectedDiscount == 'NONE'">Farketmez</md-option>
