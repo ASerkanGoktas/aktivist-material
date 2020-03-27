@@ -15,6 +15,7 @@ class MainContentController {
         this.pages = []
         this.filtersrv = FilterService;
         this.document = $document;
+        
 
         var original = $location.path;
         $location.path = (path, reload) => {
@@ -58,6 +59,8 @@ class MainContentController {
         this.$onInit = () => {
             var NONE = "NONE";
 
+            this.isContentLoaded = false;
+
             this.sync_filters();
             this.selectedPage = parseInt(this.selectedPage);
             if (this.searchText == NONE) {
@@ -65,6 +68,8 @@ class MainContentController {
                     this.etc.get_places(this.type, this.city, this.selectedZincir).then(response => {
                         this.places = response.data;
                         this.showPlaces = true;
+
+                        this.isContentLoaded = true;
                     });
                 } else {
                     this.etc.getActivitiesDistinctWithCount(null, null, this.type, this.subtype, this.city, this.selectedPage, this.discount).then(response => {
@@ -73,6 +78,7 @@ class MainContentController {
                         this.showPlaces = false;
 
                         this.set_pagenums(this.row_num);
+                        this.isContentLoaded = true;
                     });
                 }
             } else {
@@ -82,6 +88,7 @@ class MainContentController {
                     this.showPlaces = false;
 
                     this.set_pagenums(this.row_num);
+                    this.isContentLoaded = true;
                 });
             }
         };
@@ -98,17 +105,22 @@ class MainContentController {
 
     select_page(pg_num) {
 
+        this.isContentLoaded = false;
         if (this.searchText == 'NONE') {
             this.etc.getActivitiesDistinctWithCount(null, null, this.type, this.subtype, this.city, parseInt(pg_num), this.discount).then(response => {
                 this.acts = response.data.rows;
                 this.row_num = response.data.count;
                 this.showPlaces = false;
+
+                this.isContentLoaded = true;
             });
         } else {
             this.etc.search_name(this.searchText, parseInt(pg_num), this.city, this.discount).then(response => {
                 this.acts = response.data.rows;
                 this.row_num = response.data.count;
                 this.showPlaces = false;
+
+                this.isContentLoaded = true;
             })
         }
 
