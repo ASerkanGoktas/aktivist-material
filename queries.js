@@ -19,7 +19,7 @@ const pool = new Pool( /* {
 const get_today = () => {
     var today = new Date();
 
-    today= `${today.getFullYear()}-${today.getMonth() + 1}-${today.getDate() -16}`;
+    today= `${today.getFullYear()}-${today.getMonth() + 1}-${today.getDate()}`;
     return today;
 }
 
@@ -393,7 +393,7 @@ const get_instances_date = (request, response) => {
      }
      
      qry = qry.concat(" ORDER BY time;")
-     
+     console.log(qry);
 
      pool.query(qry, (error, results) =>{
          if(error){

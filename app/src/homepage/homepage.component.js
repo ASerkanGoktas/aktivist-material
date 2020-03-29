@@ -12,6 +12,31 @@ class HomepageController{
         this.document = $document;
         
         $rootScope.$broadcast("clearSearch", null);
+
+        this.gunler = {
+            0: "Pazar",
+            1: "Pazartesi",
+            2: "Salı",
+            3: "Çarşamba",
+            4: "Perşembe",
+            5: "Cuma",
+            6: "Cumartesi"
+        }
+
+        this.aylar = {
+            0: "Ocak",
+            1: "Şubat",
+            2: "Mart",
+            3: "Nisan",
+            4: "Mayıs",
+            5: "Haziran",
+            6: "Temmuz",
+            7: "Ağustos",
+            8: "Eylül",
+            9: "Ekim",
+            10: "Kasım",
+            11: "Aralık"
+        }
     }
 
     get_today(){

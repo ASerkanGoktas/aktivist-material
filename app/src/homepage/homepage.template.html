@@ -4,8 +4,8 @@
         <div id = "todays_movies" class="w-full flex flew-row overflow-hidden content-center overflow-x-scroll justify-start mb-8">
        
             <act-card ng-repeat="movie in $ctrl.todays_movies" title="$ctrl.trim_name(movie.name)" subtitle="{{movie.subtype}}"
-                day-of-month="{{$ctrl.get_gunSayi($ctrl.today)}}" month="{{$ctrl.get_ay($ctrl.today)}}"
-                event-id="{{movie.event_id}}" image-url="{{movie.image_url}}" date="{{$ctrl.today}}"
+                day-of-month="{{$ctrl.get_gunSayi(movie.date)}}" month="{{$ctrl.get_ay(move.date)}}"
+                event-id="{{movie.event_id}}" image-url="{{movie.image_url}}" date="{{movie.date}}"
                 show-top-left="false" place="NONE" city="{{$ctrl.filtersrv.filters.city}}" width = "16rem"></act-card>
         </div>
         <md-button ng-click = "$ctrl.scroll_left('todays_movies')" class = "absolute md-fab invisible xl:visible" style = "top: 6rem; left: 1rem; background-color: rgba(50, 50, 50, 0.73); position: absolute">
