@@ -190,6 +190,7 @@ class MainContentController {
         this.filtersrv.filters.searchText = this.searchText;
         this.filtersrv.filters.city = this.city
         this.filtersrv.filters.discount = this.discount;
+        this.filtersrv.filters.price = this.price
     }
 
     get_gun(datestr) {

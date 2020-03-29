@@ -24,8 +24,11 @@ class FilterSegmentController {
     this.isBasla = false
 
     this.selectedPrice = FilterService.filters.price;
+    if(this.selectedPrice != "NONE"){
+      this.isFiyat = true;
+    }
     this.isSinema = FilterService.filters.type == "Sinema"
-
+    
   }
   clearSearchTerm() {
     this.cityInput = "";

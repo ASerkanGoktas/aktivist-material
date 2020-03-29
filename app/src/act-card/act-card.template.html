@@ -19,7 +19,7 @@
         <a href="{{$ctrl.linkToDetails}}">
             <md-button class="md-button" ng-click="$ctrl.get_details($ctrl.eventId)">DETAY</md-button>
         </a>
-        <md-button class="md-icon-button h-1 w-1 self-center" ng-copy = "$ctrl.linkToDetails">
+        <md-button class="md-icon-button h-1 w-1 self-center" ng-copy = "$ctrl.linkToDetails" ng-click = "$ctrl.copyToClipboard($ctrl.linkToDetails); $ctrl.showToast()">
             <input ng-model="$ctrl.linkToDetails" ng-value = "$ctrl.linkToDetails" ng-show = "false">
             <i class="material-icons">share</i>
         </md-button>
