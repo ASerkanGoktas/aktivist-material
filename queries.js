@@ -443,15 +443,14 @@ const filter_discount= (request, response) => {
 const get_todays_movies = (request, response) => {
     var city = request.params.city;
     var today = get_today()
-    var qry = `SELECT * FROM public.event WHERE 
-                event_id IN
-                (SELECT DISTINCT ON(givenname) realname_id
-                FROM public.cinemapage)
-                AND event_id IN
-                (SELECT DISTINCT ON(event) event
-                FROM public.instance WHERE date = '${today}')	
-                AND event_id IN (SELECT DISTINCT ON(event) event
-                FROM instance,place WHERE instance.place = place.place_id AND city = '${city}');` // UMarim calisir bende verince calisiyordu
+    var qry = `SELECT DISTINCT ON(event)* FROM public.event,public.instance WHERE 
+                    event_id = event
+                    AND event_id IN
+                        (SELECT DISTINCT ON(givenname) realname_id
+                        FROM public.cinemapage)
+                    AND event_id IN (SELECT DISTINCT ON(event) event
+                        FROM instance,place WHERE instance.place = place.place_id AND city = '${city}')
+                     AND date = '${today}';` // UMarim calisir bende verince calisiyordu
      pool.query(qry, (error, results) =>{
          if(error){
              console.log(error);
