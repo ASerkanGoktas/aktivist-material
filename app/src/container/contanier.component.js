@@ -32,7 +32,7 @@ class ContainerController {
 
     filter_types(type){
         this.filtersrv.set_typensubtype(type, null);
-        var url = this.filtersrv.buildpath(true, false, false, true);
+        var url = this.filtersrv.buildpath();
 
         this.rootScope.$broadcast("clearSearch", null);
         this.location.path(url);

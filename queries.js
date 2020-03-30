@@ -294,7 +294,7 @@ const search_name = (request, response) => {
         qry = `SELECT DISTINCT ON(date) * 
 	        FROM instance,event,place 
 		        WHERE event.event_id = instance.event AND instance.place = place.place_id AND
-			        city = '${request.params.city}' AND LOWER(name) LIKE LOWER('%${selected_discount}%') 
+			        city = '${request.params.city}' AND LOWER(name) LIKE LOWER('%${request.params.text}%') 
                         `
     }
     //  selected_discount = '%hopi%' OR '%lale%' OR '%1alana1bedava%' OR  '%TAV%'

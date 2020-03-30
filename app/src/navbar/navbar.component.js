@@ -102,14 +102,14 @@ class NavbarController {
 ////
     search(text){
         this.filterserv.set_searchText(text);
-        var url = this.filterserv.buildpath(false, false, true, false);
+        var url = this.filterserv.buildpath();
 
         this.location.path(url);
     }
 
     filter_types(type, subtype){
         this.filterserv.set_typensubtype(type, subtype);
-        var url = this.filterserv.buildpath(true, subtype != null, false, true);
+        var url = this.filterserv.buildpath();
         
         this.rootScope.$broadcast("clearSearch", null);
         this.location.path(url);
