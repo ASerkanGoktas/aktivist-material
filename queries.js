@@ -14,7 +14,7 @@ const pool = new Pool(  {
     port: "5432",
     password: "279157",
 
-}*/)
+})
 
 const get_today = () => {
     var today = new Date();
@@ -482,6 +482,63 @@ const get_todays_movies = (request, response) => {
          }
      });
  }
+
+ const get_10random_events = (request, response) => {
+    var qry =  `SELECT * FROM 
+       (SELECT DISTINCT ON(event) event, date, instance.place, city
+       FROM instance,place WHERE instance.place = place.place_id) AS foo
+       JOIN event ON (event.event_id = foo.event) WHERE event_id IN
+       (select event_id from event where event_id IN(
+       select event_id from event where (type != 'Sinema' AND type != 'Eğitim') AND random() < 0.01)  ORDER BY details LIMIT 10);`
+     pool.query(qry, (error, results) =>{
+         if(error){
+             console.log(error);
+         }
+         else{
+             
+             response.status(200).json(results.rows[0]);
+         }
+     });
+ }
+
+
+const get_todays_concerts_of_city = (request, response) => {
+    var city = request.params.city;
+    var today = get_today()
+    var qry =  `SELECT * FROM 
+    (SELECT DISTINCT ON(event) event, date, instance.place, city
+    FROM instance,place WHERE instance.place = place.place_id) AS foo
+    JOIN event ON (event.event_id = foo.event) WHERE city =  '${city}' AND type = 'Müzik' AND date = '${today}';` // LIMIT 20 KONABILIR
+        pool.query(qry, (error, results) =>{
+            if(error){
+                console.log(error);
+            }
+            else{
+                
+                response.status(200).json(results.rows[0]);
+            }
+        });
+}
+
+const get_todays_theatres_of_city = (request, response) => {
+    var city = request.params.city;
+    var today = get_today()
+    var qry =  `SELECT * FROM 
+    (SELECT DISTINCT ON(event) event, date, instance.place, city
+    FROM instance,place WHERE instance.place = place.place_id) AS foo
+    JOIN event ON (event.event_id = foo.event) WHERE city =  '${city}' AND type = 'Tiyatro' AND date = '${today}';` // LIMIT 20 KONABILIR
+        pool.query(qry, (error, results) =>{
+            if(error){
+                console.log(error);
+            }
+            else{
+                
+                response.status(200).json(results.rows[0]);
+            }
+        });
+}
+
+
 
 module.exports = {
     get_instances,
