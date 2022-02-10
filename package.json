@@ -44,7 +44,7 @@
     "image-webpack-loader": "^6.0.0",
     "img-loader": "^3.0.1",
     "install": "^0.13.0",
-    "node-sass": "^4.13.1",
+    "node-sass": "^7.0.0",
     "sass-loader": "^8.0.0",
     "source-map": "^0.7.3",
     "style-loader": "^1.0.0",
