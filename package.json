@@ -24,7 +24,7 @@
     "express": "^4.17.1",
     "inline-source-map": "^0.6.2",
     "mini-css-extract-plugin": "^0.8.0",
-    "moment": "^2.24.0",
+    "moment": "^2.29.4",
     "pg": "^7.12.1",
     "popper.js": "^1.15.0",
     "postcss-cli": "^6.1.3",
