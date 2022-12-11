@@ -21,7 +21,7 @@
     "angular-route": "^1.7.8",
     "autoprefixer": "^9.6.5",
     "bootstrap": "^4.3.1",
-    "express": "^4.17.1",
+    "express": "^4.17.3",
     "inline-source-map": "^0.6.2",
     "mini-css-extract-plugin": "^0.8.0",
     "moment": "^2.24.0",
